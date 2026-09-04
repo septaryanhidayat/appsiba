@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Gallery;
 use App\Models\Inbox;
-use App\Models\IncomingLetter;
 use App\Models\Letter;
 use App\Models\Meeting;
 use App\Models\Member;
@@ -481,7 +480,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 8. Outgoing Letters (Surat Keluar Generator Ber-KOP APPSI Banyuasin)
-        $hash1 = strtoupper(substr(hash('sha256', '001/DPD-APPSI/BA/IX/2026' . time()), 0, 16));
+        $hash1 = strtoupper(substr(hash('sha256', '001/DPD-APPSI/BA/IX/2026'.time()), 0, 16));
         Letter::create([
             'uuid' => (string) Str::uuid(),
             'nomor_surat' => '001/DPD-APPSI/BA/IX/2026',

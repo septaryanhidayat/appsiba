@@ -31,9 +31,10 @@ class IncomingLetter extends Model
         if ($this->file_lampiran && file_exists(public_path($this->file_lampiran))) {
             return asset($this->file_lampiran);
         }
-        if ($this->file_lampiran && file_exists(storage_path('app/public/' . $this->file_lampiran))) {
-            return asset('storage/' . $this->file_lampiran);
+        if ($this->file_lampiran && file_exists(storage_path('app/public/'.$this->file_lampiran))) {
+            return asset('storage/'.$this->file_lampiran);
         }
+
         return null;
     }
 }

@@ -17,11 +17,15 @@
             Daftar resmi pelaku usaha dan pedagang pasar tradisional yang terdaftar dan terverifikasi dalam naungan DPD APPSI Kabupaten Banyuasin.
         </p>
 
-        <!-- CTA Register Button -->
-        <div class="mt-6 flex justify-center">
+        <!-- CTA Register & Check Buttons -->
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
             <a href="{{ route('members.register') }}" class="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-6 py-3 text-sm font-bold text-white shadow hover:bg-emerald-800 transition">
                 <i class="fa-solid fa-user-plus text-xs"></i>
-                Daftar Sebagai Anggota Pedagang Baru
+                Daftar Pedagang Baru
+            </a>
+            <a href="{{ route('members.check') }}" class="inline-flex items-center gap-2 rounded-xl border border-emerald-300 bg-white px-6 py-3 text-sm font-bold text-emerald-800 shadow-sm hover:bg-emerald-50 transition">
+                <i class="fa-solid fa-id-card-clip text-xs text-emerald-600"></i>
+                Cek Status KTA Anda
             </a>
         </div>
     </div>

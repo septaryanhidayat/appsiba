@@ -21,8 +21,8 @@ class MemberRegistrationController extends Controller
             $search = $request->q;
             $query->where(function ($q) use ($search) {
                 $q->where('nama', 'like', "%{$search}%")
-                  ->orWhere('nama_usaha', 'like', "%{$search}%")
-                  ->orWhere('nik', 'like', "%{$search}%");
+                    ->orWhere('nama_usaha', 'like', "%{$search}%")
+                    ->orWhere('nik', 'like', "%{$search}%");
             });
         }
 
@@ -40,7 +40,7 @@ class MemberRegistrationController extends Controller
     {
         // Generate next NPA
         $count = Member::count() + 1;
-        $npa = 'DPD-BA-01.' . str_pad($count, 4, '0', STR_PAD_LEFT);
+        $npa = 'DPD-BA-01.'.str_pad($count, 4, '0', STR_PAD_LEFT);
 
         Member::create([
             'nama' => $registration->nama,
@@ -62,10 +62,10 @@ class MemberRegistrationController extends Controller
 
         $registration->update([
             'status' => 'disetujui',
-            'catatan_admin' => $request->input('catatan_admin', 'Disetujui menjadi Anggota Resmi APPSI Banyuasin dengan NPA ' . $npa),
+            'catatan_admin' => $request->input('catatan_admin', 'Disetujui menjadi Anggota Resmi APPSI Banyuasin dengan NPA '.$npa),
         ]);
 
-        return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran pedagang disetujui! Anggota baru berhasil dibuat dengan NPA ' . $npa);
+        return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran pedagang disetujui! Anggota baru berhasil dibuat dengan NPA '.$npa);
     }
 
     public function reject(Request $request, MemberRegistration $registration)
@@ -81,6 +81,7 @@ class MemberRegistrationController extends Controller
     public function destroy(MemberRegistration $registration)
     {
         $registration->delete();
+
         return redirect()->route('admin.registrations.index')->with('success', 'Data pendaftaran berhasil dihapus.');
     }
 }

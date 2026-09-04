@@ -31,9 +31,10 @@ class MemberRegistration extends Model
         if ($this->foto_ktp && file_exists(public_path($this->foto_ktp))) {
             return asset($this->foto_ktp);
         }
-        if ($this->foto_ktp && file_exists(storage_path('app/public/' . $this->foto_ktp))) {
-            return asset('storage/' . $this->foto_ktp);
+        if ($this->foto_ktp && file_exists(storage_path('app/public/'.$this->foto_ktp))) {
+            return asset('storage/'.$this->foto_ktp);
         }
+
         return null;
     }
 
@@ -42,9 +43,10 @@ class MemberRegistration extends Model
         if ($this->foto_usaha && file_exists(public_path($this->foto_usaha))) {
             return asset($this->foto_usaha);
         }
-        if ($this->foto_usaha && file_exists(storage_path('app/public/' . $this->foto_usaha))) {
-            return asset('storage/' . $this->foto_usaha);
+        if ($this->foto_usaha && file_exists(storage_path('app/public/'.$this->foto_usaha))) {
+            return asset('storage/'.$this->foto_usaha);
         }
+
         return null;
     }
 }

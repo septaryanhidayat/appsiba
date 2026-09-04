@@ -13,7 +13,6 @@ use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
 
 class PublicController extends Controller
 {
@@ -55,10 +54,10 @@ class PublicController extends Controller
         $structures = OrganizationStructure::orderBy('urutan', 'asc')->get();
 
         $ketua = $structures->firstWhere('jabatan', 'Ketua DPD') ?? $structures->first();
-        $pimpinanHarian = $structures->where('divisi', 'Pimpinan Harian')->filter(fn($item) => $item->id !== ($ketua->id ?? 0));
+        $pimpinanHarian = $structures->where('divisi', 'Pimpinan Harian')->filter(fn ($item) => $item->id !== ($ketua->id ?? 0));
         $sekretariat = $structures->where('divisi', 'Sekretariat');
         $kebendaharaan = $structures->where('divisi', 'Kebendaharaan');
-        $bidang = $structures->filter(fn($item) => !in_array($item->divisi, ['Pimpinan Harian', 'Sekretariat', 'Kebendaharaan', 'Komisariat Pasar']));
+        $bidang = $structures->filter(fn ($item) => ! in_array($item->divisi, ['Pimpinan Harian', 'Sekretariat', 'Kebendaharaan', 'Komisariat Pasar']));
         $komisariat = $structures->where('divisi', 'Komisariat Pasar');
 
         return view('public.struktur', compact('structures', 'ketua', 'pimpinanHarian', 'sekretariat', 'kebendaharaan', 'bidang', 'komisariat'));
@@ -79,8 +78,8 @@ class PublicController extends Controller
             $search = $request->q;
             $query->where(function ($q) use ($search) {
                 $q->where('judul', 'like', "%{$search}%")
-                  ->orWhere('ringkasan', 'like', "%{$search}%")
-                  ->orWhere('konten', 'like', "%{$search}%");
+                    ->orWhere('ringkasan', 'like', "%{$search}%")
+                    ->orWhere('konten', 'like', "%{$search}%");
             });
         }
 
@@ -130,7 +129,7 @@ class PublicController extends Controller
         if ($request->filled('q')) {
             $search = $request->q;
             $query->where('judul', 'like', "%{$search}%")
-                  ->orWhere('deskripsi', 'like', "%{$search}%");
+                ->orWhere('deskripsi', 'like', "%{$search}%");
         }
 
         $galleries = $query->latest('tanggal_kegiatan')->paginate(12)->withQueryString();
@@ -162,8 +161,8 @@ class PublicController extends Controller
             $search = $request->q;
             $query->where(function ($q) use ($search) {
                 $q->where('nama', 'like', "%{$search}%")
-                  ->orWhere('nama_usaha', 'like', "%{$search}%")
-                  ->orWhere('nomor_anggota', 'like', "%{$search}%");
+                    ->orWhere('nama_usaha', 'like', "%{$search}%")
+                    ->orWhere('nomor_anggota', 'like', "%{$search}%");
             });
         }
 
@@ -273,9 +272,10 @@ class PublicController extends Controller
      */
     public function storeBukuTamu(Request $request)
     {
-        $key = 'inbox-submit:' . $request->ip();
+        $key = 'inbox-submit:'.$request->ip();
         if (RateLimiter::tooManyAttempts($key, 5)) {
             $seconds = RateLimiter::availableIn($key);
+
             return back()->with('error', "Terlalu banyak pesan terkirim. Silakan tunggu {$seconds} detik lagi.")->withInput();
         }
         RateLimiter::hit($key, 120);
@@ -306,15 +306,79 @@ class PublicController extends Controller
     }
 
     /**
-     * Verifikasi Surat / Dokumen Resmi via QR Code
+     * Halaman Kontak & Layanan Sekretariat
      */
-    public function verifikasiSurat($hash)
+    public function kontak()
     {
-        $letter = Letter::where('hash_keabsahan', $hash)
-            ->orWhere('uuid', $hash)
-            ->orWhere('id', $hash)
-            ->first();
+        $settings = Setting::pluck('value', 'key');
 
-        return view('public.surat.verifikasi', compact('letter', 'hash'));
+        return view('public.kontak', compact('settings'));
+    }
+
+    /**
+     * Halaman Program Kerja & 5 Pilar Unggulan APPSI Banyuasin
+     */
+    public function programKerja()
+    {
+        return view('public.program-kerja');
+    }
+
+    /**
+     * Halaman Pusat Unduhan Dokumen & Formulir Publik
+     */
+    public function unduhan()
+    {
+        return view('public.unduhan');
+    }
+
+    /**
+     * Halaman Tanya Jawab / FAQ Seputar APPSI
+     */
+    public function faq()
+    {
+        return view('public.faq');
+    }
+
+    /**
+     * Cek Status Keabsahan KTA Pedagang Mandiri
+     */
+    public function cekKta(Request $request)
+    {
+        $member = null;
+        $searched = false;
+
+        if ($request->filled('q')) {
+            $searched = true;
+            $query = trim($request->q);
+            $member = Member::where('nomor_anggota', $query)
+                ->orWhere('nik', $query)
+                ->first();
+        }
+
+        return view('public.keanggotaan.cek', compact('member', 'searched'));
+    }
+
+    /**
+     * Verifikasi Surat / Dokumen Resmi via QR Code atau Nomor Surat
+     */
+    public function verifikasiSurat(Request $request, ?string $hash = null)
+    {
+        $searchKey = $hash ?: $request->input('q');
+        $letter = null;
+
+        if ($searchKey) {
+            $cleanKey = trim($searchKey);
+            $letter = Letter::where('hash_keabsahan', $cleanKey)
+                ->orWhere('uuid', $cleanKey)
+                ->orWhere('nomor_surat', $cleanKey)
+                ->orWhere('nomor_surat', 'like', "%{$cleanKey}%")
+                ->orWhere('id', $cleanKey)
+                ->first();
+        }
+
+        return view('public.surat.verifikasi', [
+            'letter' => $letter,
+            'hash' => $searchKey,
+        ]);
     }
 }

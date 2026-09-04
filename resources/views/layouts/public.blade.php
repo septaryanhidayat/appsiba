@@ -118,16 +118,22 @@
             </a>
 
             <!-- Desktop Navigation -->
-            <nav class="hidden items-center gap-6 lg:flex">
+            <nav class="hidden items-center gap-5 xl:gap-6 lg:flex">
                 <a href="{{ route('home') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('home') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
                     Beranda
                     @if(request()->routeIs('home'))
                         <span class="absolute inset-x-1 -bottom-1 h-0.5 rounded-full bg-emerald-700"></span>
                     @endif
                 </a>
-                <a href="{{ route('organization.public') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('organization.public') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
-                    Struktur
-                    @if(request()->routeIs('organization.public'))
+                <a href="{{ route('programs.public') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('programs.*') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
+                    Program
+                    @if(request()->routeIs('programs.*'))
+                        <span class="absolute inset-x-1 -bottom-1 h-0.5 rounded-full bg-emerald-700"></span>
+                    @endif
+                </a>
+                <a href="{{ route('members.public') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('members.*') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
+                    Keanggotaan
+                    @if(request()->routeIs('members.*'))
                         <span class="absolute inset-x-1 -bottom-1 h-0.5 rounded-full bg-emerald-700"></span>
                     @endif
                 </a>
@@ -143,30 +149,36 @@
                         <span class="absolute inset-x-1 -bottom-1 h-0.5 rounded-full bg-emerald-700"></span>
                     @endif
                 </a>
-                <a href="{{ route('members.public') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('members.public') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
-                    Keanggotaan
-                    @if(request()->routeIs('members.public'))
+                <a href="{{ route('downloads.public') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('downloads.*') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
+                    Unduhan
+                    @if(request()->routeIs('downloads.*'))
                         <span class="absolute inset-x-1 -bottom-1 h-0.5 rounded-full bg-emerald-700"></span>
                     @endif
                 </a>
-                <a href="{{ route('about.public') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('about.public') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
+                <a href="{{ route('about.public') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('about.public') || request()->routeIs('organization.public') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
                     Tentang Kami
-                    @if(request()->routeIs('about.public'))
+                    @if(request()->routeIs('about.public') || request()->routeIs('organization.public'))
+                        <span class="absolute inset-x-1 -bottom-1 h-0.5 rounded-full bg-emerald-700"></span>
+                    @endif
+                </a>
+                <a href="{{ route('contact.public') }}" class="relative py-2 text-sm font-semibold transition {{ request()->routeIs('contact.*') ? 'text-emerald-800 font-bold' : 'text-slate-700 hover:text-emerald-700' }}">
+                    Kontak
+                    @if(request()->routeIs('contact.*'))
                         <span class="absolute inset-x-1 -bottom-1 h-0.5 rounded-full bg-emerald-700"></span>
                     @endif
                 </a>
             </nav>
 
             <!-- CTA Buttons Desktop -->
-            <div class="hidden items-center gap-3 lg:flex">
-                <a href="{{ route('members.register') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 border border-emerald-200 bg-white text-emerald-800 hover:border-emerald-500 hover:bg-emerald-50 h-10 px-4 text-xs tracking-wide shadow-sm">
+            <div class="hidden items-center gap-2.5 lg:flex">
+                <a href="{{ route('members.register') }}" class="inline-flex items-center justify-center gap-1.5 rounded-xl font-semibold transition duration-200 border border-emerald-200 bg-white text-emerald-800 hover:border-emerald-500 hover:bg-emerald-50 h-10 px-3.5 text-xs tracking-wide shadow-sm">
                     <i class="fa-solid fa-user-plus text-xs text-emerald-600"></i>
-                    Daftar Keanggotaan
+                    Daftar KTA
                 </a>
                 @auth
                     <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)] hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
                         <i class="fa-solid fa-gauge-high text-xs"></i>
-                        Dashboard
+                        MIS Admin
                     </a>
                 @else
                     <a href="{{ route('login') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)] hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
@@ -184,12 +196,18 @@
 
         <!-- Mobile Navigation Dropdown -->
         <div x-show="mobileMenu" x-cloak class="border-t border-slate-100 bg-white px-5 py-4 lg:hidden shadow-xl" @click.away="mobileMenu = false">
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-2.5">
                 <a href="{{ route('home') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('home') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
                     <i class="fa-solid fa-house w-6 text-emerald-700"></i> Beranda
                 </a>
-                <a href="{{ route('organization.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('organization.public') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-sitemap w-6 text-emerald-700"></i> Struktur Organisasi
+                <a href="{{ route('programs.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('programs.*') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
+                    <i class="fa-solid fa-layer-group w-6 text-emerald-700"></i> 5 Pilar Program Kerja
+                </a>
+                <a href="{{ route('members.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('members.public') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
+                    <i class="fa-solid fa-store w-6 text-emerald-700"></i> Direktori Pedagang
+                </a>
+                <a href="{{ route('members.check') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('members.check') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
+                    <i class="fa-solid fa-id-card-clip w-6 text-emerald-700"></i> Cek Status KTA Pedagang
                 </a>
                 <a href="{{ route('news.index') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('news.*') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
                     <i class="fa-solid fa-newspaper w-6 text-emerald-700"></i> Berita & Kabar Pasar
@@ -197,27 +215,36 @@
                 <a href="{{ route('gallery.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('gallery.public') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
                     <i class="fa-solid fa-images w-6 text-emerald-700"></i> Galeri Dokumentasi
                 </a>
-                <a href="{{ route('members.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('members.public') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-store w-6 text-emerald-700"></i> Direktori Pedagang
+                <a href="{{ route('downloads.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('downloads.*') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
+                    <i class="fa-solid fa-file-arrow-down w-6 text-emerald-700"></i> Pusat Unduhan
                 </a>
                 <a href="{{ route('about.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('about.public') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
                     <i class="fa-solid fa-circle-info w-6 text-emerald-700"></i> Tentang Kami
+                </a>
+                <a href="{{ route('organization.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('organization.public') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
+                    <i class="fa-solid fa-sitemap w-6 text-emerald-700"></i> Struktur Organisasi
+                </a>
+                <a href="{{ route('contact.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('contact.*') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
+                    <i class="fa-solid fa-headset w-6 text-emerald-700"></i> Kontak & Aspirasi
+                </a>
+                <a href="{{ route('faq.public') }}" class="px-3 py-2 rounded-lg text-sm font-semibold {{ request()->routeIs('faq.*') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
+                    <i class="fa-solid fa-circle-question w-6 text-emerald-700"></i> Tanya Jawab (FAQ)
                 </a>
 
                 <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
                     <a href="{{ route('members.register') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold border border-emerald-200 bg-emerald-50 text-emerald-800">
                         <i class="fa-solid fa-user-plus text-xs"></i>
-                        Daftar Keanggotaan
+                        Daftar Keanggotaan KTA
                     </a>
                     @auth
                         <a href="{{ route('admin.dashboard') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold bg-emerald-700 text-white shadow">
                             <i class="fa-solid fa-gauge-high text-xs"></i>
-                            Dashboard MIS
+                            Dashboard MIS Admin
                         </a>
                     @else
                         <a href="{{ route('login') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold bg-emerald-700 text-white shadow">
                             <i class="fa-solid fa-lock text-xs"></i>
-                            Login Petugas
+                            Login Petugas MIS
                         </a>
                     @endauth
                 </div>
@@ -267,9 +294,10 @@
 
             <!-- Navigation Links -->
             <div>
-                <h3 class="text-sm font-bold text-slate-900">Navigasi</h3>
+                <h3 class="text-sm font-bold text-slate-900">Navigasi Utama</h3>
                 <ul class="mt-4 space-y-2.5">
                     <li><a href="{{ route('home') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Beranda</a></li>
+                    <li><a href="{{ route('programs.public') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">5 Pilar Program</a></li>
                     <li><a href="{{ route('organization.public') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Struktur Organisasi</a></li>
                     <li><a href="{{ route('news.index') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Berita Pasar</a></li>
                     <li><a href="{{ route('gallery.public') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Galeri Kegiatan</a></li>
@@ -280,14 +308,14 @@
 
             <!-- Information Links -->
             <div>
-                <h3 class="text-sm font-bold text-slate-900">Informasi & Layanan</h3>
+                <h3 class="text-sm font-bold text-slate-900">Layanan & Bantuan</h3>
                 <ul class="mt-4 space-y-2.5 text-sm text-slate-600">
-                    <li><a href="{{ route('members.register') }}" class="hover:text-emerald-700 transition">Pendaftaran Anggota</a></li>
-                    <li><a href="{{ route('home') }}#aspirasi" class="hover:text-emerald-700 transition">Aspirasi & Pengaduan Pasar</a></li>
-                    <li><a href="{{ route('letter.verify', ['hash' => 'sample']) }}" class="hover:text-emerald-700 transition">Cek Keabsahan Surat</a></li>
-                    <li>Program Revitalisasi Pasar</li>
-                    <li>Fasilitasi Permodalan KUR</li>
-                    <li>Digitalisasi QRIS Pasar</li>
+                    <li><a href="{{ route('members.register') }}" class="hover:text-emerald-700 transition">Pendaftaran Anggota KTA</a></li>
+                    <li><a href="{{ route('members.check') }}" class="hover:text-emerald-700 transition">Cek Keabsahan KTA</a></li>
+                    <li><a href="{{ route('letter.verify.index') }}" class="hover:text-emerald-700 transition">Cek Keabsahan Surat Resmi</a></li>
+                    <li><a href="{{ route('downloads.public') }}" class="hover:text-emerald-700 transition">Pusat Unduhan Formulir</a></li>
+                    <li><a href="{{ route('faq.public') }}" class="hover:text-emerald-700 transition">Tanya Jawab (FAQ)</a></li>
+                    <li><a href="{{ route('contact.public') }}" class="hover:text-emerald-700 transition">Aspirasi & Pengaduan</a></li>
                 </ul>
             </div>
 
@@ -363,6 +391,20 @@
             });
         </script>
     @endif
+
+    <!-- Floating WhatsApp Assistance Button (Hotline APPSI Banyuasin) -->
+    <aside class="fixed bottom-6 right-6 z-40" aria-label="Hotline WhatsApp APPSI">
+        <a href="https://wa.me/62811618808?text=Halo%20Pengurus%20DPD%20APPSI%20Banyuasin,%20saya%20ingin%20berkonsultasi..." target="_blank" class="group flex items-center gap-2.5 rounded-full bg-emerald-600 pl-4 pr-4 py-3 text-white shadow-[0_12px_28px_rgba(5,150,105,0.4)] hover:bg-emerald-700 hover:shadow-[0_16px_32px_rgba(5,150,105,0.5)] transition duration-300 hover:scale-105 active:scale-95" title="Hotline WhatsApp APPSI Banyuasin">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-200"></span>
+            </span>
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+            <span class="hidden sm:inline-block text-xs font-bold tracking-wide">
+                Hotline APPSI
+            </span>
+        </a>
+    </aside>
 
     @stack('scripts')
 </body>

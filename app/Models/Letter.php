@@ -51,7 +51,7 @@ class Letter extends Model
                 $letter->uuid = (string) Str::uuid();
             }
             if (empty($letter->hash_keabsahan)) {
-                $letter->hash_keabsahan = strtoupper(substr(hash('sha256', ($letter->nomor_surat ?? '') . time() . Str::random(10)), 0, 16));
+                $letter->hash_keabsahan = strtoupper(substr(hash('sha256', ($letter->nomor_surat ?? '').time().Str::random(10)), 0, 16));
             }
         });
     }
@@ -70,6 +70,6 @@ class Letter extends Model
 
     public function getVerificationUrlAttribute(): string
     {
-        return url('/surat/verifikasi/' . ($this->hash_keabsahan ?? $this->id));
+        return url('/surat/verifikasi/'.($this->hash_keabsahan ?? $this->id));
     }
 }

@@ -75,33 +75,66 @@
         </div>
 
         <!-- Right Hero Visual with Ketua H. Gusra Yetri, SH & Organic Motif -->
-        <div class="relative min-h-[380px] overflow-hidden sm:min-h-[440px] lg:min-h-full bg-gradient-to-tr from-emerald-50 via-slate-50 to-white flex items-end justify-center" data-aos="fade-up">
+        <div class="relative min-h-[440px] sm:min-h-[500px] lg:min-h-full overflow-hidden bg-gradient-to-tr from-emerald-50/90 via-slate-50 to-white flex flex-col justify-end items-center" data-aos="fade-up">
             
-            <!-- Circular Halo Motif -->
-            <div class="absolute left-[5%] top-8 z-10 h-[80%] w-[80%] rounded-full border-[24px] border-emerald-600/15 pointer-events-none"></div>
-            <div class="hero-dot-pattern absolute bottom-12 left-6 z-10 h-28 w-28 opacity-40 pointer-events-none"></div>
+            <!-- Ambient Glow Effect -->
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] lg:w-[480px] h-[340px] sm:h-[420px] lg:h-[480px] rounded-full bg-gradient-to-tr from-emerald-400/20 via-emerald-200/30 to-amber-200/20 blur-3xl pointer-events-none"></div>
+
+            <!-- Architectural Ring Halos -->
+            <div class="absolute bottom-10 sm:bottom-14 lg:bottom-16 left-1/2 -translate-x-1/2 w-[290px] h-[290px] sm:w-[380px] sm:h-[380px] lg:w-[440px] lg:h-[440px] rounded-full border-2 border-dashed border-emerald-500/25 bg-gradient-to-b from-white/90 via-emerald-50/50 to-transparent shadow-inner pointer-events-none"></div>
+            <div class="absolute bottom-16 sm:bottom-20 lg:bottom-24 left-1/2 -translate-x-1/2 w-[240px] h-[240px] sm:w-[310px] sm:h-[310px] lg:w-[360px] lg:h-[360px] rounded-full bg-gradient-to-b from-emerald-100/60 to-emerald-50/30 border border-emerald-200/60 pointer-events-none"></div>
             
-            <!-- Leaf / Organic Sprout Graphic -->
-            <div class="absolute top-12 right-8 z-10 text-emerald-700/10 pointer-events-none">
+            <!-- Decorative Accent Patterns -->
+            <div class="hero-dot-pattern absolute top-8 right-8 z-10 h-32 w-32 opacity-40 pointer-events-none"></div>
+            <div class="hero-dot-pattern absolute bottom-16 left-6 z-10 h-24 w-24 opacity-30 pointer-events-none"></div>
+            <div class="absolute top-12 right-12 z-10 text-emerald-700/10 pointer-events-none">
                 <i class="fa-solid fa-seedling text-8xl"></i>
             </div>
 
-            <!-- Ketua Photo Container -->
-            <div class="relative z-20 w-full max-w-sm px-6 flex flex-col items-center">
-                <div class="relative group">
-                    <div class="w-64 h-80 sm:w-72 sm:h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
-                        <img src="{{ asset('assets/images/ketua-appsi-banyuasin.webp') }}" alt="H. Gusra Yetri, SH - Ketua APPSI Banyuasin" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
+            <!-- Floating Badge: Tagline -->
+            <div class="absolute top-6 left-5 sm:left-8 z-30 inline-flex items-center gap-2 rounded-2xl bg-white/95 px-3.5 py-2 shadow-[0_8px_20px_rgba(15,23,42,0.08)] ring-1 ring-emerald-500/20 backdrop-blur-md transition hover:-translate-y-0.5">
+                <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-slate-800 tracking-tight">Kuatkan Suara Pedagang</span>
+            </div>
+
+            <!-- Floating Badge: Masa Bakti -->
+            <div class="absolute top-6 right-5 sm:right-8 z-30 hidden sm:inline-flex items-center gap-1.5 rounded-2xl bg-emerald-800 text-white px-3.5 py-2 shadow-[0_8px_20px_rgba(4,120,87,0.25)] text-xs font-bold tracking-wide transition hover:-translate-y-0.5">
+                <i class="fa-solid fa-award text-amber-300"></i>
+                <span>Masa Bakti 2024 - 2029</span>
+            </div>
+
+            <!-- Ketua Cutout Photo Container -->
+            <div class="relative z-20 flex flex-col items-center justify-end w-full px-4 pt-16 sm:pt-14">
+                <div class="relative group flex items-end justify-center w-full">
+                    <img src="{{ asset('assets/images/ketua-hero.webp') }}" 
+                         alt="{{ $ketua->nama ?? 'H. Gusra Yetri, SH' }} - Ketua DPD APPSI Banyuasin" 
+                         class="relative z-20 h-auto max-h-[360px] sm:max-h-[440px] lg:max-h-[500px] xl:max-h-[540px] w-auto max-w-[95%] sm:max-w-[430px] lg:max-w-[470px] object-contain object-bottom drop-shadow-[0_20px_35px_rgba(4,120,87,0.20)] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                         loading="eager">
+                </div>
+
+                <!-- Floating Identity Card Overlapping Base -->
+                <div class="relative z-30 -mt-6 sm:-mt-8 mb-4 sm:mb-6 mx-auto inline-flex items-center gap-3.5 rounded-2xl bg-white/95 px-4 sm:px-5 py-3 shadow-[0_16px_36px_rgba(15,23,42,0.12)] ring-1 ring-emerald-500/25 backdrop-blur-md transition duration-300 hover:shadow-[0_20px_42px_rgba(15,23,42,0.16)] hover:-translate-y-0.5">
+                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white shadow-md shadow-emerald-700/25">
+                        <i class="fa-solid fa-user-tie text-lg"></i>
                     </div>
-                    <!-- Leader Label Pill -->
-                    <div class="absolute -bottom-4 inset-x-2 bg-white/95 backdrop-blur rounded-xl p-3 border border-emerald-100 shadow-xl text-center">
-                        <h4 class="text-sm font-bold text-slate-900">H. Gusra Yetri, SH</h4>
-                        <p class="text-xs font-semibold text-emerald-700">Ketua DPD APPSI Kab. Banyuasin</p>
+                    <div class="text-left">
+                        <div class="flex items-center gap-1.5">
+                            <h3 class="text-sm sm:text-base font-extrabold text-slate-900 leading-tight">
+                                {{ $ketua->nama ?? 'H. Gusra Yetri, SH' }}
+                            </h3>
+                            <span class="inline-flex items-center justify-center h-4 w-4 rounded-full bg-emerald-100 text-emerald-700 text-[10px]" title="Ketua Resmi">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                        </div>
+                        <p class="text-xs font-bold text-emerald-700 mt-0.5">
+                            Ketua DPD APPSI Kab. Banyuasin
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Gradient Overlay -->
-            <div class="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-white via-white/50 to-transparent z-10"></div>
+            <!-- Bottom Gradient Overlay to seamlessly blend with next section -->
+            <div class="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-white via-white/50 to-transparent z-10 pointer-events-none"></div>
         </div>
 
     </div>

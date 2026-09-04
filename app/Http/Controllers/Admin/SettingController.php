@@ -13,6 +13,7 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::pluck('value', 'key')->toArray();
+
         return view('admin.settings.index', compact('settings'));
     }
 

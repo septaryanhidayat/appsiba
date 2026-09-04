@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -33,9 +34,9 @@ class MemberController extends Controller
             $search = $request->q;
             $query->where(function ($q) use ($search) {
                 $q->where('nama', 'like', "%{$search}%")
-                  ->orWhere('nomor_anggota', 'like', "%{$search}%")
-                  ->orWhere('nama_usaha', 'like', "%{$search}%")
-                  ->orWhere('nik', 'like', "%{$search}%");
+                    ->orWhere('nomor_anggota', 'like', "%{$search}%")
+                    ->orWhere('nama_usaha', 'like', "%{$search}%")
+                    ->orWhere('nik', 'like', "%{$search}%");
             });
         }
 
@@ -50,7 +51,7 @@ class MemberController extends Controller
     {
         // Auto-generate candidate NPA: DPD-BA-01.XXXX
         $count = Member::count() + 1;
-        $nextNpa = 'DPD-BA-01.' . str_pad($count, 4, '0', STR_PAD_LEFT);
+        $nextNpa = 'DPD-BA-01.'.str_pad($count, 4, '0', STR_PAD_LEFT);
 
         return view('admin.members.create', compact('nextNpa'));
     }
@@ -77,17 +78,17 @@ class MemberController extends Controller
         $fotoPath = 'assets/images/default-avatar-gray.png';
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-            $filename = 'trader_' . time() . '_' . Str::random(6) . '.webp';
+            $filename = 'trader_'.time().'_'.Str::random(6).'.webp';
             $destPath = public_path('storage/members');
-            if (!is_dir($destPath)) {
+            if (! is_dir($destPath)) {
                 mkdir($destPath, 0755, true);
             }
             $gd = @imagecreatefromstring(file_get_contents($file->getRealPath()));
             if ($gd) {
-                imagewebp($gd, $destPath . '/' . $filename, 90);
-                $fotoPath = 'storage/members/' . $filename;
+                imagewebp($gd, $destPath.'/'.$filename, 90);
+                $fotoPath = 'storage/members/'.$filename;
             } else {
-                $fotoPath = 'storage/' . $file->store('members', 'public');
+                $fotoPath = 'storage/'.$file->store('members', 'public');
             }
         }
 
@@ -109,7 +110,7 @@ class MemberController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'nik' => 'nullable|string|max:20',
-            'nomor_anggota' => 'required|string|max:50|unique:members,nomor_anggota,' . $member->id,
+            'nomor_anggota' => 'required|string|max:50|unique:members,nomor_anggota,'.$member->id,
             'nama_usaha' => 'required|string|max:255',
             'jenis_usaha' => 'required|string|max:255',
             'bentuk_usaha' => 'required|string|max:100',
@@ -125,17 +126,17 @@ class MemberController extends Controller
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-            $filename = 'trader_' . time() . '_' . Str::random(6) . '.webp';
+            $filename = 'trader_'.time().'_'.Str::random(6).'.webp';
             $destPath = public_path('storage/members');
-            if (!is_dir($destPath)) {
+            if (! is_dir($destPath)) {
                 mkdir($destPath, 0755, true);
             }
             $gd = @imagecreatefromstring(file_get_contents($file->getRealPath()));
             if ($gd) {
-                imagewebp($gd, $destPath . '/' . $filename, 90);
-                $validated['foto'] = 'storage/members/' . $filename;
+                imagewebp($gd, $destPath.'/'.$filename, 90);
+                $validated['foto'] = 'storage/members/'.$filename;
             } else {
-                $validated['foto'] = 'storage/' . $file->store('members', 'public');
+                $validated['foto'] = 'storage/'.$file->store('members', 'public');
             }
         }
 
@@ -147,11 +148,37 @@ class MemberController extends Controller
     public function destroy(Member $member)
     {
         $member->delete();
+
         return redirect()->route('admin.members.index')->with('success', 'Data pedagang pasar berhasil dihapus.');
     }
 
     public function cetakKta(Member $member)
     {
         return view('admin.members.kta', compact('member'));
+    }
+
+    /**
+     * Cetak Rekapitulasi Data Pedagang Pasar Resmi DPD APPSI
+     */
+    public function cetakRekap(Request $request)
+    {
+        $query = Member::query();
+
+        if ($request->filled('jenis_usaha')) {
+            $query->where('jenis_usaha', $request->jenis_usaha);
+        }
+
+        if ($request->filled('lokasi_pasar')) {
+            $query->where('lokasi_pasar', $request->lokasi_pasar);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $members = $query->orderBy('lokasi_pasar', 'asc')->orderBy('nama', 'asc')->get();
+        $settings = Setting::pluck('value', 'key');
+
+        return view('admin.members.rekap', compact('members', 'settings'));
     }
 }

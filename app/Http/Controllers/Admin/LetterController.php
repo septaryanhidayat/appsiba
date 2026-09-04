@@ -78,6 +78,7 @@ class LetterController extends Controller
     public function show(Letter $letter)
     {
         $settings = Setting::pluck('value', 'key');
+
         return view('admin.letters.print', compact('letter', 'settings'));
     }
 
@@ -93,7 +94,7 @@ class LetterController extends Controller
     public function update(Request $request, Letter $letter)
     {
         $validated = $request->validate([
-            'nomor_surat' => 'required|string|unique:letters,nomor_surat,' . $letter->id,
+            'nomor_surat' => 'required|string|unique:letters,nomor_surat,'.$letter->id,
             'tanggal' => 'required|date',
             'jenis_surat' => 'required|string',
             'tujuan' => 'required|string|max:255',
@@ -123,6 +124,7 @@ class LetterController extends Controller
     public function destroy(Letter $letter)
     {
         $letter->delete();
+
         return redirect()->route('admin.letters.index')->with('success', 'Surat keluar berhasil dihapus.');
     }
 }

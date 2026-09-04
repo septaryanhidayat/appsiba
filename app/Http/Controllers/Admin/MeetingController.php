@@ -31,6 +31,7 @@ class MeetingController extends Controller
     public function create()
     {
         $members = Member::where('status', 'aktif')->orderBy('nama')->get();
+
         return view('admin.meetings.create', compact('members'));
     }
 
@@ -65,6 +66,7 @@ class MeetingController extends Controller
     public function edit(Meeting $meeting)
     {
         $members = Member::where('status', 'aktif')->orderBy('nama')->get();
+
         return view('admin.meetings.edit', compact('meeting', 'members'));
     }
 
@@ -94,6 +96,7 @@ class MeetingController extends Controller
     public function destroy(Meeting $meeting)
     {
         $meeting->delete();
+
         return redirect()->route('admin.meetings.index')->with('success', 'Catatan notulen rapat berhasil dihapus.');
     }
 }

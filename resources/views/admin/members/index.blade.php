@@ -9,10 +9,16 @@
         <h1 class="text-2xl font-extrabold text-slate-900">Data Pedagang Pasar Anggota</h1>
         <p class="text-xs text-slate-500 mt-1">Direktori & Pangkalan Data Pedagang DPD APPSI Kabupaten Banyuasin</p>
     </div>
-    <a href="{{ route('admin.members.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-800 transition">
-        <i class="fa-solid fa-plus text-xs"></i>
-        <span>Tambah Pedagang Baru</span>
-    </a>
+    <div class="flex flex-wrap items-center gap-2">
+        <a href="{{ route('admin.members.rekap', request()->all()) }}" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition">
+            <i class="fa-solid fa-print text-xs text-emerald-700"></i>
+            <span>Cetak Rekap Data</span>
+        </a>
+        <a href="{{ route('admin.members.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-800 transition">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span>Tambah Pedagang Baru</span>
+        </a>
+    </div>
 </div>
 
 <!-- Filter Bar -->

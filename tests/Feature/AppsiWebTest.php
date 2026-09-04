@@ -2,11 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Gallery;
 use App\Models\Letter;
-use App\Models\Meeting;
 use App\Models\Member;
-use App\Models\OrganizationStructure;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -83,5 +80,47 @@ class AppsiWebTest extends TestCase
         $authResponse = $this->actingAs($admin)->get('/admin');
         $authResponse->assertStatus(200);
         $authResponse->assertSee('Dashboard Eksekutif MIS');
+    }
+
+    public function test_new_public_and_admin_pages_render_successfully(): void
+    {
+        $this->get('/kontak')
+            ->assertStatus(200)
+            ->assertSee('Hubungi', false)
+            ->assertSee('Pengurus DPD APPSI', false);
+
+        $this->get('/program-kerja')
+            ->assertStatus(200)
+            ->assertSee('5 Pilar Perjuangan', false);
+
+        $this->get('/unduhan')
+            ->assertStatus(200)
+            ->assertSee('Pusat Unduhan', false);
+
+        $this->get('/faq')
+            ->assertStatus(200)
+            ->assertSee('Tanya Jawab', false);
+
+        $this->get('/keanggotaan/cek')
+            ->assertStatus(200)
+            ->assertSee('Cek Keabsahan', false);
+
+        $member = Member::first();
+        if ($member) {
+            $this->get('/keanggotaan/cek?q='.$member->nomor_anggota)
+                ->assertStatus(200)
+                ->assertSee('Terverifikasi Resmi', false)
+                ->assertSee($member->nama, false);
+        }
+
+        $this->get('/verifikasi-surat')
+            ->assertStatus(200)
+            ->assertSee('Verifikasi Keabsahan', false);
+
+        $admin = User::first();
+        $this->actingAs($admin)
+            ->get('/admin/anggota/rekap-cetak')
+            ->assertStatus(200)
+            ->assertSee('REKAPITULASI DATA PEDAGANG PASAR', false);
     }
 }

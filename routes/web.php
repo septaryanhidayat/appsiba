@@ -35,9 +35,25 @@ Route::get('/news/{slug}', [PublicController::class, 'beritaDetail']);
 // Galeri Kegiatan Pasar
 Route::get('/galeri', [PublicController::class, 'galeri'])->name('gallery.public');
 
+// Program Kerja & 5 Pilar
+Route::get('/program-kerja', [PublicController::class, 'programKerja'])->name('programs.public');
+Route::get('/program', [PublicController::class, 'programKerja']);
+
+// Pusat Unduhan Dokumen Publik
+Route::get('/unduhan', [PublicController::class, 'unduhan'])->name('downloads.public');
+Route::get('/download', [PublicController::class, 'unduhan']);
+
+// Tanya Jawab / FAQ
+Route::get('/faq', [PublicController::class, 'faq'])->name('faq.public');
+
+// Kontak & Sekretariat Resmi
+Route::get('/kontak', [PublicController::class, 'kontak'])->name('contact.public');
+
 // Direktori & Pendaftaran Keanggotaan Pedagang Pasar
 Route::get('/keanggotaan', [PublicController::class, 'keanggotaan'])->name('members.public');
 Route::get('/anggota', [PublicController::class, 'keanggotaan']);
+Route::get('/keanggotaan/cek', [PublicController::class, 'cekKta'])->name('members.check');
+Route::get('/cek-kta', [PublicController::class, 'cekKta']);
 Route::get('/keanggotaan/daftar', [PublicController::class, 'daftarKeanggotaan'])->name('members.register');
 Route::post('/keanggotaan/daftar', [PublicController::class, 'storeDaftarKeanggotaan'])->name('members.register.store');
 
@@ -48,8 +64,9 @@ Route::get('/tentang-kami', [PublicController::class, 'tentangKami'])->name('abo
 Route::post('/buku-tamu', [PublicController::class, 'storeBukuTamu'])->name('inbox.store');
 Route::post('/kontak/kirim', [PublicController::class, 'storeBukuTamu']);
 
-// Verifikasi Keabsahan Surat Resmi via QR Code
-Route::get('/surat/verifikasi/{hash}', [PublicController::class, 'verifikasiSurat'])->name('letter.verify');
+// Verifikasi Keabsahan Surat Resmi via QR Code atau Nomor Surat
+Route::get('/verifikasi-surat', [PublicController::class, 'verifikasiSurat'])->name('letter.verify.index');
+Route::get('/surat/verifikasi/{hash?}', [PublicController::class, 'verifikasiSurat'])->name('letter.verify');
 Route::get('/verifikasi-surat/{hash}', [PublicController::class, 'verifikasiSurat']);
 
 /*
@@ -73,6 +90,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     // Modul Keanggotaan Pedagang Pasar
     Route::get('/anggota', [MemberController::class, 'index'])->name('members.index');
+    Route::get('/anggota/rekap-cetak', [MemberController::class, 'cetakRekap'])->name('members.rekap');
     Route::get('/anggota/tambah', [MemberController::class, 'create'])->name('members.create');
     Route::post('/anggota', [MemberController::class, 'store'])->name('members.store');
     Route::get('/anggota/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
