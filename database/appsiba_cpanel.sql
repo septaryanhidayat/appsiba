@@ -478,6 +478,38 @@ INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
 
 
 -- --------------------------------------------------------
+-- Struktur Tabel `download_documents`
+-- --------------------------------------------------------
+
+DROP TABLE IF EXISTS `download_documents`;
+CREATE TABLE IF NOT EXISTS `download_documents` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `judul` varchar(255) NOT NULL,
+  `kategori` varchar(255) NOT NULL DEFAULT 'Umum',
+  `deskripsi` text,
+  `file_path` varchar(255) NOT NULL,
+  `nama_file` varchar(255) NOT NULL,
+  `tipe_file` varchar(20) NOT NULL DEFAULT 'pdf',
+  `ukuran_file` varchar(50) DEFAULT NULL,
+  `jumlah_unduhan` int unsigned NOT NULL DEFAULT 0,
+  `is_aktif` tinyint(1) NOT NULL DEFAULT 1,
+  `urutan` int NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data untuk tabel `download_documents`
+INSERT INTO `download_documents` (`id`, `judul`, `kategori`, `deskripsi`, `file_path`, `nama_file`, `tipe_file`, `ukuran_file`, `jumlah_unduhan`, `is_aktif`, `urutan`, `created_at`, `updated_at`) VALUES
+('1', 'Formulir Pendaftaran Anggota (Offline)', 'Formulir Keanggotaan', 'Formulir cetak offline untuk pendaftaran pedagang pasar binaan DPD APPSI Banyuasin lengkap dengan data usaha dan komoditas.', 'downloads/formulir-pendaftaran-anggota-appsi.pdf', 'formulir-pendaftaran-anggota-appsi.pdf', 'pdf', '2 KB', 59, 1, 1, '2026-09-04 14:59:08', '2026-09-04 14:59:08'),
+('2', 'Formulir Permohonan Pembaruan KTA', 'Formulir Keanggotaan', 'Formulir resmi permohonan perpanjangan masa berlaku dan pembaruan data Kartu Tanda Anggota (KTA) digital.', 'downloads/formulir-pembaruan-kta-appsi.pdf', 'formulir-pembaruan-kta-appsi.pdf', 'pdf', '2 KB', 63, 1, 2, '2026-09-04 14:59:08', '2026-09-04 14:59:08'),
+('3', 'Formulir Pengaduan Sengketa Lapak / Pasar', 'Advokasi & Permodalan', 'Berkas aduan resmi perlindungan hukum, sengketa hak sewa los, dugaan intimidasi, dan permohonan mediasi DPD APPSI.', 'downloads/formulir-pengaduan-sengketa-lapak.pdf', 'formulir-pengaduan-sengketa-lapak.pdf', 'pdf', '2 KB', 38, 1, 3, '2026-09-04 14:59:08', '2026-09-04 14:59:08'),
+('4', 'Persyaratan Rekomendasi KUR Mikro Pedagang', 'Advokasi & Permodalan', 'Brosur dan ceklis kelengkapan berkas fasilitas pinjaman permodalan KUR bunga rendah perbankan mitra DPD APPSI Banyuasin.', 'downloads/persyaratan-rekomendasi-kur-pedagang.pdf', 'persyaratan-rekomendasi-kur-pedagang.pdf', 'pdf', '2 KB', 74, 1, 4, '2026-09-04 14:59:08', '2026-09-04 14:59:08'),
+('5', 'Ringkasan AD/ART APPSI Nasional', 'Legalitas & Organisasi', 'Salinan ringkasan Anggaran Dasar dan Anggaran Rumah Tangga Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI).', 'downloads/ringkasan-ad-art-appsi-nasional.pdf', 'ringkasan-ad-art-appsi-nasional.pdf', 'pdf', '2 KB', 48, 1, 5, '2026-09-04 14:59:08', '2026-09-04 14:59:08'),
+('6', 'Profil DPD APPSI Kab. Banyuasin 2024–2029', 'Legalitas & Organisasi', 'Buku saku pengenalan DPD APPSI Kabupaten Banyuasin, struktur pimpinan dewan pengurus, dan 5 pilar program unggulan.', 'downloads/profil-dpd-appsi-banyuasin-2024-2029.pdf', 'profil-dpd-appsi-banyuasin-2024-2029.pdf', 'pdf', '2 KB', 50, 1, 6, '2026-09-04 14:59:08', '2026-09-04 14:59:08');
+
+
+-- --------------------------------------------------------
 -- Struktur Tabel `migrations`
 -- --------------------------------------------------------
 
@@ -494,7 +526,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 ('1', '0001_01_01_000000_create_users_table', '1'),
 ('2', '0001_01_01_000001_create_cache_table', '1'),
 ('3', '0001_01_01_000002_create_jobs_table', '1'),
-('4', '2026_09_03_100000_create_appsiba_tables', '1');
+('4', '2026_09_03_100000_create_appsiba_tables', '1'),
+('5', '2026_09_04_145647_create_download_documents_table', '1');
 
 COMMIT;
 SET FOREIGN_KEY_CHECKS=1;

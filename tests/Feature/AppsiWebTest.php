@@ -2,12 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Models\DownloadDocument;
 use App\Models\Gallery;
 use App\Models\Letter;
 use App\Models\Member;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class AppsiWebTest extends TestCase
@@ -203,5 +206,74 @@ class AppsiWebTest extends TestCase
             'nama' => 'Hendra Saputra',
             'telepon' => '081234567890',
         ]);
+    }
+
+    public function test_navbar_auth_state_toggle(): void
+    {
+        // 1. Guest view: Should see Login link, and NOT see Admin link
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee(route('login'), false);
+        $response->assertSee('Login', false);
+        $response->assertDontSee(route('admin.dashboard'), false);
+
+        // 2. Authenticated view: Should see Admin link, and NOT see Login link
+        $admin = User::first();
+        $authResponse = $this->actingAs($admin)->get('/');
+        $authResponse->assertStatus(200);
+        $authResponse->assertSee(route('admin.dashboard'), false);
+        $authResponse->assertSee('Admin', false);
+        $authResponse->assertDontSee(route('login'), false);
+    }
+
+    public function test_public_and_admin_download_documents(): void
+    {
+        $admin = User::first();
+        $doc = DownloadDocument::first();
+        $this->assertNotNull($doc);
+
+        // 1. Public unduhan renders list
+        $response = $this->get('/unduhan');
+        $response->assertStatus(200);
+        $response->assertSee($doc->judul, false);
+
+        // 2. Public file download increments download counter
+        $initialDownloads = $doc->jumlah_unduhan;
+        $downloadResponse = $this->get(route('downloads.file', $doc->id));
+        $downloadResponse->assertStatus(200);
+        $this->assertEquals($initialDownloads + 1, $doc->fresh()->jumlah_unduhan);
+
+        // 3. Admin download index
+        $adminIndex = $this->actingAs($admin)->get(route('admin.downloads.index'));
+        $adminIndex->assertStatus(200);
+        $adminIndex->assertSee('Pusat Unduhan & Berkas Dokumen');
+        $adminIndex->assertSee($doc->judul, false);
+
+        // 4. Admin store new document with fake file
+        Storage::fake('public');
+        $file = UploadedFile::fake()->create('test-juknis.pdf', 150, 'application/pdf');
+
+        $storeResponse = $this->actingAs($admin)->post(route('admin.downloads.store'), [
+            'judul' => 'Petunjuk Teknis Pembinaan Pasar 2026',
+            'kategori' => 'Pedoman',
+            'deskripsi' => 'Pedoman teknis bagi pengurus komisariat pasar.',
+            'berkas' => $file,
+            'is_active' => '1',
+        ]);
+
+        $storeResponse->assertRedirect(route('admin.downloads.index'));
+        $this->assertDatabaseHas('download_documents', [
+            'judul' => 'Petunjuk Teknis Pembinaan Pasar 2026',
+            'kategori' => 'Pedoman',
+        ]);
+
+        $newDoc = DownloadDocument::where('judul', 'Petunjuk Teknis Pembinaan Pasar 2026')->first();
+        $this->assertNotNull($newDoc);
+        Storage::disk('public')->assertExists($newDoc->file_path);
+
+        // 5. Admin delete document
+        $deleteResponse = $this->actingAs($admin)->delete(route('admin.downloads.destroy', $newDoc->id));
+        $deleteResponse->assertRedirect(route('admin.downloads.index'));
+        $this->assertDatabaseMissing('download_documents', ['id' => $newDoc->id]);
     }
 }

@@ -569,5 +569,8 @@ class DatabaseSeeder extends Seeder
             'pesan' => 'Assalamu\'alaikum Pak Ketua Gusra Yetri. Kami pedagang los ikan di Pasar Baru Pangkalan Balai memohon bantuan APPSI untuk menyampaikan usulan perbaikan drainase los ikan yang sering tersumbat saat hujan lebat. Terima kasih.',
             'status' => 'baru',
         ]);
+
+        // 10. Dokumen Unduhan Resmi
+        $this->call(DownloadDocumentSeeder::class);
     }
 }

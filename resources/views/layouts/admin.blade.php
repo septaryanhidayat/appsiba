@@ -246,6 +246,10 @@
                                 <span class="px-1.5 py-0.5 rounded-full bg-emerald-400 text-emerald-950 text-[10px] font-bold">{{ $newInboxCount }}</span>
                             @endif
                         </a>
+                        <a href="{{ route('admin.downloads.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.downloads.*') ? 'bg-emerald-600 text-white font-bold shadow' : 'text-emerald-100/90 hover:bg-emerald-800/80 hover:text-white' }}">
+                            <i class="fa-solid fa-file-arrow-down w-4 text-sm"></i>
+                            <span>Pusat Unduhan & Berkas</span>
+                        </a>
                     </div>
                 </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DownloadDocument;
 use App\Models\Gallery;
 use App\Models\Inbox;
 use App\Models\Letter;
@@ -14,6 +15,7 @@ use App\Models\Setting;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Storage;
 
 class PublicController extends Controller
 {
@@ -328,9 +330,38 @@ class PublicController extends Controller
     /**
      * Halaman Pusat Unduhan Dokumen & Formulir Publik
      */
-    public function unduhan()
+    public function unduhan(Request $request)
     {
-        return view('public.unduhan');
+        $query = DownloadDocument::where('is_aktif', true);
+
+        if ($request->filled('q')) {
+            $search = $request->q;
+            $query->where(function ($q) use ($search) {
+                $q->where('judul', 'like', "%{$search}%")
+                    ->orWhere('deskripsi', 'like', "%{$search}%");
+            });
+        }
+
+        $allDocuments = $query->orderBy('urutan', 'asc')->get();
+        $groupedDocuments = $allDocuments->groupBy('kategori');
+
+        return view('public.unduhan', compact('groupedDocuments', 'allDocuments'));
+    }
+
+    /**
+     * Unduh Berkas Dokumen Publik Nyata (Bukan Demo)
+     */
+    public function downloadDocument($id)
+    {
+        $document = DownloadDocument::where('is_aktif', true)->findOrFail($id);
+
+        if (! Storage::disk('public')->exists($document->file_path)) {
+            return back()->with('error', 'Berkas dokumen belum tersedia di server.');
+        }
+
+        $document->increment('jumlah_unduhan');
+
+        return Storage::disk('public')->download($document->file_path, $document->nama_file);
     }
 
     /**

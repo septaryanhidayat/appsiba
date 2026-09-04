@@ -216,10 +216,10 @@
                 <div class="rounded-3xl bg-gradient-to-br from-white via-emerald-50/40 to-emerald-50/70 p-6 sm:p-7 border border-emerald-200/80 shadow-sm relative overflow-hidden">
                     <div class="flex items-start gap-4">
                         <!-- Frame Foto Ketua Baru (Foto 4 Resmi) -->
-                        <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-2xl overflow-hidden border-2 border-emerald-500 bg-gradient-to-b from-white to-emerald-100 shrink-0 shadow-sm flex items-end justify-center">
+                        <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-2xl overflow-hidden border-2 border-emerald-500 bg-gradient-to-b from-white to-emerald-100 shrink-0 shadow-sm">
                             <img src="{{ asset('assets/images/ketua-appsi-banyuasin.webp') }}" 
                                  alt="{{ $ketua->nama ?? 'H. Gusra Yetri, SH' }} - Ketua DPD APPSI Banyuasin" 
-                                 class="w-full h-full object-contain object-top pt-1">
+                                 class="w-full h-full object-cover object-top">
                         </div>
 
                         <div class="min-w-0 flex-1">

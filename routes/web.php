@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DownloadDocumentController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\InboxController;
 use App\Http\Controllers\Admin\IncomingLetterController;
@@ -42,6 +43,7 @@ Route::get('/program', [PublicController::class, 'programKerja']);
 // Pusat Unduhan Dokumen Publik
 Route::get('/unduhan', [PublicController::class, 'unduhan'])->name('downloads.public');
 Route::get('/download', [PublicController::class, 'unduhan']);
+Route::get('/unduhan/{id}/download', [PublicController::class, 'downloadDocument'])->name('downloads.file');
 
 // Tanya Jawab / FAQ
 Route::get('/faq', [PublicController::class, 'faq'])->name('faq.public');
@@ -155,6 +157,13 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::post('/struktur-organisasi', [OrganizationController::class, 'store'])->name('organization.store');
     Route::put('/struktur-organisasi/{id}', [OrganizationController::class, 'update'])->name('organization.update');
     Route::delete('/struktur-organisasi/{id}', [OrganizationController::class, 'destroy'])->name('organization.destroy');
+
+    // Modul Pusat Unduhan & Berkas Dokumen Resmi
+    Route::get('/unduhan', [DownloadDocumentController::class, 'index'])->name('downloads.index');
+    Route::post('/unduhan', [DownloadDocumentController::class, 'store'])->name('downloads.store');
+    Route::put('/unduhan/{id}', [DownloadDocumentController::class, 'update'])->name('downloads.update');
+    Route::delete('/unduhan/{id}', [DownloadDocumentController::class, 'destroy'])->name('downloads.destroy');
+    Route::get('/unduhan/{id}/download', [DownloadDocumentController::class, 'download'])->name('downloads.download');
 
     // Modul Pengaturan & Profil
     Route::get('/pengaturan', [SettingController::class, 'index'])->name('settings.index');

@@ -175,10 +175,17 @@
                     <i class="fa-solid fa-user-plus text-xs text-emerald-600"></i>
                     Daftar KTA
                 </a>
-                <a href="{{ auth()->check() ? route('admin.dashboard') : route('login') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)] hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
-                    <i class="fa-solid fa-right-to-bracket text-xs"></i>
-                    Login
-                </a>
+                @auth
+                    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)] hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
+                        <i class="fa-solid fa-gauge-high text-xs"></i>
+                        Admin
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)] hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
+                        <i class="fa-solid fa-right-to-bracket text-xs"></i>
+                        Login
+                    </a>
+                @endauth
             </div>
 
             <!-- Mobile Hamburger Button -->
@@ -229,10 +236,17 @@
                         <i class="fa-solid fa-user-plus text-xs"></i>
                         Daftar Keanggotaan KTA
                     </a>
-                    <a href="{{ auth()->check() ? route('admin.dashboard') : route('login') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold bg-emerald-700 text-white shadow">
-                        <i class="fa-solid fa-right-to-bracket text-xs"></i>
-                        Login
-                    </a>
+                    @auth
+                        <a href="{{ route('admin.dashboard') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold bg-emerald-700 text-white shadow">
+                            <i class="fa-solid fa-gauge-high text-xs"></i>
+                            Admin
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold bg-emerald-700 text-white shadow">
+                            <i class="fa-solid fa-right-to-bracket text-xs"></i>
+                            Login
+                        </a>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -315,9 +329,15 @@
                     <a href="{{ $webSetting['website'] ?? 'https://appsi.id' }}" target="_blank" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Website DPP APPSI" title="Website Resmi APPSI">
                         <i class="fa-solid fa-globe text-[11px]"></i>
                     </a>
-                    <a href="{{ route('login') }}" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Portal Petugas MIS" title="Portal Login MIS">
-                        <i class="fa-solid fa-shield-halved text-[11px]"></i>
-                    </a>
+                    @auth
+                        <a href="{{ route('admin.dashboard') }}" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Panel Admin MIS" title="Panel Admin MIS">
+                            <i class="fa-solid fa-gauge-high text-[11px]"></i>
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Portal Petugas MIS" title="Portal Login MIS">
+                            <i class="fa-solid fa-shield-halved text-[11px]"></i>
+                        </a>
+                    @endauth
                 </div>
             </div>
 
