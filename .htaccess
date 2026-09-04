@@ -24,6 +24,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Allow cPanel AutoSSL DCV / ACME verification
+    RewriteRule ^\.well-known/ - [L]
+    RewriteCond %{REQUEST_URI} ^/\.well-known [NC]
+    RewriteRule ^ - [L]
+
     # Block direct access to core Laravel directories
     RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$) - [F,L,NC]
 
@@ -37,6 +42,7 @@
     RewriteRule ^$ public/index.php [L]
 
     # Send all other requests to public/index.php
+    RewriteCond %{REQUEST_URI} !^/\.well-known
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/index.php [L]
 </IfModule>

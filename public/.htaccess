@@ -13,6 +13,11 @@
 
     RewriteEngine On
 
+    # Allow cPanel AutoSSL DCV / ACME verification
+    RewriteRule ^\.well-known/ - [L]
+    RewriteCond %{REQUEST_URI} ^/\.well-known [NC]
+    RewriteRule ^ - [L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
