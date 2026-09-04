@@ -4,8 +4,24 @@
 
 @section('content')
 
-<!-- 1. HERO SECTION (Adopsi Desain & Warna appsi.id) -->
+<!-- 1. HERO SECTION (Ciri Khas DPD APPSI Kabupaten Banyuasin) -->
 <section class="relative isolate overflow-hidden bg-white" id="hero">
+    
+    <!-- Top Market Network Highlights Strip -->
+    <div class="border-b border-emerald-100 bg-emerald-50/50 py-2 text-xs font-semibold text-emerald-900">
+        <div class="mx-auto flex w-full max-w-[1180px] flex-wrap items-center justify-between gap-2 px-5 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span class="text-[11px] uppercase tracking-wider text-emerald-800 font-bold">Jejaring Pasar Binaan DPD:</span>
+                <span class="hidden sm:inline text-slate-600 font-medium">Pangkalan Balai • Betung • Sukajadi • Mariana • Sungsang</span>
+            </div>
+            <a href="{{ route('members.public') }}" class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 hover:text-emerald-900 transition">
+                <span>Direktori Pedagang</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+        </div>
+    </div>
+
     <div class="grid w-full lg:min-h-[580px] lg:grid-cols-[52%_48%] xl:min-h-[620px]">
         
         <!-- Left Hero Content -->
@@ -13,8 +29,8 @@
             <div class="w-full max-w-xl">
                 
                 <!-- Badge -->
-                <div class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-emerald-800 ring-1 ring-emerald-200">
-                    <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <div class="inline-flex items-center gap-2 rounded-full bg-emerald-100/70 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wide text-emerald-900 ring-1 ring-emerald-300">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
                     DPD APPSI KABUPATEN BANYUASIN
                 </div>
 
@@ -32,15 +48,15 @@
                 <div class="mt-7 flex flex-col gap-3 sm:flex-row">
                     <a href="{{ route('members.register') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-bold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.22)] hover:bg-emerald-800 h-12 px-6 text-sm">
                         <i class="fa-solid fa-id-card text-sm"></i>
-                        Daftar KTA
+                        Daftar KTA Online
                     </a>
-                    <a href="{{ route('about.public') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-bold transition duration-200 border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 h-12 px-6 text-sm">
-                        Pelajari Lebih Lanjut
+                    <a href="{{ route('programs.public') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-bold transition duration-200 border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 h-12 px-6 text-sm">
+                        5 Pilar Program Kerja
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
 
-                <!-- 3 Pillars of APPSI -->
+                <!-- 3 Pillars of APPSI Banyuasin -->
                 <div class="mt-10 grid gap-4 sm:grid-cols-3 pt-6 border-t border-slate-100">
                     <div class="flex gap-3">
                         <div class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
@@ -137,49 +153,101 @@
     </div>
 </section>
 
-<!-- 2. BERITA TERKINI SECTION -->
-<section class="bg-white py-14 sm:py-18 border-t border-slate-100" id="posts">
+<!-- QUICK ACTION BAR: LAYANAN CEPAT PEDAGANG -->
+<section class="border-y border-slate-200/80 bg-slate-50 py-5" data-aos="fade-up">
+    <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5">
+            <a href="{{ route('members.register') }}" class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200/80 hover:border-emerald-500 hover:shadow-sm transition group">
+                <div class="h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 group-hover:bg-emerald-700 group-hover:text-white transition">
+                    <i class="fa-solid fa-address-card text-base"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 group-hover:text-emerald-700 transition">Daftar KTA Online</h4>
+                    <p class="text-[10px] text-slate-500">Gratis untuk pedagang</p>
+                </div>
+            </a>
+
+            <a href="{{ route('members.check') }}" class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200/80 hover:border-emerald-500 hover:shadow-sm transition group">
+                <div class="h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 group-hover:bg-emerald-700 group-hover:text-white transition">
+                    <i class="fa-solid fa-id-badge text-base"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 group-hover:text-emerald-700 transition">Cek Validasi KTA</h4>
+                    <p class="text-[10px] text-slate-500">Periksa status keanggotaan</p>
+                </div>
+            </a>
+
+            <a href="{{ route('letter.verify.index') }}" class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200/80 hover:border-emerald-500 hover:shadow-sm transition group">
+                <div class="h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 group-hover:bg-emerald-700 group-hover:text-white transition">
+                    <i class="fa-solid fa-qrcode text-base"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 group-hover:text-emerald-700 transition">Verifikasi Surat</h4>
+                    <p class="text-[10px] text-slate-500">Keabsahan surat resmi DPD</p>
+                </div>
+            </a>
+
+            <a href="#aspirasi" class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200/80 hover:border-emerald-500 hover:shadow-sm transition group">
+                <div class="h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 group-hover:bg-emerald-700 group-hover:text-white transition">
+                    <i class="fa-solid fa-comments text-base"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 group-hover:text-emerald-700 transition">Aspirasi Pasar</h4>
+                    <p class="text-[10px] text-slate-500">Sampaikan aduan & usulan</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 2. BERITA TERKINI SECTION (6 Berita Langsung Ditampilkan) -->
+<section class="bg-white py-14 sm:py-20 border-t border-slate-100" id="posts">
     <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8">
         
-        <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between" data-aos="fade-up">
+        <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between" data-aos="fade-up">
             <div>
-                <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">WARTA & PUBLIKASI</span>
-                <h2 class="mt-1 text-2xl font-extrabold text-slate-900 sm:text-3xl">
-                    Berita <span class="text-emerald-700">Terkini</span>
+                <span class="inline-block rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-emerald-800 border border-emerald-200">
+                    WARTA & PUBLIKASI RESMI
+                </span>
+                <h2 class="mt-2 text-2xl font-extrabold text-slate-900 sm:text-3xl lg:text-4xl tracking-tight">
+                    Kabar Pasar & Berita <span class="text-emerald-700">Terkini</span>
                 </h2>
+                <p class="mt-1 text-sm text-slate-500">Informasi seputar pergerakan harga komoditas, program kerja, dan advokasi pedagang se-Banyuasin.</p>
             </div>
-            <a href="{{ route('news.index') }}" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-800 hover:text-emerald-600 transition">
-                Lihat semua berita
+            <a href="{{ route('news.index') }}" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-800 hover:text-emerald-600 transition shrink-0">
+                <span>Lihat semua berita</span>
                 <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-3">
+        <!-- 6 News Cards Grid (2 Rows x 3 Columns) -->
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             @forelse($posts as $post)
-                <article class="group flex flex-col overflow-hidden rounded-[1.35rem] border border-slate-100 bg-white shadow-[0_14px_38px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(15,23,42,0.10)]" data-aos="fade-up">
+                <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:border-emerald-300" data-aos="fade-up">
                     <div class="relative h-48 w-full overflow-hidden bg-slate-100">
-                        <img src="{{ $post->gambar_url }}" alt="{{ $post->judul }}" class="h-full w-full object-cover transition duration-300 group-hover:scale-105">
-                        <span class="absolute left-4 top-4 rounded-md bg-emerald-700 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow">
+                        <img src="{{ $post->gambar_url }}" alt="{{ $post->judul }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        <span class="absolute left-3.5 top-3.5 rounded-lg bg-emerald-700/90 backdrop-blur-sm px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow">
                             {{ $post->kategori }}
                         </span>
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center gap-2 text-xs text-slate-500">
-                                <i class="fa-regular fa-calendar text-emerald-600"></i>
-                                {{ $post->published_at ? $post->published_at->translatedFormat('d F Y') : date('d M Y') }}
+                            <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                                <i class="fa-regular fa-calendar-check text-emerald-600"></i>
+                                <span>{{ $post->published_at ? $post->published_at->translatedFormat('d F Y') : date('d M Y') }}</span>
                             </div>
                             <h3 class="mt-3 text-base font-bold leading-snug text-slate-900 line-clamp-2 group-hover:text-emerald-700 transition">
                                 <a href="{{ route('news.show', $post->slug) }}">{{ $post->judul }}</a>
                             </h3>
-                            <p class="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-2">
-                                {{ $post->ringkasan ?? Str::limit(strip_tags($post->konten), 90) }}
+                            <p class="mt-2 text-xs leading-relaxed text-slate-600 line-clamp-3">
+                                {{ $post->ringkasan ?? Str::limit(strip_tags($post->konten), 110) }}
                             </p>
                         </div>
-                        <div class="mt-5 pt-4 border-t border-slate-100">
-                            <a href="{{ route('news.show', $post->slug) }}" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 group-hover:gap-3 transition-all">
-                                Baca selengkapnya
-                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                        <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i> 3 mnt baca</span>
+                            <a href="{{ route('news.show', $post->slug) }}" class="inline-flex items-center gap-1.5 font-bold text-emerald-700 group-hover:text-emerald-800 group-hover:gap-2.5 transition-all">
+                                <span>Baca selengkapnya</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
                     </div>
@@ -195,20 +263,20 @@
 </section>
 
 <!-- 3. AGENDA & ACARA PASAR -->
-<section class="bg-slate-50/60 py-14 sm:py-18 border-t border-slate-100" id="agenda">
+<section class="bg-slate-50/80 py-14 sm:py-18 border-t border-slate-200/60" id="agenda">
     <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8">
         
-        <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between" data-aos="fade-up">
+        <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between" data-aos="fade-up">
             <div>
                 <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">AGENDA KEGIATAN</span>
                 <h2 class="mt-1 text-2xl font-extrabold text-slate-900 sm:text-3xl">
                     Acara yang Akan Datang
                 </h2>
             </div>
-            <span class="text-sm font-medium text-slate-500">Koordinasi & Musyawarah Pasar</span>
+            <span class="text-sm font-medium text-slate-500">Koordinasi & Musyawarah Pasar Daerah</span>
         </div>
 
-        <div class="overflow-hidden rounded-[1.35rem] border border-slate-200/80 bg-white shadow-sm" data-aos="fade-up">
+        <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm" data-aos="fade-up">
             
             <!-- Event 1 -->
             <article class="grid gap-4 border-b border-slate-100 p-5 sm:grid-cols-[92px_1fr] lg:grid-cols-[92px_1fr_260px] hover:bg-slate-50/50 transition">
@@ -281,27 +349,49 @@
     </div>
 </section>
 
-<!-- 4. KEANGGOTAAN APPSI -->
+<!-- 4. KEANGGOTAAN APPSI (Foto 1 diganti dengan Ketua APPSI Banyuasin Angkat Tangan) -->
 <section class="relative overflow-hidden bg-white py-14 sm:py-20 border-t border-slate-100" id="keanggotaan">
     <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8 grid items-center gap-10 lg:grid-cols-[1fr_0.96fr]">
         
-        <!-- Left Visual -->
+        <!-- Left Visual: Foto Ketua APPSI Banyuasin Semangat -->
         <div class="relative" data-aos="fade-up">
-            <div class="overflow-hidden h-[320px] rounded-[1.35rem] shadow-[0_14px_42px_rgba(15,23,42,0.12)] sm:h-[390px] bg-slate-100">
-                <img src="{{ asset('assets/images/keanggotaan-banner.png') }}" alt="Kegiatan keanggotaan APPSI" class="h-full w-full object-cover">
+            <div class="relative overflow-hidden h-[340px] sm:h-[420px] rounded-3xl bg-gradient-to-tr from-emerald-100 via-emerald-50 to-white border border-emerald-200/80 shadow-[0_16px_40px_rgba(4,120,87,0.12)] flex items-end justify-center">
+                
+                <!-- Ambient circles & dots -->
+                <div class="hero-dot-pattern absolute top-4 left-4 h-24 w-24 opacity-40 pointer-events-none"></div>
+                <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-emerald-300/20 blur-2xl pointer-events-none"></div>
+                
+                <!-- Foto Ketua APPSI Banyuasin -->
+                <img src="{{ asset('assets/images/ketua-semangat.png') }}" 
+                     alt="H. Gusra Yetri, SH - Ketua DPD APPSI Kabupaten Banyuasin" 
+                     class="relative z-10 h-full w-auto max-h-[340px] sm:max-h-[420px] object-contain object-bottom transition duration-500 hover:scale-105">
+
+                <!-- Floating leadership caption bar -->
+                <div class="absolute bottom-4 inset-x-4 z-20 rounded-2xl bg-white/95 p-3 shadow-lg border border-emerald-100 backdrop-blur-md flex items-center gap-3">
+                    <div class="h-10 w-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-hand-fist text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-extrabold text-slate-900 leading-tight">H. Gusra Yetri, SH</p>
+                        <p class="text-[11px] font-semibold text-emerald-700">Ketua DPD APPSI Kabupaten Banyuasin</p>
+                    </div>
+                </div>
             </div>
+
             <div class="hero-dot-pattern absolute -bottom-6 -left-4 h-24 w-24 opacity-60 pointer-events-none"></div>
             <div class="absolute -bottom-3 left-4 h-20 w-20 rounded-full bg-emerald-700/80 pointer-events-none"></div>
         </div>
 
         <!-- Right Content -->
         <div class="relative" data-aos="fade-up">
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700">DPD APPSI KABUPATEN BANYUASIN</p>
-            <h2 class="mt-3 max-w-xl text-3xl font-extrabold leading-tight text-emerald-900 sm:text-4xl">
+            <span class="inline-block rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-emerald-800 border border-emerald-200">
+                DPD APPSI KABUPATEN BANYUASIN
+            </span>
+            <h2 class="mt-3 max-w-xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl">
                 Bersatu, Berdaya, Berkarya untuk Pasar Banyuasin
             </h2>
             <p class="mt-4 max-w-xl text-sm leading-7 text-slate-600">
-                Saat ini DPD APPSI hadir merangkul para pedagang pasar tradisional di seluruh kecamatan Kabupaten Banyuasin melalui jejaring komisariat pasar, advokasi harga, serta perlindungan izin usaha dan pembinaan UMKM.
+                DPD APPSI hadir mengayomi para pedagang pasar tradisional di seluruh kecamatan Kabupaten Banyuasin melalui penguatan Komisariat Pasar, advokasi harga, perlindungan legalitas usaha, dan fasilitasi modal kerja tanpa jeratan rentenir.
             </p>
 
             <!-- Metrics -->
@@ -344,8 +434,162 @@
     </div>
 </section>
 
-<!-- 5. BANNER DUKUNG PERJUANGAN & FORMULIR BUKU TAMU / ASPIRASI -->
-<section class="bg-slate-50/70 py-14 sm:py-20 border-t border-slate-100" id="aspirasi">
+<!-- 5. SLIDER FOTO KEGIATAN APPSI BANYUASIN (Interactive Modern Carousel) -->
+<section class="bg-gradient-to-b from-slate-50 to-emerald-50/40 py-14 sm:py-20 border-t border-slate-200/70" id="galeri-slider"
+         x-data="{
+            active: 0,
+            slides: [
+                {
+                    title: 'Sosialisasi Digitalisasi QRIS di Pasar Pangkalan Balai',
+                    category: 'Digitalisasi Pasar',
+                    image: '{{ asset('assets/images/berita/berita-qris-digital.jpg') }}',
+                    desc: 'Edukasi dan pendampingan transaksi non-tunai bersama perbankan daerah bagi pedagang sayur dan sembako.'
+                },
+                {
+                    title: 'Operasi Pasar Pangan Murah Sembako di Betung',
+                    category: 'Stabilisasi Harga',
+                    image: '{{ asset('assets/images/berita/berita-operasi-pasar.jpg') }}',
+                    desc: 'Distribusi beras medium dan minyak goreng terjangkau untuk menekan laju inflasi bahan pokok masyarakat.'
+                },
+                {
+                    title: 'Pengawasan Tera Ulang Timbangan Pasar Pangkalan Balai',
+                    category: 'Tera Timbangan',
+                    image: '{{ asset('assets/images/berita/kegiatan-timbangan-tera.jpg') }}',
+                    desc: 'Kerjasama DPD APPSI dan Dinas Perindagkop memastikan keakuratan timbangan pedagang demi jual beli yang jujur.'
+                },
+                {
+                    title: 'Pelatihan Pembukuan & Literasi Keuangan Pedagang Wanita',
+                    category: 'Pemberdayaan UMKM',
+                    image: '{{ asset('assets/images/berita/kegiatan-pelatihan-wanita.jpg') }}',
+                    desc: 'Peningkatan kapasitas pengelolaan arus kas dan literasi perbankan formal bagi pedagang pasar perempuan.'
+                },
+                {
+                    title: 'Fasilitasi Akses KUR & Permodalan Usaha di Sukajadi',
+                    category: 'Permodalan KUR',
+                    image: '{{ asset('assets/images/berita/berita-permodalan-kur.jpg') }}',
+                    desc: 'Dialog kemitraan bank demi membebaskan pedagang pasar dari jeratan rentenir dengan suku bunga rendah.'
+                },
+                {
+                    title: 'Advokasi Sanitasi & Drainase Los Basah Pasar Sungsang',
+                    category: 'Advokasi Sarana',
+                    image: '{{ asset('assets/images/berita/berita-pasar-sungsang.jpg') }}',
+                    desc: 'Peninjauan langsung sarana pembuangan air dan dermaga sandar pasokan ikan nelayan muara pesisir.'
+                },
+                {
+                    title: 'Rembug Akbar Pengurus Komisariat Pasar se-Kabupaten Banyuasin',
+                    category: 'Konsolidasi',
+                    image: '{{ asset('assets/images/berita/berita-musyawarah-appsi.jpg') }}',
+                    desc: 'Konsolidasi pimpinan komisariat dari 21 kecamatan merumuskan kebijakan penataan lapak yang harmonis.'
+                },
+                {
+                    title: 'Konsolidasi Nasional & Musyawarah Akbar APPSI',
+                    category: 'Kongres Nasional',
+                    image: '{{ asset('assets/images/berita/munas-appsi.jpg') }}',
+                    desc: 'Penguatan jaringan pedagang pasar tradisional di tingkat provinsi dan nasional demi ekonomi kerakyatan.'
+                }
+            ],
+            timer: null,
+            startAuto() {
+                this.timer = setInterval(() => {
+                    this.next();
+                }, 4500);
+            },
+            stopAuto() {
+                if (this.timer) clearInterval(this.timer);
+            },
+            next() {
+                this.active = (this.active + 1) % this.slides.length;
+            },
+            prev() {
+                this.active = (this.active - 1 + this.slides.length) % this.slides.length;
+            }
+         }"
+         x-init="startAuto()"
+         @mouseenter="stopAuto()"
+         @mouseleave="startAuto()">
+    
+    <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8">
+        
+        <!-- Header Slider -->
+        <div class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4" data-aos="fade-up">
+            <div>
+                <span class="inline-block rounded-md bg-emerald-100 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-emerald-900">
+                    DOKUMENTASI LAPANGAN
+                </span>
+                <h2 class="mt-2 text-2xl font-extrabold text-slate-900 sm:text-3xl">
+                    Galeri Kegiatan & Aksi Nyata <span class="text-emerald-700">APPSI Banyuasin</span>
+                </h2>
+                <p class="mt-1 text-sm text-slate-500">Dokumentasi kegiatan resmi pendampingan, permodalan, dan advokasi pedagang di lapangan.</p>
+            </div>
+
+            <!-- Controls (Next/Prev) -->
+            <div class="flex items-center gap-2">
+                <button @click="prev()" type="button" class="h-10 w-10 rounded-full border border-slate-300 bg-white text-slate-700 hover:bg-emerald-700 hover:text-white hover:border-emerald-700 shadow-sm flex items-center justify-center transition" aria-label="Sebelumnya">
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                </button>
+                <button @click="next()" type="button" class="h-10 w-10 rounded-full border border-slate-300 bg-white text-slate-700 hover:bg-emerald-700 hover:text-white hover:border-emerald-700 shadow-sm flex items-center justify-center transition" aria-label="Berikutnya">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Slider Main Showcase -->
+        <div class="relative overflow-hidden rounded-3xl bg-slate-900 shadow-xl" data-aos="fade-up">
+            <div class="relative h-[340px] sm:h-[440px] lg:h-[500px] w-full">
+                
+                <template x-for="(slide, index) in slides" :key="index">
+                    <div x-show="active === index" 
+                         x-transition:enter="transition ease-out duration-500"
+                         x-transition:enter-start="opacity-0 scale-98"
+                         x-transition:enter-end="opacity-100 scale-100"
+                         x-transition:leave="transition ease-in duration-300"
+                         x-transition:leave-start="opacity-100 scale-100"
+                         x-transition:leave-end="opacity-0 scale-98"
+                         class="absolute inset-0">
+                        
+                        <!-- Slide Image -->
+                        <img :src="slide.image" :alt="slide.title" class="h-full w-full object-cover">
+                        
+                        <!-- Dark Gradient Overlay for text readability -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
+
+                        <!-- Slide Content -->
+                        <div class="absolute bottom-0 inset-x-0 p-6 sm:p-8 lg:p-10 text-white">
+                            <span class="inline-block rounded-md bg-emerald-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-sm" x-text="slide.category"></span>
+                            <h3 class="mt-2.5 text-xl sm:text-2xl lg:text-3xl font-extrabold max-w-2xl leading-snug" x-text="slide.title"></h3>
+                            <p class="mt-2 text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed" x-text="slide.desc"></p>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
+
+            <!-- Slide Dot Indicators -->
+            <div class="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                <template x-for="(slide, index) in slides" :key="index">
+                    <button @click="active = index" 
+                            type="button"
+                            :class="active === index ? 'w-6 bg-emerald-400' : 'w-2 bg-white/40 hover:bg-white/70'"
+                            class="h-2 rounded-full transition-all duration-300" 
+                            :aria-label="'Buka slide ' + (index + 1)">
+                    </button>
+                </template>
+            </div>
+        </div>
+
+        <!-- Bottom Link to Gallery -->
+        <div class="mt-6 text-center">
+            <a href="{{ route('gallery.public') }}" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-800 hover:text-emerald-600 transition">
+                <span>Lihat Semua Dokumentasi Foto & Kegiatan</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- 6. BANNER DUKUNG PERJUANGAN & FORMULIR BUKU TAMU / ASPIRASI -->
+<section class="bg-white py-14 sm:py-20 border-t border-slate-100" id="aspirasi">
     <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8">
         
         <!-- Support Banner -->
@@ -380,15 +624,15 @@
                 </p>
 
                 <div class="mt-6 space-y-3.5">
-                    <div class="flex items-center gap-3 text-sm text-slate-700 bg-white p-3.5 rounded-xl border border-slate-200/70 shadow-sm">
+                    <div class="flex items-center gap-3 text-sm text-slate-700 bg-slate-50 p-3.5 rounded-xl border border-slate-200/70 shadow-sm">
                         <i class="fa-solid fa-envelope-circle-check text-emerald-700 text-lg"></i>
                         <span>Respon cepat dari tim sekretariat DPD</span>
                     </div>
-                    <div class="flex items-center gap-3 text-sm text-slate-700 bg-white p-3.5 rounded-xl border border-slate-200/70 shadow-sm">
+                    <div class="flex items-center gap-3 text-sm text-slate-700 bg-slate-50 p-3.5 rounded-xl border border-slate-200/70 shadow-sm">
                         <i class="fa-solid fa-scale-balanced text-emerald-700 text-lg"></i>
                         <span>Penyaluran aspirasi resmi ke dinas & pemkab</span>
                     </div>
-                    <div class="flex items-center gap-3 text-sm text-slate-700 bg-white p-3.5 rounded-xl border border-slate-200/70 shadow-sm">
+                    <div class="flex items-center gap-3 text-sm text-slate-700 bg-slate-50 p-3.5 rounded-xl border border-slate-200/70 shadow-sm">
                         <i class="fa-brands fa-whatsapp text-emerald-700 text-lg"></i>
                         <span>Layanan Hotline WA: <strong>0811 618 808</strong></span>
                     </div>

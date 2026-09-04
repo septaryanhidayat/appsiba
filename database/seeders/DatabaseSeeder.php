@@ -492,11 +492,18 @@ class DatabaseSeeder extends Seeder
                 'tanggal_kegiatan' => '2026-08-15',
             ],
             [
-                'judul' => 'Sosialisasi Program KTA Digital dan Hotline Bantuan Hukum APPSI',
-                'deskripsi' => 'Pengenalan kartu keanggotaan digital terintegrasi barcode untuk pedagang pasar rakyat Banyuasin.',
-                'foto' => 'assets/images/berita/munas-appsi.jpg',
-                'kategori' => 'Layanan Anggota',
-                'tanggal_kegiatan' => '2026-08-10',
+                'judul' => 'Pengawasan Tera Ulang Timbangan Pasar Tradisional Pangkalan Balai',
+                'deskripsi' => 'Kerjasama DPD APPSI dan Dinas Perindagkop memastikan ketepatan timbangan pedagang demi perlindungan konsumen.',
+                'foto' => 'assets/images/berita/kegiatan-timbangan-tera.jpg',
+                'kategori' => 'Tera Timbangan',
+                'tanggal_kegiatan' => '2026-08-05',
+            ],
+            [
+                'judul' => 'Pelatihan Pembukuan Keuangan & Literasi Digital Pedagang Pasar Wanita',
+                'deskripsi' => 'Pemberdayaan pedagang wanita pasar Banyuasin dalam pengelolaan keuangan usaha berbasis aplikasi digital.',
+                'foto' => 'assets/images/berita/kegiatan-pelatihan-wanita.jpg',
+                'kategori' => 'Pelatihan UMKM',
+                'tanggal_kegiatan' => '2026-07-28',
             ],
         ];
 

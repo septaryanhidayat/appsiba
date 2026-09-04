@@ -23,7 +23,7 @@ class PublicController extends Controller
     {
         $posts = Post::where('status', 'published')
             ->latest('published_at')
-            ->take(3)
+            ->take(6)
             ->get();
 
         $meetings = Meeting::latest('tanggal')
@@ -31,7 +31,7 @@ class PublicController extends Controller
             ->get();
 
         $galleries = Gallery::latest('tanggal_kegiatan')
-            ->take(4)
+            ->take(8)
             ->get();
 
         $stats = [

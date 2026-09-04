@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -97,7 +97,7 @@
 
     @stack('styles')
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-emerald-100 selection:text-emerald-800" x-data="{ mobileMenu: false }">
+<body class="min-h-screen flex flex-col antialiased selection:bg-emerald-100 selection:text-emerald-800" x-data="{ mobileMenu: false, scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 250)">
 
     <!-- Sticky Header Navbar (Adopsi appsi.id) -->
     <header class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur shadow-[0_4px_18px_rgba(15,23,42,0.04)]">
@@ -257,95 +257,143 @@
         @yield('content')
     </main>
 
-    <!-- Footer (Adopsi appsi.id) -->
-    <footer class="border-t border-slate-100 bg-white" id="kontak">
-        <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8 relative grid gap-9 py-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.9fr_1.25fr]">
-            
-            <!-- Brand Column -->
-            <div>
-                <div class="flex items-center gap-3">
-                    <div class="h-12 w-12 rounded-full overflow-hidden flex items-center justify-center p-0.5 bg-white border border-emerald-100 shadow-sm">
-                        <img src="{{ asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-full w-full object-contain">
+    <!-- Footer Modern & Rapi APPSI Banyuasin -->
+    <footer class="bg-gradient-to-b from-[#063327] via-[#04281f] to-[#021812] text-slate-300 relative border-t-2 border-emerald-600/50" id="kontak">
+        
+        <!-- Top Contact Highlight Strip -->
+        <div class="border-b border-emerald-900/60 bg-black/20">
+            <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8 py-6 grid gap-4 sm:grid-cols-3">
+                <div class="flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.04] border border-white/[0.08]">
+                    <div class="h-10 w-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-phone-volume text-base"></i>
                     </div>
                     <div>
-                        <span class="text-3xl font-extrabold text-emerald-700">APPSI</span>
-                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Kabupaten Banyuasin</p>
+                        <p class="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider">Hotline Aspirasi</p>
+                        <a href="https://wa.me/62811618808" target="_blank" class="text-sm font-bold text-white hover:text-emerald-300 transition">0811 618 808</a>
                     </div>
                 </div>
-                <p class="mt-4 max-w-[280px] text-sm leading-6 text-slate-600">
-                    Dewan Pimpinan Daerah (DPD) Asosiasi Pedagang Pasar Seluruh Indonesia Kabupaten Banyuasin, Provinsi Sumatera Selatan.
-                </p>
-                <!-- Social Icons -->
-                <div class="mt-5 flex gap-3">
-                    <a href="https://wa.me/62811618808" target="_blank" class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-700 text-white transition hover:bg-emerald-800" aria-label="WhatsApp">
-                        <i class="fa-brands fa-whatsapp text-sm"></i>
-                    </a>
-                    <a href="mailto:appsi.banyuasin@gmail.com" class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-700 text-white transition hover:bg-emerald-800" aria-label="Email">
-                        <i class="fa-solid fa-envelope text-sm"></i>
-                    </a>
-                    <a href="https://appsi.id" target="_blank" class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-700 text-white transition hover:bg-emerald-800" aria-label="DPP APPSI">
-                        <i class="fa-solid fa-globe text-sm"></i>
-                    </a>
-                    <a href="{{ route('login') }}" class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-700 text-white transition hover:bg-emerald-800" aria-label="Admin Login">
-                        <i class="fa-solid fa-lock text-sm"></i>
-                    </a>
+
+                <div class="flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.04] border border-white/[0.08]">
+                    <div class="h-10 w-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-map-location-dot text-base"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider">Kantor Sekretariat</p>
+                        <p class="text-xs font-bold text-white truncate max-w-[200px]" title="Jalan Merdeka, Depan Pasar Baru Pangkalan Balai">Depan Pasar Baru Pangkalan Balai</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Navigation Links -->
-            <div>
-                <h3 class="text-sm font-bold text-slate-900">Navigasi Utama</h3>
-                <ul class="mt-4 space-y-2.5">
-                    <li><a href="{{ route('home') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Beranda</a></li>
-                    <li><a href="{{ route('programs.public') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">5 Pilar Program</a></li>
-                    <li><a href="{{ route('organization.public') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Struktur Organisasi</a></li>
-                    <li><a href="{{ route('news.index') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Berita Pasar</a></li>
-                    <li><a href="{{ route('gallery.public') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Galeri Kegiatan</a></li>
-                    <li><a href="{{ route('members.public') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Direktori Pedagang</a></li>
-                    <li><a href="{{ route('about.public') }}" class="text-sm text-slate-600 transition hover:text-emerald-700">Tentang Kami</a></li>
-                </ul>
-            </div>
-
-            <!-- Information Links -->
-            <div>
-                <h3 class="text-sm font-bold text-slate-900">Layanan & Bantuan</h3>
-                <ul class="mt-4 space-y-2.5 text-sm text-slate-600">
-                    <li><a href="{{ route('members.register') }}" class="hover:text-emerald-700 transition">Pendaftaran Anggota KTA</a></li>
-                    <li><a href="{{ route('members.check') }}" class="hover:text-emerald-700 transition">Cek Keabsahan KTA</a></li>
-                    <li><a href="{{ route('letter.verify.index') }}" class="hover:text-emerald-700 transition">Cek Keabsahan Surat Resmi</a></li>
-                    <li><a href="{{ route('downloads.public') }}" class="hover:text-emerald-700 transition">Pusat Unduhan Formulir</a></li>
-                    <li><a href="{{ route('faq.public') }}" class="hover:text-emerald-700 transition">Tanya Jawab (FAQ)</a></li>
-                    <li><a href="{{ route('contact.public') }}" class="hover:text-emerald-700 transition">Aspirasi & Pengaduan</a></li>
-                </ul>
-            </div>
-
-            <!-- Secretariat Contact -->
-            <div class="relative">
-                <h3 class="text-sm font-bold text-slate-900">Sekretariat DPD</h3>
-                <ul class="mt-4 space-y-4 text-sm text-slate-600">
-                    <li class="flex gap-3">
-                        <i class="fa-solid fa-map-location-dot mt-1 text-emerald-700 shrink-0"></i>
-                        <span class="whitespace-pre-line leading-relaxed">
-                            Jalan Merdeka, Depan Pasar Baru Kelurahan Pangkalan Balai - Kecamatan Banyuasin III, Kab. Banyuasin, Sumatera Selatan
-                        </span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-phone text-emerald-700 shrink-0"></i>
-                        <a href="tel:0811618808" class="hover:text-emerald-700">0811 618 808</a>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-envelope text-emerald-700 shrink-0"></i>
-                        <a href="mailto:appsi.banyuasin@gmail.com" class="hover:text-emerald-700">appsi.banyuasin@gmail.com</a>
-                    </li>
-                </ul>
+                <div class="flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.04] border border-white/[0.08]">
+                    <div class="h-10 w-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-envelope-circle-check text-base"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider">Email Korespondensi</p>
+                        <a href="mailto:appsi.banyuasin@gmail.com" class="text-xs font-bold text-white hover:text-emerald-300 transition">appsi.banyuasin@gmail.com</a>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Copyright Bar -->
-        <div class="bg-emerald-800 py-4 text-center text-xs font-medium text-white/90">
-            <div class="mx-auto max-w-[1180px] px-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-                <span>&copy; {{ date('Y') }} DPD APPSI Kabupaten Banyuasin. Hak Cipta Dilindungi.</span>
-                <span class="text-emerald-200/80 text-[11px]">Asosiasi Pedagang Pasar Seluruh Indonesia (appsiba.or.id)</span>
+        <!-- Main Footer Links Grid -->
+        <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8 py-12 sm:py-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
+            
+            <!-- Brand Column (4 cols) -->
+            <div class="lg:col-span-4 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3.5">
+                        <div class="h-13 w-13 rounded-2xl overflow-hidden flex items-center justify-center p-1.5 bg-white shadow-sm shrink-0">
+                            <img src="{{ asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-10 w-10 object-contain">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-2xl font-black text-white tracking-tight">APPSI</span>
+                                <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 uppercase">DPD</span>
+                            </div>
+                            <p class="text-xs font-bold text-emerald-300/80 uppercase tracking-wider">Kabupaten Banyuasin</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-xs leading-relaxed text-slate-300 max-w-sm">
+                        Dewan Pimpinan Daerah Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) Kabupaten Banyuasin. Berdiri sebagai pengayom, advokasi legalitas, dan akselerator kemandirian ekonomi ribuan pedagang pasar tradisional di 21 kecamatan se-Banyuasin.
+                    </p>
+                    <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-700/50 text-[11px] font-medium text-emerald-200">
+                        <i class="fa-solid fa-award text-amber-400 text-xs"></i>
+                        <span>Periode Kepengurusan 2024 - 2029</span>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="mt-6 flex items-center gap-2.5">
+                    <a href="https://wa.me/62811618808" target="_blank" class="h-9 w-9 rounded-xl bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="WhatsApp Hotline" title="WhatsApp Hotline">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                    </a>
+                    <a href="mailto:appsi.banyuasin@gmail.com" class="h-9 w-9 rounded-xl bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Email Resmi" title="Email Resmi">
+                        <i class="fa-solid fa-envelope text-xs"></i>
+                    </a>
+                    <a href="https://appsi.id" target="_blank" class="h-9 w-9 rounded-xl bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Website DPP APPSI" title="Website DPP APPSI">
+                        <i class="fa-solid fa-globe text-xs"></i>
+                    </a>
+                    <a href="{{ route('login') }}" class="h-9 w-9 rounded-xl bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Portal Petugas MIS" title="Portal Login MIS">
+                        <i class="fa-solid fa-shield-halved text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation Links (2.5 cols) -->
+            <div class="lg:col-span-3">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-300">Navigasi Utama</h3>
+                <ul class="mt-4 space-y-2.5 text-xs text-slate-300">
+                    <li><a href="{{ route('home') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Beranda Portal</a></li>
+                    <li><a href="{{ route('programs.public') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> 5 Pilar Program Kerja</a></li>
+                    <li><a href="{{ route('organization.public') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Struktur Pengurus DPD</a></li>
+                    <li><a href="{{ route('news.index') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Berita & Warta Pasar</a></li>
+                    <li><a href="{{ route('gallery.public') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Galeri Dokumentasi</a></li>
+                    <li><a href="{{ route('members.public') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Direktori Pedagang Binaan</a></li>
+                    <li><a href="{{ route('about.public') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Visi, Misi & Sejarah</a></li>
+                </ul>
+            </div>
+
+            <!-- Layanan & Bantuan (2.5 cols) -->
+            <div class="lg:col-span-3">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-300">Layanan Pedagang</h3>
+                <ul class="mt-4 space-y-2.5 text-xs text-slate-300">
+                    <li><a href="{{ route('members.register') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Pendaftaran KTA Online (Gratis)</a></li>
+                    <li><a href="{{ route('members.check') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Cek & Validasi Kartu KTA</a></li>
+                    <li><a href="{{ route('letter.verify.index') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Verifikasi Keabsahan Surat</a></li>
+                    <li><a href="{{ route('downloads.public') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Unduhan AD/ART & Formulir</a></li>
+                    <li><a href="{{ route('faq.public') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Tanya Jawab (FAQ) Pedagang</a></li>
+                    <li><a href="{{ route('contact.public') }}" class="hover:text-emerald-300 transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-500"></i> Posko Aspirasi & Pengaduan</a></li>
+                </ul>
+            </div>
+
+            <!-- Pasar Binaan Utama (2 cols) -->
+            <div class="lg:col-span-2">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-300">Pasar Binaan</h3>
+                <ul class="mt-4 space-y-2 text-xs text-slate-300">
+                    <li class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400 text-[10px]"></i> Pasar Pangkalan Balai</li>
+                    <li class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400 text-[10px]"></i> Pasar Betung</li>
+                    <li class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400 text-[10px]"></i> Pasar Sukajadi</li>
+                    <li class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400 text-[10px]"></i> Pasar Mariana</li>
+                    <li class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-400 text-[10px]"></i> Pasar Sungsang</li>
+                </ul>
+                <div class="mt-5 p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-800/40 text-[11px] text-slate-300">
+                    <p class="font-bold text-amber-300">Jejaring Pasar:</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Mencakup 21 Kecamatan Kabupaten Banyuasin</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright Bar & Watermark Beranda Teknologi Digital -->
+        <div class="border-t border-emerald-900/80 bg-black/40 py-4 text-xs">
+            <div class="mx-auto max-w-[1180px] px-5 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                <div class="text-slate-400 text-[11px]">
+                    &copy; {{ date('Y') }} DPD APPSI Kabupaten Banyuasin. Seluruh Hak Cipta Dilindungi.
+                </div>
+                <!-- Watermark Beranda Teknologi Digital -->
+                <div class="text-[11px] text-slate-400">
+                    Didukung oleh <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-emerald-300/80 hover:text-emerald-200 transition underline underline-offset-2 decoration-emerald-500/30 hover:decoration-emerald-400 font-medium">Beranda Teknologi Digital</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -355,10 +403,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({
-                duration: 350,
+                duration: 450,
                 easing: 'ease-out',
                 once: true,
-                offset: 20
+                offset: 25
             });
         });
     </script>
@@ -392,17 +440,35 @@
         </script>
     @endif
 
-    <!-- Floating WhatsApp Assistance Button (Hotline APPSI Banyuasin) -->
-    <aside class="fixed bottom-6 right-6 z-40" aria-label="Hotline WhatsApp APPSI">
-        <a href="https://wa.me/62811618808?text=Halo%20Pengurus%20DPD%20APPSI%20Banyuasin,%20saya%20ingin%20berkonsultasi..." target="_blank" class="group flex items-center gap-2.5 rounded-full bg-emerald-600 pl-4 pr-4 py-3 text-white shadow-[0_12px_28px_rgba(5,150,105,0.4)] hover:bg-emerald-700 hover:shadow-[0_16px_32px_rgba(5,150,105,0.5)] transition duration-300 hover:scale-105 active:scale-95" title="Hotline WhatsApp APPSI Banyuasin">
-            <span class="relative flex h-3 w-3">
+    <!-- Floating Action Controls: Scroll-to-Top & Simple WhatsApp Button -->
+    <aside class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5" aria-label="Aksi Cepat Layanan">
+        
+        <!-- Scroll To Top Button -->
+        <button type="button" 
+                x-show="scrolled" 
+                x-cloak 
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-3"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-3"
+                @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                class="h-10 w-10 rounded-full bg-white text-emerald-800 hover:bg-emerald-700 hover:text-white shadow-lg border border-slate-200/80 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 group"
+                title="Kembali ke Atas">
+            <i class="fa-solid fa-arrow-up text-xs group-hover:-translate-y-0.5 transition-transform duration-200"></i>
+        </button>
+
+        <!-- Simple Minimalist WhatsApp Button -->
+        <a href="https://wa.me/62811618808?text=Halo%20Pengurus%20DPD%20APPSI%20Banyuasin,%20saya%20ingin%20berkonsultasi..." 
+           target="_blank" 
+           class="relative flex h-12 w-12 sm:h-13 sm:w-13 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_20px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] transition-all duration-200 hover:scale-110 active:scale-95 group" 
+           title="Hubungi WhatsApp DPD APPSI Banyuasin">
+            <span class="absolute -top-0.5 -right-0.5 flex h-3 w-3">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-200"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
             </span>
-            <i class="fa-brands fa-whatsapp text-2xl"></i>
-            <span class="hidden sm:inline-block text-xs font-bold tracking-wide">
-                Hotline APPSI
-            </span>
+            <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-6 transition-transform duration-200"></i>
         </a>
     </aside>
 
