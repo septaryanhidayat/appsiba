@@ -1,6 +1,7 @@
 ---
 deployment:
   tasks:
+    - export DEPLOYPATH=/home/berandad/appsiba.berandadigital.net/
     - /bin/mkdir -p /home/berandad/appsiba.berandadigital.net/public
     - /bin/cp -rf * /home/berandad/appsiba.berandadigital.net/ 2>/dev/null || true
     - /bin/cp -f .htaccess /home/berandad/appsiba.berandadigital.net/.htaccess 2>/dev/null || true
