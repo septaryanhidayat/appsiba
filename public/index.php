@@ -17,6 +17,14 @@ if (file_exists(__DIR__.'/../vendor/autoload.php')) {
     exit('Folder "vendor" belum tersedia di root project (/home/berandad/appsiba.berandadigital.net/). Silakan jalankan `composer install --no-dev` di Terminal cPanel atau upload zip folder vendor proyek.');
 }
 
+if (! enum_exists('SortDirection', false)) {
+    enum SortDirection
+    {
+        case Ascending;
+        case Descending;
+    }
+}
+
 // Bootstrap Laravel and handle the request...
 /** @var Application $app */
 $app = require_once __DIR__.'/../bootstrap/app.php';

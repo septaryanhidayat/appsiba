@@ -6,6 +6,14 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 
+if (! enum_exists('SortDirection', false)) {
+    enum SortDirection
+    {
+        case Ascending;
+        case Descending;
+    }
+}
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',

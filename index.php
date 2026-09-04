@@ -14,7 +14,15 @@ if (file_exists($maintenance = __DIR__.'/storage/framework/maintenance.php')) {
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/vendor/autoload.php';
 } else {
-    die('Folder "vendor" belum tersedia. Silakan jalankan `composer install` di terminal cPanel atau upload folder vendor proyek.');
+    exit('Folder "vendor" belum tersedia. Silakan jalankan `composer install` di terminal cPanel atau upload folder vendor proyek.');
+}
+
+if (! enum_exists('SortDirection', false)) {
+    enum SortDirection
+    {
+        case Ascending;
+        case Descending;
+    }
 }
 
 // Bootstrap Laravel and handle the request...
