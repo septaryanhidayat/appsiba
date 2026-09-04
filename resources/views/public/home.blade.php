@@ -6,22 +6,6 @@
 
 <!-- 1. HERO SECTION (Ciri Khas DPD APPSI Kabupaten Banyuasin) -->
 <section class="relative isolate overflow-hidden bg-white" id="hero">
-    
-    <!-- Top Market Network Highlights Strip -->
-    <div class="border-b border-emerald-100 bg-emerald-50/50 py-2 text-xs font-semibold text-emerald-900">
-        <div class="mx-auto flex w-full max-w-[1180px] flex-col sm:flex-row items-center justify-center sm:justify-between gap-2 px-5 sm:px-6 lg:px-8 text-center sm:text-left">
-            <div class="flex items-center justify-center gap-2">
-                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
-                <span class="text-[11px] uppercase tracking-wider text-emerald-800 font-bold">Jejaring Pasar Binaan DPD:</span>
-                <span class="hidden sm:inline text-slate-600 font-medium">Pangkalan Balai • Betung • Sukajadi • Mariana • Sungsang</span>
-            </div>
-            <a href="{{ route('members.public') }}" class="inline-flex items-center justify-center gap-1 text-[11px] font-bold text-emerald-700 hover:text-emerald-900 transition">
-                <span>Direktori Pedagang</span>
-                <i class="fa-solid fa-arrow-right text-[10px]"></i>
-            </a>
-        </div>
-    </div>
-
     <div class="grid w-full lg:min-h-[640px] lg:grid-cols-[50%_50%] xl:min-h-[700px]">
         
         <!-- Left Hero Content (Desktop Left, Mobile Main Flow) -->

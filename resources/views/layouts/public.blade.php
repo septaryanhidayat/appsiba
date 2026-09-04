@@ -369,7 +369,7 @@
                 </div>
                 <!-- Watermark Beranda Teknologi Digital -->
                 <div class="text-[10px] text-slate-500">
-                    by <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-300 transition">Beranda Teknologi Digital</a>
+                    <a href="https://berandadigital.net" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-300 transition">Beranda Teknologi Digital</a>
                 </div>
             </div>
         </div>

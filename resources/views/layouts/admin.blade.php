@@ -285,8 +285,8 @@
                 </button>
             </form>
             <div class="text-center pt-1">
-                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-[10px] text-emerald-300/40 hover:text-emerald-300 transition" title="Mitra Teknologi & Sistem">
-                    by Beranda Teknologi Digital
+                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-[10px] text-emerald-300/40 hover:text-emerald-300 transition" title="Beranda Teknologi Digital">
+                    Beranda Teknologi Digital
                 </a>
             </div>
         </div>
@@ -296,35 +296,29 @@
     <div class="flex-1 flex flex-col min-w-0">
         
         <!-- Top Navbar -->
-        <header class="h-16 bg-white border-b border-slate-200 px-5 flex items-center justify-between sticky top-0 z-30 shadow-sm">
-            <div class="flex items-center gap-3">
-                <button type="button" @click="sidebarOpen = !sidebarOpen" class="lg:hidden h-9 w-9 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">
+        <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+            <div class="flex items-center gap-3 min-w-0">
+                <button type="button" @click="sidebarOpen = !sidebarOpen" class="lg:hidden h-9 w-9 shrink-0 rounded-lg border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <div class="flex items-center gap-2">
-                    <span class="text-sm font-extrabold text-slate-800">DPD APPSI Kabupaten Banyuasin</span>
-                    <span class="text-xs text-slate-400 hidden sm:inline">&bull; Sistem Informasi Manajemen</span>
+                <div class="flex items-center gap-2 min-w-0">
+                    <span class="text-xs sm:text-sm font-extrabold text-slate-900 truncate">DPD APPSI Kabupaten Banyuasin</span>
+                    <span class="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200 shrink-0">MIS 2.0</span>
                 </div>
             </div>
 
-            <!-- Top Actions: 1-Baris Sesuai Permintaan User -->
-            <div class="flex items-center gap-2">
-                <a href="{{ route('admin.posts.create') }}" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold border border-emerald-200 transition">
-                    <i class="fa-solid fa-pen-nib text-[10px]"></i> Tulis Berita
-                </a>
-                <a href="{{ route('admin.letters.create') }}" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 text-xs font-bold transition shadow-sm">
-                    <i class="fa-solid fa-paper-plane text-[10px]"></i> Buat Surat
-                </a>
-                <a href="{{ route('admin.meetings.create') }}" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold border border-slate-200 transition">
-                    <i class="fa-solid fa-calendar-plus text-[10px]"></i> Catat Rapat
-                </a>
+            <div class="flex items-center gap-3 shrink-0">
+                <div class="hidden md:flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                    <i class="fa-regular fa-calendar-check text-emerald-700"></i>
+                    <span>{{ now()->translatedFormat('l, d M Y') }}</span>
+                </div>
 
                 <!-- User Profile Pill -->
-                <div class="flex items-center gap-2 pl-3 border-l border-slate-200 ml-2">
-                    <div class="h-8 w-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs border border-emerald-200">
+                <div class="flex items-center gap-2 pl-3 border-l border-slate-200">
+                    <div class="h-8 w-8 rounded-full bg-emerald-700 text-white flex items-center justify-center font-bold text-xs shadow-sm">
                         {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
                     </div>
-                    <span class="text-xs font-bold text-slate-700 hidden md:inline">{{ auth()->user()->name ?? 'Administrator' }}</span>
+                    <span class="text-xs font-bold text-slate-700 hidden sm:inline truncate max-w-[130px]">{{ auth()->user()->name ?? 'Administrator' }}</span>
                 </div>
             </div>
         </header>
@@ -337,10 +331,8 @@
         <!-- Footer -->
         <footer class="py-4 px-7 border-t border-slate-200 bg-white text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
             <span>&copy; {{ date('Y') }} {{ $webSetting['singkatan'] ?? 'DPD APPSI Kabupaten Banyuasin' }}. Seluruh hak cipta dilindungi.</span>
-            <div class="flex items-center gap-2.5">
-                <span class="text-slate-400 text-[11px]">by <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-emerald-700 transition" title="Mitra Pengembangan Teknologi & Sistem Digital">Beranda Teknologi Digital</a></span>
-                <span class="text-slate-300">&bull;</span>
-                <span>Versi MIS 2.0 (appsiba.or.id)</span>
+            <div>
+                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-[11px] text-slate-400 hover:text-emerald-700 transition" title="Beranda Teknologi Digital">Beranda Teknologi Digital</a>
             </div>
         </footer>
 

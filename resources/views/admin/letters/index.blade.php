@@ -49,13 +49,16 @@
                         </td>
                         <td class="p-3.5 text-center">
                             <div class="flex items-center justify-center gap-1.5">
-                                <a href="{{ route('admin.letters.show', $lt->id) }}" target="_blank" class="h-8 px-2.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 flex items-center gap-1 text-[11px] font-bold transition">
+                                <a href="{{ route('admin.letters.show', $lt->id) }}" target="_blank" class="h-8 px-2.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 flex items-center gap-1 text-[11px] font-bold transition" title="Cetak Surat">
                                     <i class="fa-solid fa-print"></i> Cetak
+                                </a>
+                                <a href="{{ route('admin.letters.edit', $lt->id) }}" class="h-8 px-2.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 flex items-center gap-1 text-[11px] font-bold transition" title="Edit Surat">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
                                 </a>
                                 <form action="{{ route('admin.letters.destroy', $lt->id) }}" method="POST" onsubmit="return confirmDelete(this, 'Hapus surat nomor {{ addslashes($lt->nomor_surat) }}?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-red-50 hover:text-red-600 flex items-center justify-center transition">
+                                    <button type="submit" class="h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-red-50 hover:text-red-600 flex items-center justify-center transition" title="Hapus Surat">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                 </form>

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Gallery;
 use App\Models\Letter;
 use App\Models\Member;
 use App\Models\Post;
@@ -137,5 +138,42 @@ class AppsiWebTest extends TestCase
         $response->assertHeader('X-Frame-Options', 'SAMEORIGIN');
         $response->assertHeader('X-Content-Type-Options', 'nosniff');
         $response->assertHeader('X-XSS-Protection', '1; mode=block');
+    }
+
+    public function test_gallery_and_letter_crud_operations(): void
+    {
+        $admin = User::first();
+
+        // 1. Test Letters Edit & Update
+        $letter = Letter::first();
+        $this->actingAs($admin)
+            ->get("/admin/surat-keluar/{$letter->id}/edit")
+            ->assertStatus(200)
+            ->assertSee($letter->nomor_surat, false);
+
+        $this->actingAs($admin)
+            ->put("/admin/surat-keluar/{$letter->id}", [
+                'nomor_surat' => $letter->nomor_surat,
+                'tanggal' => '2026-09-04',
+                'jenis_surat' => $letter->jenis_surat,
+                'tujuan' => 'Dinas Perdagangan Kab. Banyuasin',
+                'keperluan' => 'Koordinasi Tera Pasar',
+                'nama_penandatangan' => 'H. Gusra Yetri, SH',
+                'jabatan_penandatangan' => 'Ketua DPD APPSI Banyuasin',
+            ])
+            ->assertRedirect('/admin/surat-keluar');
+
+        // 2. Test Galleries Index & Update
+        $gallery = Gallery::first();
+        if ($gallery) {
+            $this->actingAs($admin)
+                ->put("/admin/galeri/{$gallery->id}", [
+                    'judul' => 'Peninjauan Pasar Pangkalan Balai Update',
+                    'kategori' => 'Kegiatan',
+                    'tanggal_kegiatan' => '2026-09-04',
+                    'deskripsi' => 'Deskripsi kegiatan terbaru',
+                ])
+                ->assertRedirect();
+        }
     }
 }

@@ -4,157 +4,144 @@
 
 @section('content')
 
-<!-- Header Banner -->
-<div class="mb-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<!-- Header Banner & Quick Actions -->
+<div class="mb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
     <div>
-        <h1 class="text-2xl font-extrabold text-slate-900">Dashboard Eksekutif MIS</h1>
+        <div class="flex items-center gap-2">
+            <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Dashboard Eksekutif MIS</h1>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                Live Data
+            </span>
+        </div>
         <p class="text-xs text-slate-500 mt-1">Pangkalan Data & Tata Kelola Administrasi DPD APPSI Kabupaten Banyuasin</p>
     </div>
 
-    <!-- 1-Baris Quick Action Buttons Modern -->
-    <div class="flex items-center gap-2.5 overflow-x-auto pb-1 sm:pb-0">
-        <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-700/20 hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg transition">
-            <i class="fa-solid fa-pen-nib text-[11px]"></i>
+    <!-- Quick Action Buttons: 2x2 Grid di Mobile, 1 Baris di Layar Besar -->
+    <div class="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-2.5">
+        <a href="{{ route('admin.posts.create') }}" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-700 text-white font-bold text-xs shadow-sm hover:bg-emerald-800 transition">
+            <i class="fa-solid fa-pen-nib text-[10px]"></i>
             <span>Tulis Berita</span>
         </a>
-        <a href="{{ route('admin.letters.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-bold text-white shadow-md hover:bg-slate-800 transition">
-            <i class="fa-solid fa-paper-plane text-[11px] text-emerald-400"></i>
-            <span>Buat Surat Keluar</span>
+        <a href="{{ route('admin.letters.create') }}" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-slate-900 text-white font-bold text-xs shadow-sm hover:bg-slate-800 transition">
+            <i class="fa-solid fa-paper-plane text-[10px] text-emerald-400"></i>
+            <span>Buat Surat</span>
         </a>
-        <a href="{{ route('admin.meetings.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition">
-            <i class="fa-solid fa-calendar-plus text-[11px] text-emerald-700"></i>
-            <span>Catat Notulen Rapat</span>
+        <a href="{{ route('admin.meetings.create') }}" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold text-xs shadow-sm hover:bg-slate-50 transition">
+            <i class="fa-solid fa-calendar-plus text-[10px] text-emerald-700"></i>
+            <span>Catat Rapat</span>
         </a>
-        <a href="{{ route('admin.members.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-emerald-300 bg-emerald-50/80 px-4 py-2.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition shadow-sm">
-            <i class="fa-solid fa-user-plus text-[11px]"></i>
+        <a href="{{ route('admin.members.create') }}" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-xs shadow-sm hover:bg-emerald-100 transition">
+            <i class="fa-solid fa-user-plus text-[10px]"></i>
             <span>Tambah Pedagang</span>
         </a>
     </div>
 </div>
 
-<!-- Metrics Cards Grid (Vibrant, Modern Executive Design) -->
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+<!-- Metrics Cards Grid: Desain Eksekutif Modern & Bersih (Anti Bertumpuk di Mobile) -->
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-7">
     
-    <!-- 1. Total Anggota (Emerald Vibrant Gradient) -->
-    <a href="{{ route('admin.members.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-emerald-500/15 via-teal-50/40 to-white border border-emerald-200/90 shadow-sm hover:shadow-xl hover:shadow-emerald-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-3">
-            <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800">Anggota</span>
-            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center text-xs shadow-md shadow-emerald-600/30 group-hover:scale-110 transition-transform">
+    <!-- 1. Total Anggota Pedagang -->
+    <a href="{{ route('admin.members.index') }}" class="group bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Anggota</span>
+            <div class="h-7 w-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-xs shrink-0 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
                 <i class="fa-solid fa-store"></i>
             </div>
         </div>
-        <div>
-            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['total_anggota'] }}</p>
-            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-100/90 border border-emerald-300/60 text-[10px] font-bold text-emerald-800">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-                <span>{{ $stats['anggota_aktif'] }} Pedagang Aktif</span>
-            </div>
+        <div class="my-2">
+            <span class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-none">{{ $stats['total_anggota'] }}</span>
+        </div>
+        <div class="text-[11px] font-semibold text-emerald-700 truncate">
+            {{ $stats['anggota_aktif'] }} Pedagang Aktif
         </div>
     </a>
 
-    <!-- 2. Pendaftaran Baru Online (Amber Vibrant Gradient) -->
-    <a href="{{ route('admin.registrations.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-amber-500/15 via-orange-50/40 to-white border border-amber-200/90 shadow-sm hover:shadow-xl hover:shadow-amber-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-3">
-            <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800">Pendaftar</span>
-            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white flex items-center justify-center text-xs shadow-md shadow-amber-500/30 group-hover:scale-110 transition-transform">
+    <!-- 2. Pendaftaran Online Baru -->
+    <a href="{{ route('admin.registrations.index') }}" class="group bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:border-amber-500 hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Pendaftar</span>
+            <div class="h-7 w-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-xs shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors">
                 <i class="fa-solid fa-user-clock"></i>
             </div>
         </div>
-        <div>
-            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['pendaftaran_baru'] }}</p>
-            @if($stats['pendaftaran_baru'] > 0)
-                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-100/90 border border-amber-300/60 text-[10px] font-bold text-amber-800">
-                    <span class="h-1.5 w-1.5 rounded-full bg-amber-600 animate-ping"></span>
-                    <span>Perlu Verifikasi</span>
-                </div>
-            @else
-                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 text-[10px] font-semibold text-slate-500">
-                    <i class="fa-solid fa-circle-check text-[9px] text-emerald-600"></i> Semua Terproses
-                </div>
-            @endif
+        <div class="my-2">
+            <span class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-none">{{ $stats['pendaftaran_baru'] }}</span>
+        </div>
+        <div class="text-[11px] font-semibold {{ $stats['pendaftaran_baru'] > 0 ? 'text-amber-600 font-bold' : 'text-slate-400' }} truncate">
+            {{ $stats['pendaftaran_baru'] > 0 ? $stats['pendaftaran_baru'] . ' Perlu Diproses' : 'Semua Terverifikasi' }}
         </div>
     </a>
 
-    <!-- 3. Berita Pasar (Royal Blue Vibrant Gradient) -->
-    <a href="{{ route('admin.posts.publish') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-blue-500/15 via-indigo-50/40 to-white border border-blue-200/90 shadow-sm hover:shadow-xl hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-3">
-            <span class="text-[10px] font-extrabold uppercase tracking-wider text-blue-800">Berita</span>
-            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-xs shadow-md shadow-blue-600/30 group-hover:scale-110 transition-transform">
+    <!-- 3. Berita & Kabar Pasar -->
+    <a href="{{ route('admin.posts.publish') }}" class="group bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Berita</span>
+            <div class="h-7 w-7 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center text-xs shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                 <i class="fa-solid fa-newspaper"></i>
             </div>
         </div>
-        <div>
-            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['total_berita'] }}</p>
-            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-100/90 border border-blue-300/60 text-[10px] font-bold text-blue-800">
-                <i class="fa-solid fa-globe text-[9px]"></i>
-                <span>Artikel Terbit</span>
-            </div>
+        <div class="my-2">
+            <span class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-none">{{ $stats['total_berita'] }}</span>
+        </div>
+        <div class="text-[11px] font-semibold text-blue-700 truncate">
+            Artikel Terbit
         </div>
     </a>
 
-    <!-- 4. Surat Keluar (Violet Vibrant Gradient) -->
-    <a href="{{ route('admin.letters.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-violet-500/15 via-purple-50/40 to-white border border-violet-200/90 shadow-sm hover:shadow-xl hover:shadow-violet-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-3">
-            <span class="text-[10px] font-extrabold uppercase tracking-wider text-violet-800">Surat Keluar</span>
-            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-violet-600 to-purple-600 text-white flex items-center justify-center text-xs shadow-md shadow-violet-600/30 group-hover:scale-110 transition-transform">
+    <!-- 4. Surat Keluar Ber-QR Code -->
+    <a href="{{ route('admin.letters.index') }}" class="group bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:border-violet-500 hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Surat Keluar</span>
+            <div class="h-7 w-7 rounded-lg bg-violet-50 text-violet-700 flex items-center justify-center text-xs shrink-0 group-hover:bg-violet-600 group-hover:text-white transition-colors">
                 <i class="fa-solid fa-envelope-open-text"></i>
             </div>
         </div>
-        <div>
-            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['total_surat_keluar'] }}</p>
-            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-violet-100/90 border border-violet-300/60 text-[10px] font-bold text-violet-800">
-                <i class="fa-solid fa-qrcode text-[9px]"></i>
-                <span>Ber-QR Code</span>
-            </div>
+        <div class="my-2">
+            <span class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-none">{{ $stats['total_surat_keluar'] }}</span>
+        </div>
+        <div class="text-[11px] font-semibold text-violet-700 truncate">
+            Ber-QR Code
         </div>
     </a>
 
-    <!-- 5. Surat Masuk (Rose Vibrant Gradient) -->
-    <a href="{{ route('admin.incoming-letters.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-rose-500/15 via-pink-50/40 to-white border border-rose-200/90 shadow-sm hover:shadow-xl hover:shadow-rose-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-3">
-            <span class="text-[10px] font-extrabold uppercase tracking-wider text-rose-800">Surat Masuk</span>
-            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white flex items-center justify-center text-xs shadow-md shadow-rose-500/30 group-hover:scale-110 transition-transform">
+    <!-- 5. Surat Masuk -->
+    <a href="{{ route('admin.incoming-letters.index') }}" class="group bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:border-rose-500 hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Surat Masuk</span>
+            <div class="h-7 w-7 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center text-xs shrink-0 group-hover:bg-rose-600 group-hover:text-white transition-colors">
                 <i class="fa-solid fa-inbox"></i>
             </div>
         </div>
-        <div>
-            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['total_surat_masuk'] }}</p>
-            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-rose-100/90 border border-rose-300/60 text-[10px] font-bold text-rose-800">
-                <i class="fa-solid fa-folder-tree text-[9px]"></i>
-                <span>Arsip Masuk</span>
-            </div>
+        <div class="my-2">
+            <span class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-none">{{ $stats['total_surat_masuk'] }}</span>
+        </div>
+        <div class="text-[11px] font-semibold text-slate-600 truncate">
+            Total Arsip Masuk
         </div>
     </a>
 
-    <!-- 6. Aspirasi / Tamu (Teal & Cyan Vibrant Gradient) -->
-    <a href="{{ route('admin.inbox.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-teal-500/15 via-cyan-50/40 to-white border border-teal-200/90 shadow-sm hover:shadow-xl hover:shadow-teal-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-3">
-            <span class="text-[10px] font-extrabold uppercase tracking-wider text-teal-800">Aspirasi</span>
-            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-teal-600 to-cyan-600 text-white flex items-center justify-center text-xs shadow-md shadow-teal-600/30 group-hover:scale-110 transition-transform">
+    <!-- 6. Aspirasi & Pesan Masuk -->
+    <a href="{{ route('admin.inbox.index') }}" class="group bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:border-teal-500 hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Aspirasi</span>
+            <div class="h-7 w-7 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center text-xs shrink-0 group-hover:bg-teal-600 group-hover:text-white transition-colors">
                 <i class="fa-solid fa-comments"></i>
             </div>
         </div>
-        <div>
-            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['pesan_baru'] }}</p>
-            @if($stats['pesan_baru'] > 0)
-                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-teal-100/90 border border-teal-300/60 text-[10px] font-bold text-teal-800">
-                    <span class="h-1.5 w-1.5 rounded-full bg-teal-600 animate-pulse"></span>
-                    <span>Pesan Belum Dibaca</span>
-                </div>
-            @else
-                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 text-[10px] font-semibold text-slate-500">
-                    <i class="fa-solid fa-check text-[9px] text-teal-600"></i> Kotak Pesan Bersih
-                </div>
-            @endif
+        <div class="my-2">
+            <span class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-none">{{ $stats['pesan_baru'] }}</span>
+        </div>
+        <div class="text-[11px] font-semibold {{ $stats['pesan_baru'] > 0 ? 'text-teal-700 font-bold' : 'text-slate-400' }} truncate">
+            {{ $stats['pesan_baru'] > 0 ? $stats['pesan_baru'] . ' Pesan Baru' : 'Kotak Bersih' }}
         </div>
     </a>
 
 </div>
 
-<!-- Recent Content Tables -->
-<div class="grid lg:grid-cols-2 gap-6">
+<!-- Recent Content Tables (Rapi & Responsif di Seluler) -->
+<div class="grid lg:grid-cols-2 gap-5 sm:gap-6 mb-6">
     
-    <!-- Recent Members -->
+    <!-- Recent Members Table -->
     <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm flex flex-col justify-between">
         <div>
             <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
@@ -168,9 +155,9 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="w-full text-left text-xs">
+                <table class="w-full text-left text-xs min-w-[480px]">
                     <thead>
-                        <tr>
+                        <tr class="bg-slate-50/50 text-slate-500 border-b border-slate-100">
                             <th class="p-3">Pedagang / Usaha</th>
                             <th class="p-3">Komoditas</th>
                             <th class="p-3">Lokasi Pasar</th>
@@ -185,9 +172,9 @@
                                         <div class="w-8 h-8 rounded-full overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
                                             <img src="{{ $m->foto_url }}" alt="" class="w-full h-full object-cover">
                                         </div>
-                                        <div>
-                                            <span class="font-bold text-slate-900 block">{{ $m->nama }}</span>
-                                            <span class="text-[11px] text-slate-500">{{ $m->nama_usaha }}</span>
+                                        <div class="min-w-0">
+                                            <span class="font-bold text-slate-900 block truncate">{{ $m->nama }}</span>
+                                            <span class="text-[11px] text-slate-500 block truncate">{{ $m->nama_usaha }}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -212,7 +199,7 @@
         </div>
     </div>
 
-    <!-- Recent Online Registrations -->
+    <!-- Recent Online Registrations Table -->
     <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm flex flex-col justify-between">
         <div>
             <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
@@ -226,9 +213,9 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="w-full text-left text-xs">
+                <table class="w-full text-left text-xs min-w-[480px]">
                     <thead>
-                        <tr>
+                        <tr class="bg-slate-50/50 text-slate-500 border-b border-slate-100">
                             <th class="p-3">Calon Anggota</th>
                             <th class="p-3">Usaha & Pasar</th>
                             <th class="p-3">Kontak</th>
@@ -239,14 +226,14 @@
                         @forelse($recentRegistrations as $reg)
                             <tr class="hover:bg-slate-50">
                                 <td class="p-3">
-                                    <span class="font-bold text-slate-900 block">{{ $reg->nama }}</span>
+                                    <span class="font-bold text-slate-900 block truncate">{{ $reg->nama }}</span>
                                     <span class="text-[10px] text-slate-500">NIK: {{ $reg->nik }}</span>
                                 </td>
                                 <td class="p-3">
-                                    <span class="font-medium text-slate-800 block">{{ $reg->nama_usaha }}</span>
-                                    <span class="text-[10px] text-slate-500">{{ $reg->lokasi_pasar }}</span>
+                                    <span class="font-medium text-slate-800 block truncate">{{ $reg->nama_usaha }}</span>
+                                    <span class="text-[10px] text-slate-500 block truncate">{{ $reg->lokasi_pasar }}</span>
                                 </td>
-                                <td class="p-3 font-mono text-slate-600">{{ $reg->no_hp }}</td>
+                                <td class="p-3 font-mono text-slate-600 whitespace-nowrap">{{ $reg->no_hp }}</td>
                                 <td class="p-3 text-center">
                                     @if($reg->status === 'menunggu_verifikasi')
                                         <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">Pending</span>
@@ -276,8 +263,8 @@
 
 </div>
 
-<!-- Outgoing Letters Section -->
-<div class="mt-6 bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
+<!-- Outgoing Letters Section (Responsif, Tabel Bebas Tumpang Tindih) -->
+<div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
     <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
         <div class="flex items-center gap-2">
             <i class="fa-solid fa-paper-plane text-emerald-700 text-sm"></i>
@@ -289,9 +276,9 @@
     </div>
 
     <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs">
+        <table class="w-full text-left text-xs min-w-[620px]">
             <thead>
-                <tr>
+                <tr class="bg-slate-50/50 text-slate-500 border-b border-slate-100">
                     <th class="p-3">Nomor Surat</th>
                     <th class="p-3">Tanggal</th>
                     <th class="p-3">Tujuan / Instansi</th>
@@ -303,22 +290,25 @@
             <tbody class="divide-y divide-slate-100">
                 @forelse($recentLetters as $lt)
                     <tr class="hover:bg-slate-50">
-                        <td class="p-3 font-bold text-slate-900">{{ $lt->nomor_surat }}</td>
-                        <td class="p-3 text-slate-600">{{ $lt->tanggal ? $lt->tanggal->format('d/m/Y') : '-' }}</td>
-                        <td class="p-3 text-slate-800 font-medium">{{ $lt->tujuan }}</td>
-                        <td class="p-3 text-slate-600 max-w-xs truncate">{{ $lt->perihal ?? $lt->keperluan }}</td>
+                        <td class="p-3 font-bold text-slate-900 font-mono whitespace-nowrap">{{ $lt->nomor_surat }}</td>
+                        <td class="p-3 text-slate-600 whitespace-nowrap">{{ $lt->tanggal ? $lt->tanggal->format('d/m/Y') : '-' }}</td>
+                        <td class="p-3 text-slate-800 font-medium truncate max-w-[180px]">{{ $lt->tujuan }}</td>
+                        <td class="p-3 text-slate-600 truncate max-w-[220px]">{{ $lt->perihal ?? $lt->keperluan }}</td>
                         <td class="p-3 text-center">
                             <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
                                 <i class="fa-solid fa-qrcode text-[9px]"></i> Valid
                             </span>
                         </td>
-                        <td class="p-3 text-center">
-                            <div class="flex items-center justify-center gap-2">
-                                <a href="{{ route('admin.letters.show', $lt->id) }}" target="_blank" class="px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 text-[11px] font-bold">
+                        <td class="p-3 text-center whitespace-nowrap">
+                            <div class="flex items-center justify-center gap-1.5">
+                                <a href="{{ route('admin.letters.show', $lt->id) }}" target="_blank" class="px-2 py-1 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-[11px] font-bold">
                                     <i class="fa-solid fa-print"></i> Cetak
                                 </a>
-                                <a href="{{ route('letter.verify', $lt->hash_keabsahan) }}" target="_blank" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-[11px] font-bold">
-                                    <i class="fa-solid fa-up-right-from-square"></i> Cek QR
+                                <a href="{{ route('admin.letters.edit', $lt->id) }}" class="px-2 py-1 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 text-[11px] font-bold">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                </a>
+                                <a href="{{ route('letter.verify', $lt->hash_keabsahan) }}" target="_blank" class="px-2 py-1 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 text-[11px] font-bold">
+                                    <i class="fa-solid fa-up-right-from-square"></i> QR
                                 </a>
                             </div>
                         </td>
@@ -333,10 +323,11 @@
     </div>
 </div>
 
+<!-- Watermark Ringkas & Elegan (Sesuai Permintaan) -->
 <div class="mt-8 mb-2 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 px-2 gap-2">
     <span>Pangkalan Data Terpadu DPD APPSI Kabupaten Banyuasin</span>
     <span>
-        Didukung oleh <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-emerald-700 transition">Beranda Teknologi Digital</a>
+        <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-emerald-700 transition">Beranda Teknologi Digital</a>
     </span>
 </div>
 
