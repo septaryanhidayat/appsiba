@@ -277,43 +277,57 @@
                 </p>
             </div>
 
-            <div class="row text-center mt-3">
+            @if(!empty($letter->nama_sekretaris))
+            <div class="row text-center mt-3 align-items-center">
                 <!-- Ketua DPD -->
-                <div class="col-6">
-                    <span style="font-size: 10pt; font-weight: 600;">Ketua DPD,</span>
-                    
-                    <!-- Tanda Tangan Digital QR Code diletakkan di tengah-tengah antara Jabatan dan Nama -->
-                    <div class="my-2 d-flex flex-column align-items-center justify-content-center" style="min-height: 105px;">
-                        <div class="qr-signature-box">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode($letter->verification_url) }}" alt="QR Keabsahan Digital Ketua" style="width: 76px; height: 76px; display: block;">
-                        </div>
-                        <span style="font-size: 7pt; color: #047857; font-weight: 700; margin-top: 3px; letter-spacing: 0.2px;">
-                            <i class="fa-solid fa-circle-check"></i> Ditandatangani Secara Elektronik
-                        </span>
-                    </div>
-
+                <div class="col-4">
+                    <span style="font-size: 10pt; font-weight: 600; display: block; margin-bottom: 75px;">Ketua DPD,</span>
                     <strong style="text-decoration: underline; font-size: 11pt; display: block; text-transform: uppercase;">{{ $letter->nama_penandatangan ?? 'H. Gusra Yetri, SH' }}</strong>
                     <span style="font-size: 9pt; color: #334155;">{{ $letter->jabatan_penandatangan ?? 'Ketua DPD APPSI Banyuasin' }}</span>
                 </div>
 
-                <!-- Sekretaris DPD -->
-                <div class="col-6">
-                    <span style="font-size: 10pt; font-weight: 600;">Sekretaris DPD,</span>
-                    
-                    <!-- Tanda Tangan Digital QR Code diletakkan di tengah-tengah antara Jabatan dan Nama -->
-                    <div class="my-2 d-flex flex-column align-items-center justify-content-center" style="min-height: 105px;">
+                <!-- 1 QR Code Tunggal Keabsahan Dokumen di Tengah-Tengah -->
+                <div class="col-4">
+                    <div class="d-flex flex-column align-items-center justify-content-center">
                         <div class="qr-signature-box">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode($letter->verification_url) }}" alt="QR Keabsahan Digital Sekretaris" style="width: 76px; height: 76px; display: block;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode($letter->verification_url) }}" alt="QR Keabsahan Digital Surat Resmi" style="width: 82px; height: 82px; display: block;">
                         </div>
-                        <span style="font-size: 7pt; color: #047857; font-weight: 700; margin-top: 3px; letter-spacing: 0.2px;">
+                        <span style="font-size: 7.5pt; color: #047857; font-weight: 700; margin-top: 4px; letter-spacing: 0.2px;">
                             <i class="fa-solid fa-circle-check"></i> Ditandatangani Secara Elektronik
                         </span>
+                        <span style="font-size: 7pt; color: #64748b; margin-top: 1px;">
+                            Pindai untuk Cek Keabsahan
+                        </span>
                     </div>
+                </div>
 
-                    <strong style="text-decoration: underline; font-size: 11pt; display: block; text-transform: uppercase;">{{ $letter->nama_sekretaris ?? 'M. Rian Pratama, S.E.' }}</strong>
+                <!-- Sekretaris DPD -->
+                <div class="col-4">
+                    <span style="font-size: 10pt; font-weight: 600; display: block; margin-bottom: 75px;">Sekretaris DPD,</span>
+                    <strong style="text-decoration: underline; font-size: 11pt; display: block; text-transform: uppercase;">{{ $letter->nama_sekretaris }}</strong>
                     <span style="font-size: 9pt; color: #334155;">{{ $letter->jabatan_sekretaris ?? 'Sekretaris DPD APPSI Banyuasin' }}</span>
                 </div>
             </div>
+            @else
+            <div class="row text-center mt-3 justify-content-end">
+                <div class="col-6">
+                    <span style="font-size: 10pt; font-weight: 600;">{{ $letter->jabatan_penandatangan ?? 'Ketua DPD APPSI Banyuasin' }},</span>
+                    <div class="my-2 d-flex flex-column align-items-center justify-content-center" style="min-height: 105px;">
+                        <div class="qr-signature-box">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode($letter->verification_url) }}" alt="QR Keabsahan Digital" style="width: 80px; height: 80px; display: block;">
+                        </div>
+                        <span style="font-size: 7.5pt; color: #047857; font-weight: 700; margin-top: 3px; letter-spacing: 0.2px;">
+                            <i class="fa-solid fa-circle-check"></i> Ditandatangani Secara Elektronik
+                        </span>
+                        <span style="font-size: 7pt; color: #64748b; margin-top: 1px;">
+                            Pindai untuk Cek Keabsahan
+                        </span>
+                    </div>
+                    <strong style="text-decoration: underline; font-size: 11pt; display: block; text-transform: uppercase;">{{ $letter->nama_penandatangan ?? 'H. Gusra Yetri, SH' }}</strong>
+                    <span style="font-size: 9pt; color: #334155;">{{ $letter->jabatan_penandatangan ?? 'Ketua DPD APPSI Banyuasin' }}</span>
+                </div>
+            </div>
+            @endif
         </div>
 
         <!-- Tembusan -->

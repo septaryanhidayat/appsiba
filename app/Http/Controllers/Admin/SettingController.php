@@ -39,6 +39,7 @@ class SettingController extends Controller
             'visi' => 'nullable|string',
             'misi' => 'nullable|string',
             'tentang_organisasi' => 'nullable|string',
+            'tampilkan_daftar_anggota' => 'nullable|in:0,1',
         ]);
 
         foreach ($validated as $key => $value) {

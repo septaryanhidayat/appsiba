@@ -99,6 +99,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::put('/anggota/{member}', [MemberController::class, 'update'])->name('members.update');
     Route::delete('/anggota/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
     Route::get('/anggota/{member}/kta', [MemberController::class, 'cetakKta'])->name('members.kta');
+    Route::post('/anggota/toggle-visibilitas', [MemberController::class, 'toggleVisibility'])->name('members.toggle-visibility');
 
     // Modul Pendaftaran Anggota Baru Online (Verifikasi & Persetujuan)
     Route::get('/pendaftaran-anggota', [MemberRegistrationController::class, 'index'])->name('registrations.index');

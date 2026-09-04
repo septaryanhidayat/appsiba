@@ -10,6 +10,24 @@
         <p class="text-xs text-slate-500 mt-1">Direktori & Pangkalan Data Pedagang DPD APPSI Kabupaten Banyuasin</p>
     </div>
     <div class="flex flex-wrap items-center gap-2">
+        <!-- Tombol Cepat Pengaturan Visibilitas List Anggota di Web Publik -->
+        <form action="{{ route('admin.members.toggle-visibility') }}" method="POST" class="inline">
+            @csrf
+            @if(($webSetting['tampilkan_daftar_anggota'] ?? '1') == '1')
+                <button type="submit" class="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3.5 py-2.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition shadow-sm" title="Daftar anggota saat ini TAMPIL di website publik. Klik untuk menyembunyikan.">
+                    <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>List Web: Tampil</span>
+                    <i class="fa-solid fa-eye text-emerald-600 text-[11px]"></i>
+                </button>
+            @else
+                <button type="submit" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2.5 text-xs font-bold text-amber-800 hover:bg-amber-100 transition shadow-sm" title="Daftar anggota saat ini DISEMBUNYIKAN dari website publik. Klik untuk menampilkan.">
+                    <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+                    <span>List Web: Disembunyikan</span>
+                    <i class="fa-solid fa-eye-slash text-amber-600 text-[11px]"></i>
+                </button>
+            @endif
+        </form>
+
         <a href="{{ route('admin.members.rekap', request()->all()) }}" target="_blank" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition">
             <i class="fa-solid fa-print text-xs text-emerald-700"></i>
             <span>Cetak Rekap Data</span>

@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
             'misi' => "1. Komunitas Daerah: Terhubung dengan pedagang pasar di seluruh Kabupaten Banyuasin dan jejaring nasional.\n2. Advokasi & Perlindungan: Memperjuangkan hak dan kepentingan pedagang pasar tradisional.\n3. Penguatan Kapasitas: Program, pelatihan digitalisasi, dan informasi untuk kemajuan usaha bersama.\n4. Kemitraan: Sinergi dengan instansi pemerintah, BUMD, dan perbankan demi permodalan dan fasilitas pasar yang higienis.",
             'sambutan_ketua' => 'Bergabung dan jadilah bagian dari Asosiasi Pedagang Pasar Seluruh Indonesia sekarang! Bersama membangun pasar tradisional yang kuat, mandiri, dan berdaya saing untuk kesejahteraan pedagang dan masyarakat Banyuasin.',
             'tentang_organisasi' => 'Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) adalah wadah resmi yang menghimpun, mewakili, dan memperjuangkan kepentingan pedagang pasar tradisional di seluruh Indonesia. Kami berkomitmen untuk membangun pasar tradisional yang kuat, mandiri, dan berdaya saing melalui kolaborasi, advokasi, dan pengembangan kapasitas para pedagang.',
+            'tampilkan_daftar_anggota' => '1',
         ];
 
         foreach ($settings as $key => $value) {

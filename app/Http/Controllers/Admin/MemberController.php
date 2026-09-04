@@ -7,6 +7,7 @@ use App\Models\Member;
 use App\Models\Setting;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class MemberController extends Controller
 {
@@ -160,5 +161,20 @@ class MemberController extends Controller
         $settings = Setting::pluck('value', 'key');
 
         return view('admin.members.rekap', compact('members', 'settings'));
+    }
+
+    /**
+     * Ubah visibilitas daftar direktori pedagang anggota di website publik
+     */
+    public function toggleVisibility(Request $request)
+    {
+        $current = Setting::get('tampilkan_daftar_anggota', '1');
+        $new = $current === '0' ? '1' : '0';
+        Setting::set('tampilkan_daftar_anggota', $new);
+        Cache::forget('web_settings_global');
+
+        $statusText = $new === '1' ? 'ditampilkan di website publik' : 'disembunyikan dari website publik (layanan pendaftaran & cek KTA tetap aktif)';
+
+        return back()->with('success', "Visibilitas direktori pedagang berhasil diubah: data pedagang kini {$statusText}.");
     }
 }

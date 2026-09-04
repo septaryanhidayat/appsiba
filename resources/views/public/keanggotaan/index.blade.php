@@ -31,7 +31,8 @@
     </div>
 </section>
 
-<!-- Filter & Directory Content -->
+<!-- Filter & Directory Content / Protected View -->
+@if(($webSetting['tampilkan_daftar_anggota'] ?? '1') == '1')
 <section class="py-12 bg-slate-50/50 min-h-[600px]">
     <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8">
         
@@ -140,5 +141,79 @@
 
     </div>
 </section>
+@else
+<section class="py-12 bg-slate-50/50 min-h-[500px]">
+    <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8">
+        
+        <!-- Protected Directory Notice -->
+        <div class="max-w-3xl mx-auto bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-sm text-center" data-aos="fade-up">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-700 mx-auto flex items-center justify-center text-2xl shadow-inner mb-5">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            
+            <span class="inline-block rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold px-3 py-1 uppercase tracking-wider mb-2">
+                Privasi & Perlindungan Data Pedagang
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+                Pangkalan Data Direktori Anggota Terproteksi
+            </h2>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
+                Untuk menjaga keamanan informasi dan privasi data pelaku usaha pasar tradisional binaan DPD APPSI Kabupaten Banyuasin, daftar anggota lengkap tidak dipublikasikan secara terbuka kepada umum.
+            </p>
+
+            <div class="mt-8 grid sm:grid-cols-2 gap-4 text-left">
+                <!-- Card 1: Daftar Baru -->
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-emerald-300 transition">
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-2">
+                            <span class="h-8 w-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </span>
+                            <h3 class="text-sm font-bold text-slate-900">Pendaftaran KTA Baru</h3>
+                        </div>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Bagi pedagang pasar tradisional di wilayah Kabupaten Banyuasin yang belum memiliki kartu anggota, silakan ajukan permohonan pendaftaran resmi online.
+                        </p>
+                    </div>
+                    <div class="mt-4">
+                        <a href="{{ route('members.register') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800">
+                            Isi Formulir Pendaftaran <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Cek Mandiri -->
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-emerald-300 transition">
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-2">
+                            <span class="h-8 w-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-id-card-clip"></i>
+                            </span>
+                            <h3 class="text-sm font-bold text-slate-900">Validasi KTA Mandiri</h3>
+                        </div>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Pedagang yang telah terdaftar dapat memeriksa status keaktifan dan keaslian kartu anggota secara mandiri menggunakan nomor KTA atau NIK KTP.
+                        </p>
+                    </div>
+                    <div class="mt-4">
+                        <a href="{{ route('members.check') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800">
+                            Cek Status KTA Sekarang <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posko Info -->
+            <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+                <span>Perlu informasi atau permohonan data keanggotaan resmi?</span>
+                <a href="{{ route('contact.public') }}" class="font-bold text-emerald-700 hover:underline">
+                    Hubungi Sekretariat DPD APPSI <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+@endif
 
 @endsection

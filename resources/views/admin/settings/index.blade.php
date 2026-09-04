@@ -130,6 +130,43 @@
                 <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Sambutan Ketua DPD</label>
                 <textarea name="sambutan_ketua" rows="3" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-sm focus:border-emerald-600 focus:outline-none">{{ old('sambutan_ketua', $settings['sambutan_ketua'] ?? '') }}</textarea>
             </div>
+        <!-- Pengaturan Visibilitas Tampilan Anggota di Website -->
+        <div class="pt-2">
+            <h3 class="text-sm font-bold text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2">
+                <i class="fa-solid fa-eye text-emerald-700"></i>
+                4. Visibilitas Direktori Anggota di Website Publik
+            </h3>
+            <p class="text-xs text-slate-500 mt-2">
+                Atur apakah daftar pedagang/anggota ditampilkan ke publik atau disembunyikan. Menu <strong>Keanggotaan</strong> tetap tampil di website karena memuat layanan Pendaftaran KTA Baru dan Cek Status KTA.
+            </p>
+
+            <div class="mt-4 grid sm:grid-cols-2 gap-4">
+                <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none transition {{ old('tampilkan_daftar_anggota', $settings['tampilkan_daftar_anggota'] ?? '1') == '1' ? 'border-emerald-600 bg-emerald-50/50' : 'border-slate-200 bg-white' }}">
+                    <input type="radio" name="tampilkan_daftar_anggota" value="1" class="sr-only" {{ old('tampilkan_daftar_anggota', $settings['tampilkan_daftar_anggota'] ?? '1') == '1' ? 'checked' : '' }}>
+                    <div class="flex items-center gap-3">
+                        <div class="h-9 w-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-users-viewfinder text-base"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-bold text-slate-900">Tampilkan List Anggota (Publik)</span>
+                            <span class="block text-[11px] text-slate-500 mt-0.5">Daftar pedagang aktif, toko, dan pasar dapat dicari publik di halaman /keanggotaan.</span>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none transition {{ old('tampilkan_daftar_anggota', $settings['tampilkan_daftar_anggota'] ?? '1') == '0' ? 'border-amber-600 bg-amber-50/50' : 'border-slate-200 bg-white' }}">
+                    <input type="radio" name="tampilkan_daftar_anggota" value="0" class="sr-only" {{ old('tampilkan_daftar_anggota', $settings['tampilkan_daftar_anggota'] ?? '1') == '0' ? 'checked' : '' }}>
+                    <div class="flex items-center gap-3">
+                        <div class="h-9 w-9 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-user-lock text-base"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-bold text-slate-900">Sembunyikan List Anggota (Privat)</span>
+                            <span class="block text-[11px] text-slate-500 mt-0.5">Daftar anggota diproteksi. Layanan Daftar KTA & Cek Status KTA tetap aktif normal.</span>
+                        </div>
+                    </div>
+                </label>
+            </div>
         </div>
 
         <div class="pt-4 border-t border-slate-100 flex items-center justify-end">
