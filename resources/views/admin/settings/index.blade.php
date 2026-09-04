@@ -12,7 +12,7 @@
 </div>
 
 <div class="max-w-4xl bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
-    <form action="{{ route('admin.settings.update') }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @method('PUT')
 
@@ -22,6 +22,18 @@
                 <i class="fa-solid fa-building-flag text-emerald-700"></i>
                 1. Identitas Lembaga & Organisasi
             </h3>
+
+            <!-- Logo Organisasi (Pilih File / Choose File) -->
+            <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row items-center gap-4">
+                <div class="h-16 w-16 rounded-2xl bg-white p-2 border border-slate-200 shadow-sm flex items-center justify-center shrink-0">
+                    <img src="{{ !empty($settings['logo']) ? asset($settings['logo']) : asset('assets/images/appsi-logo.png') }}" alt="Logo Saat Ini" class="h-full w-full object-contain">
+                </div>
+                <div class="flex-1 text-center sm:text-left">
+                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Logo Resmi Organisasi (Otomatis WebP)</label>
+                    <input type="file" name="logo" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700">
+                    <p class="text-[11px] text-slate-400 mt-1">Pilih file logo (PNG/JPG/WebP). Logo ini langsung otomatis terhubung ke KOP surat resmi, header, footer, dan kartu anggota.</p>
+                </div>
+            </div>
 
             <div class="grid sm:grid-cols-3 gap-4 mt-4">
                 <div class="sm:col-span-2">

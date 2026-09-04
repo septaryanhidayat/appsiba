@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 
 class SettingController extends Controller
@@ -43,7 +45,21 @@ class SettingController extends Controller
             Setting::set($key, $value);
         }
 
-        return redirect()->back()->with('success', 'Pengaturan profil organisasi DPD APPSI Banyuasin berhasil diperbarui.');
+        if ($request->hasFile('logo')) {
+            $request->validate([
+                'logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            ]);
+            $oldLogo = Setting::get('logo');
+            if ($oldLogo) {
+                ImageService::delete($oldLogo);
+            }
+            $logoPath = ImageService::uploadAndConvertToWebp($request->file('logo'), 'settings', 'public', 90, 600);
+            Setting::set('logo', 'storage/'.$logoPath);
+        }
+
+        Cache::forget('web_settings_global');
+
+        return redirect()->back()->with('success', 'Pengaturan profil organisasi dan identitas digital DPD APPSI Banyuasin berhasil diperbarui.');
     }
 
     public function passwordForm()

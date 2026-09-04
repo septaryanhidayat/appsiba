@@ -76,8 +76,11 @@
         </div>
 
         <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Isi Surat Lengkap (Paragraf)</label>
-            <textarea name="isi_surat" rows="6" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none" placeholder="Tuliskan isi surat resmi secara lengkap...">{{ old('isi_surat') }}</textarea>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center justify-between">
+                <span>Isi Surat Lengkap (Paragraf & Format)</span>
+                <span class="text-[11px] font-normal text-slate-400">Dukungan cetak tebal, perataan rata penuh (justify), poin, dll</span>
+            </label>
+            <textarea name="isi_surat" id="isi_surat" rows="10" class="rich-editor w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none" placeholder="Tuliskan isi naskah surat dinas secara lengkap...">{{ old('isi_surat') }}</textarea>
         </div>
 
         <!-- Penandatangan -->

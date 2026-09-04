@@ -11,6 +11,7 @@ use App\Models\MemberRegistration;
 use App\Models\OrganizationStructure;
 use App\Models\Post;
 use App\Models\Setting;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 
@@ -229,12 +230,12 @@ class PublicController extends Controller
 
         $fotoKtpPath = null;
         if ($request->hasFile('foto_ktp')) {
-            $fotoKtpPath = $request->file('foto_ktp')->store('registrations/ktp', 'public');
+            $fotoKtpPath = ImageService::uploadAndConvertToWebp($request->file('foto_ktp'), 'registrations/ktp', 'public', 82, 1200);
         }
 
         $fotoUsahaPath = null;
         if ($request->hasFile('foto_usaha')) {
-            $fotoUsahaPath = $request->file('foto_usaha')->store('registrations/usaha', 'public');
+            $fotoUsahaPath = ImageService::uploadAndConvertToWebp($request->file('foto_usaha'), 'registrations/usaha', 'public', 82, 1200);
         }
 
         MemberRegistration::create([

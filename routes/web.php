@@ -55,14 +55,14 @@ Route::get('/anggota', [PublicController::class, 'keanggotaan']);
 Route::get('/keanggotaan/cek', [PublicController::class, 'cekKta'])->name('members.check');
 Route::get('/cek-kta', [PublicController::class, 'cekKta']);
 Route::get('/keanggotaan/daftar', [PublicController::class, 'daftarKeanggotaan'])->name('members.register');
-Route::post('/keanggotaan/daftar', [PublicController::class, 'storeDaftarKeanggotaan'])->name('members.register.store');
+Route::post('/keanggotaan/daftar', [PublicController::class, 'storeDaftarKeanggotaan'])->name('members.register.store')->middleware('throttle:10,1');
 
 // Tentang APPSI
 Route::get('/tentang-kami', [PublicController::class, 'tentangKami'])->name('about.public');
 
 // Buku Tamu & Aspirasi Publik / Pedagang
-Route::post('/buku-tamu', [PublicController::class, 'storeBukuTamu'])->name('inbox.store');
-Route::post('/kontak/kirim', [PublicController::class, 'storeBukuTamu']);
+Route::post('/buku-tamu', [PublicController::class, 'storeBukuTamu'])->name('inbox.store')->middleware('throttle:6,1');
+Route::post('/kontak/kirim', [PublicController::class, 'storeBukuTamu'])->middleware('throttle:6,1');
 
 // Verifikasi Keabsahan Surat Resmi via QR Code atau Nomor Surat
 Route::get('/verifikasi-surat', [PublicController::class, 'verifikasiSurat'])->name('letter.verify.index');
@@ -75,7 +75,7 @@ Route::get('/verifikasi-surat/{hash}', [PublicController::class, 'verifikasiSura
 |--------------------------------------------------------------------------
 */
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post')->middleware('throttle:5,1');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /*

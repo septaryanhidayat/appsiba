@@ -123,4 +123,19 @@ class AppsiWebTest extends TestCase
             ->assertStatus(200)
             ->assertSee('REKAPITULASI DATA PEDAGANG PASAR', false);
     }
+
+    public function test_admin_dashboard_has_watermark_and_security_headers(): void
+    {
+        $admin = User::first();
+        $response = $this->actingAs($admin)->get('/admin');
+
+        $response->assertStatus(200);
+        $response->assertSee('Beranda Teknologi Digital', false);
+        $response->assertSee('https://berandadigital.net', false);
+
+        // Verify HTTP Security Headers
+        $response->assertHeader('X-Frame-Options', 'SAMEORIGIN');
+        $response->assertHeader('X-Content-Type-Options', 'nosniff');
+        $response->assertHeader('X-XSS-Protection', '1; mode=block');
+    }
 }

@@ -77,6 +77,9 @@ class OrganizationController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
+            if ($official->foto && ! str_starts_with($official->foto, 'assets/')) {
+                ImageService::delete($official->foto);
+            }
             $path = ImageService::uploadAndConvertToWebp($request->file('foto'), 'organization');
             $validated['foto'] = $path;
         }
@@ -89,6 +92,9 @@ class OrganizationController extends Controller
     public function destroy($id)
     {
         $official = OrganizationStructure::findOrFail($id);
+        if ($official->foto && ! str_starts_with($official->foto, 'assets/')) {
+            ImageService::delete($official->foto);
+        }
         $official->delete();
 
         return redirect()->back()->with('success', 'Data pengurus berhasil dihapus.');

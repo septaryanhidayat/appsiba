@@ -106,7 +106,7 @@
             <!-- Logo & Brand Name -->
             <a href="{{ route('home') }}" class="flex shrink-0 items-center gap-3 group">
                 <div class="h-11 w-11 rounded-full overflow-hidden flex items-center justify-center p-0.5 bg-white border border-emerald-100 shadow-sm transition group-hover:scale-105">
-                    <img src="{{ asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-full w-full object-contain">
+                    <img src="{{ !empty($webSetting['logo']) ? asset('storage/' . $webSetting['logo']) : asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-full w-full object-contain">
                 </div>
                 <div class="flex flex-col">
                     <div class="flex items-center gap-1.5">
@@ -263,24 +263,26 @@
         <!-- Top Contact Highlight Strip (2 Kotak Berdampingan Tanpa Nomor HP) -->
         <div class="border-b border-emerald-900/60 bg-black/20">
             <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8 py-4">
-                <div class="grid grid-cols-2 gap-3 sm:gap-6">
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2.5 sm:gap-3.5 p-3 rounded-xl bg-white/[0.04] border border-white/[0.08]">
-                        <div class="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mx-auto sm:mx-0">
-                            <i class="fa-solid fa-map-location-dot text-sm sm:text-base"></i>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 sm:gap-4 p-4 sm:p-4.5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.09] border border-white/[0.12] transition-all shadow-sm">
+                        <div class="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 shadow-inner">
+                            <i class="fa-solid fa-map-location-dot text-base sm:text-lg"></i>
                         </div>
-                        <div class="min-w-0">
-                            <p class="text-[10px] sm:text-[11px] font-semibold text-emerald-300 uppercase tracking-wider">Kantor Sekretariat</p>
-                            <p class="text-xs sm:text-sm font-bold text-white truncate" title="Jalan Merdeka, Depan Pasar Baru Pangkalan Balai">Depan Pasar Baru Pangkalan Balai</p>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[10px] sm:text-[11px] font-bold text-emerald-300 uppercase tracking-wider mb-0.5">Kantor Sekretariat</p>
+                            <p class="text-xs sm:text-sm font-bold text-white leading-snug break-words">{{ $webSetting['alamat'] ?? 'Jalan Merdeka, Depan Pasar Baru Pangkalan Balai, Banyuasin' }}</p>
+                            <span class="text-[10px] text-slate-300 block mt-0.5">Kabupaten Banyuasin, Sumatera Selatan</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2.5 sm:gap-3.5 p-3 rounded-xl bg-white/[0.04] border border-white/[0.08]">
-                        <div class="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mx-auto sm:mx-0">
-                            <i class="fa-solid fa-envelope-circle-check text-sm sm:text-base"></i>
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 sm:gap-4 p-4 sm:p-4.5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.09] border border-white/[0.12] transition-all shadow-sm">
+                        <div class="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 shadow-inner">
+                            <i class="fa-solid fa-envelope-circle-check text-base sm:text-lg"></i>
                         </div>
-                        <div class="min-w-0">
-                            <p class="text-[10px] sm:text-[11px] font-semibold text-emerald-300 uppercase tracking-wider">Email Korespondensi</p>
-                            <a href="mailto:appsi.banyuasin@gmail.com" class="text-xs sm:text-sm font-bold text-white hover:text-emerald-300 transition truncate block">appsi.banyuasin@gmail.com</a>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[10px] sm:text-[11px] font-bold text-emerald-300 uppercase tracking-wider mb-0.5">Email Korespondensi</p>
+                            <a href="mailto:{{ $webSetting['email'] ?? 'appsi.banyuasin@gmail.com' }}" class="text-xs sm:text-sm font-bold text-white hover:text-emerald-300 transition leading-snug break-all sm:break-normal block">{{ $webSetting['email'] ?? 'appsi.banyuasin@gmail.com' }}</a>
+                            <span class="text-[10px] text-slate-300 block mt-0.5">Layanan Informasi & Surat Digital</span>
                         </div>
                     </div>
                 </div>
@@ -295,14 +297,14 @@
                 <div class="flex flex-col items-center sm:items-start">
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
                         <div class="h-11 w-11 rounded-2xl overflow-hidden flex items-center justify-center p-1 bg-white shadow-sm shrink-0 mx-auto sm:mx-0">
-                            <img src="{{ asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-9 w-9 object-contain">
+                            <img src="{{ !empty($webSetting['logo']) ? asset('storage/' . $webSetting['logo']) : asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-9 w-9 object-contain">
                         </div>
                         <div class="text-center sm:text-left">
                             <div class="flex items-center justify-center sm:justify-start gap-1.5">
                                 <span class="text-xl font-black text-white tracking-tight">APPSI</span>
                                 <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 uppercase">DPD</span>
                             </div>
-                            <p class="text-xs font-bold text-emerald-300/80 uppercase tracking-wider">Kabupaten Banyuasin</p>
+                            <p class="text-xs font-bold text-emerald-300/80 uppercase tracking-wider">{{ $webSetting['singkatan'] ?? 'Kabupaten Banyuasin' }}</p>
                         </div>
                     </div>
                     <p class="mt-3 text-xs leading-relaxed text-slate-300 max-w-md mx-auto sm:mx-0">
@@ -310,19 +312,19 @@
                     </p>
                     <div class="mt-3 inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-700/50 text-[10px] font-medium text-emerald-200 mx-auto sm:mx-0">
                         <i class="fa-solid fa-award text-amber-400 text-xs"></i>
-                        <span>Periode Kepengurusan 2024 - 2029</span>
+                        <span>Periode Kepengurusan {{ $webSetting['periode'] ?? '2024 - 2029' }}</span>
                     </div>
                 </div>
 
                 <!-- Social Icons -->
                 <div class="mt-5 flex items-center justify-center sm:justify-start gap-2 mx-auto sm:mx-0">
-                    <a href="https://wa.me/62811618808" target="_blank" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="WhatsApp Hotline" title="WhatsApp Hotline">
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $webSetting['whatsapp'] ?? '62811618808') }}" target="_blank" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="WhatsApp Hotline" title="WhatsApp Hotline">
                         <i class="fa-brands fa-whatsapp text-xs"></i>
                     </a>
-                    <a href="mailto:appsi.banyuasin@gmail.com" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Email Resmi" title="Email Resmi">
+                    <a href="mailto:{{ $webSetting['email'] ?? 'appsi.banyuasin@gmail.com' }}" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Email Resmi" title="Email Resmi">
                         <i class="fa-solid fa-envelope text-[11px]"></i>
                     </a>
-                    <a href="https://appsi.id" target="_blank" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Website DPP APPSI" title="Website DPP APPSI">
+                    <a href="{{ $webSetting['website'] ?? 'https://appsi.id' }}" target="_blank" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Website DPP APPSI" title="Website Resmi APPSI">
                         <i class="fa-solid fa-globe text-[11px]"></i>
                     </a>
                     <a href="{{ route('login') }}" class="h-8 w-8 rounded-lg bg-emerald-900/60 border border-emerald-700/50 text-emerald-300 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition" aria-label="Portal Petugas MIS" title="Portal Login MIS">
@@ -435,7 +437,7 @@
         </button>
 
         <!-- Simple Minimalist WhatsApp Button -->
-        <a href="https://wa.me/62811618808?text=Halo%20Pengurus%20DPD%20APPSI%20Banyuasin,%20saya%20ingin%20berkonsultasi..." 
+        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $webSetting['whatsapp'] ?? '62811618808') }}?text=Halo%20Pengurus%20DPD%20APPSI%20Banyuasin,%20saya%20ingin%20berkonsultasi..." 
            target="_blank" 
            class="relative flex h-12 w-12 sm:h-13 sm:w-13 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_20px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] transition-all duration-200 hover:scale-110 active:scale-95 group" 
            title="Hubungi WhatsApp DPD APPSI Banyuasin">

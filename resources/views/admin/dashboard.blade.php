@@ -11,105 +11,143 @@
         <p class="text-xs text-slate-500 mt-1">Pangkalan Data & Tata Kelola Administrasi DPD APPSI Kabupaten Banyuasin</p>
     </div>
 
-    <!-- 1-Baris Quick Action Buttons Sesuai Permintaan User -->
-    <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-        <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-emerald-800 transition">
+    <!-- 1-Baris Quick Action Buttons Modern -->
+    <div class="flex items-center gap-2.5 overflow-x-auto pb-1 sm:pb-0">
+        <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-700/20 hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg transition">
             <i class="fa-solid fa-pen-nib text-[11px]"></i>
             <span>Tulis Berita</span>
         </a>
-        <a href="{{ route('admin.letters.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800 transition">
-            <i class="fa-solid fa-paper-plane text-[11px]"></i>
+        <a href="{{ route('admin.letters.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-bold text-white shadow-md hover:bg-slate-800 transition">
+            <i class="fa-solid fa-paper-plane text-[11px] text-emerald-400"></i>
             <span>Buat Surat Keluar</span>
         </a>
-        <a href="{{ route('admin.meetings.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition">
+        <a href="{{ route('admin.meetings.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition">
             <i class="fa-solid fa-calendar-plus text-[11px] text-emerald-700"></i>
             <span>Catat Notulen Rapat</span>
         </a>
-        <a href="{{ route('admin.members.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition">
+        <a href="{{ route('admin.members.create') }}" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-emerald-300 bg-emerald-50/80 px-4 py-2.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition shadow-sm">
             <i class="fa-solid fa-user-plus text-[11px]"></i>
             <span>Tambah Pedagang</span>
         </a>
     </div>
 </div>
 
-<!-- Metrics Cards Grid -->
+<!-- Metrics Cards Grid (Vibrant, Modern Executive Design) -->
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
     
-    <!-- 1. Total Anggota -->
-    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
-        <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Anggota</span>
-            <div class="h-7 w-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-xs">
+    <!-- 1. Total Anggota (Emerald Vibrant Gradient) -->
+    <a href="{{ route('admin.members.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-emerald-500/15 via-teal-50/40 to-white border border-emerald-200/90 shadow-sm hover:shadow-xl hover:shadow-emerald-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800">Anggota</span>
+            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center text-xs shadow-md shadow-emerald-600/30 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-store"></i>
             </div>
         </div>
-        <p class="text-2xl font-extrabold text-slate-900">{{ $stats['total_anggota'] }}</p>
-        <span class="text-[11px] text-emerald-700 font-semibold">{{ $stats['anggota_aktif'] }} Pedagang Aktif</span>
-    </div>
+        <div>
+            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['total_anggota'] }}</p>
+            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-100/90 border border-emerald-300/60 text-[10px] font-bold text-emerald-800">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span>{{ $stats['anggota_aktif'] }} Pedagang Aktif</span>
+            </div>
+        </div>
+    </a>
 
-    <!-- 2. Pendaftaran Baru Online -->
-    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
-        <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Pendaftar</span>
-            <div class="h-7 w-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xs">
+    <!-- 2. Pendaftaran Baru Online (Amber Vibrant Gradient) -->
+    <a href="{{ route('admin.registrations.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-amber-500/15 via-orange-50/40 to-white border border-amber-200/90 shadow-sm hover:shadow-xl hover:shadow-amber-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800">Pendaftar</span>
+            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white flex items-center justify-center text-xs shadow-md shadow-amber-500/30 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-user-clock"></i>
             </div>
         </div>
-        <p class="text-2xl font-extrabold text-slate-900">{{ $stats['pendaftaran_baru'] }}</p>
-        @if($stats['pendaftaran_baru'] > 0)
-            <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">Perlu Verifikasi</span>
-        @else
-            <span class="text-[11px] text-slate-400">Semua Terproses</span>
-        @endif
-    </div>
+        <div>
+            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['pendaftaran_baru'] }}</p>
+            @if($stats['pendaftaran_baru'] > 0)
+                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-100/90 border border-amber-300/60 text-[10px] font-bold text-amber-800">
+                    <span class="h-1.5 w-1.5 rounded-full bg-amber-600 animate-ping"></span>
+                    <span>Perlu Verifikasi</span>
+                </div>
+            @else
+                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 text-[10px] font-semibold text-slate-500">
+                    <i class="fa-solid fa-circle-check text-[9px] text-emerald-600"></i> Semua Terproses
+                </div>
+            @endif
+        </div>
+    </a>
 
-    <!-- 3. Berita Pasar -->
-    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
-        <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Berita</span>
-            <div class="h-7 w-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-xs">
+    <!-- 3. Berita Pasar (Royal Blue Vibrant Gradient) -->
+    <a href="{{ route('admin.posts.publish') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-blue-500/15 via-indigo-50/40 to-white border border-blue-200/90 shadow-sm hover:shadow-xl hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-blue-800">Berita</span>
+            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-xs shadow-md shadow-blue-600/30 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-newspaper"></i>
             </div>
         </div>
-        <p class="text-2xl font-extrabold text-slate-900">{{ $stats['total_berita'] }}</p>
-        <span class="text-[11px] text-slate-500 font-medium">Artikel Terbit</span>
-    </div>
+        <div>
+            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['total_berita'] }}</p>
+            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-100/90 border border-blue-300/60 text-[10px] font-bold text-blue-800">
+                <i class="fa-solid fa-globe text-[9px]"></i>
+                <span>Artikel Terbit</span>
+            </div>
+        </div>
+    </a>
 
-    <!-- 4. Surat Keluar -->
-    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
-        <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Surat Keluar</span>
-            <div class="h-7 w-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xs">
+    <!-- 4. Surat Keluar (Violet Vibrant Gradient) -->
+    <a href="{{ route('admin.letters.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-violet-500/15 via-purple-50/40 to-white border border-violet-200/90 shadow-sm hover:shadow-xl hover:shadow-violet-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-violet-800">Surat Keluar</span>
+            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-violet-600 to-purple-600 text-white flex items-center justify-center text-xs shadow-md shadow-violet-600/30 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-envelope-open-text"></i>
             </div>
         </div>
-        <p class="text-2xl font-extrabold text-slate-900">{{ $stats['total_surat_keluar'] }}</p>
-        <span class="text-[11px] text-slate-500 font-medium">Ber-QR Code</span>
-    </div>
+        <div>
+            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['total_surat_keluar'] }}</p>
+            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-violet-100/90 border border-violet-300/60 text-[10px] font-bold text-violet-800">
+                <i class="fa-solid fa-qrcode text-[9px]"></i>
+                <span>Ber-QR Code</span>
+            </div>
+        </div>
+    </a>
 
-    <!-- 5. Surat Masuk -->
-    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
-        <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Surat Masuk</span>
-            <div class="h-7 w-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-xs">
+    <!-- 5. Surat Masuk (Rose Vibrant Gradient) -->
+    <a href="{{ route('admin.incoming-letters.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-rose-500/15 via-pink-50/40 to-white border border-rose-200/90 shadow-sm hover:shadow-xl hover:shadow-rose-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-rose-800">Surat Masuk</span>
+            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-rose-500 to-pink-600 text-white flex items-center justify-center text-xs shadow-md shadow-rose-500/30 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-inbox"></i>
             </div>
         </div>
-        <p class="text-2xl font-extrabold text-slate-900">{{ $stats['total_surat_masuk'] }}</p>
-        <span class="text-[11px] text-slate-500 font-medium">Arsip Masuk</span>
-    </div>
+        <div>
+            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['total_surat_masuk'] }}</p>
+            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-rose-100/90 border border-rose-300/60 text-[10px] font-bold text-rose-800">
+                <i class="fa-solid fa-folder-tree text-[9px]"></i>
+                <span>Arsip Masuk</span>
+            </div>
+        </div>
+    </a>
 
-    <!-- 6. Aspirasi / Tamu -->
-    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm">
-        <div class="flex items-center justify-between text-slate-400 mb-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Aspirasi</span>
-            <div class="h-7 w-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-xs">
+    <!-- 6. Aspirasi / Tamu (Teal & Cyan Vibrant Gradient) -->
+    <a href="{{ route('admin.inbox.index') }}" class="group relative overflow-hidden rounded-2xl p-4.5 bg-gradient-to-br from-teal-500/15 via-cyan-50/40 to-white border border-teal-200/90 shadow-sm hover:shadow-xl hover:shadow-teal-900/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-teal-800">Aspirasi</span>
+            <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-teal-600 to-cyan-600 text-white flex items-center justify-center text-xs shadow-md shadow-teal-600/30 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-comments"></i>
             </div>
         </div>
-        <p class="text-2xl font-extrabold text-slate-900">{{ $stats['pesan_baru'] }}</p>
-        <span class="text-[11px] text-emerald-700 font-semibold">Pesan Belum Dibaca</span>
-    </div>
+        <div>
+            <p class="text-3xl font-black text-slate-900 tracking-tight mb-1">{{ $stats['pesan_baru'] }}</p>
+            @if($stats['pesan_baru'] > 0)
+                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-teal-100/90 border border-teal-300/60 text-[10px] font-bold text-teal-800">
+                    <span class="h-1.5 w-1.5 rounded-full bg-teal-600 animate-pulse"></span>
+                    <span>Pesan Belum Dibaca</span>
+                </div>
+            @else
+                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 text-[10px] font-semibold text-slate-500">
+                    <i class="fa-solid fa-check text-[9px] text-teal-600"></i> Kotak Pesan Bersih
+                </div>
+            @endif
+        </div>
+    </a>
 
 </div>
 
@@ -293,6 +331,13 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<div class="mt-8 mb-2 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 px-2 gap-2">
+    <span>Pangkalan Data Terpadu DPD APPSI Kabupaten Banyuasin</span>
+    <span>
+        Didukung oleh <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-emerald-700 transition">Beranda Teknologi Digital</a>
+    </span>
 </div>
 
 @endsection

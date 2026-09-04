@@ -1,18 +1,19 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/berandad/pwiba.berandadigital.net/
-    - /bin/cp -R app $DEPLOYPATH
-    - /bin/cp -R bootstrap $DEPLOYPATH
-    - /bin/cp -R config $DEPLOYPATH
-    - /bin/cp -R database $DEPLOYPATH
-    - /bin/cp -R public $DEPLOYPATH
-    - /bin/cp -R resources $DEPLOYPATH
-    - /bin/cp -R routes $DEPLOYPATH
-    - /bin/cp -R storage $DEPLOYPATH
-    - /bin/cp artisan $DEPLOYPATH
-    - /bin/cp composer.json $DEPLOYPATH
-    - /bin/cp composer.lock $DEPLOYPATH
-    - /bin/cp index.php $DEPLOYPATH
-    - /bin/cp .htaccess $DEPLOYPATH
-    - /bin/cp .env.example $DEPLOYPATH
+    # 1. Tentukan direktori target deployment di cPanel Anda:
+    # - Untuk domain utama: /home/berandad/public_html
+    # - Untuk subdomain / folder tersendiri: /home/berandad/appsiba
+    - export DEPLOYPATH=/home/berandad/public_html
+    - /bin/echo "Memulai deployment git ke $DEPLOYPATH..."
+    
+    # 2. Salin seluruh file proyek & file tersembunyi penting
+    - /bin/cp -R * $DEPLOYPATH/
+    - /bin/cp .htaccess $DEPLOYPATH/.htaccess 2>/dev/null || true
+    - /bin/cp -R public/.htaccess $DEPLOYPATH/public/.htaccess 2>/dev/null || true
+    
+    # 3. Pastikan izin akses folder storage dan cache dapat ditulis oleh webserver
+    - /bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache 2>/dev/null || true
+
+    # 4. Selesai
+    - /bin/echo "Deployment Git cPanel APPSI Banyuasin berhasil diselesaikan."

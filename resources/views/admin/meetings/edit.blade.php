@@ -14,7 +14,7 @@
     </a>
 </div>
 
-<div class="max-w-4xl bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+<div class="max-w-5xl bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
     <form action="{{ route('admin.meetings.update', $meeting->id) }}" method="POST" class="space-y-6">
         @csrf
         @method('PUT')
@@ -70,30 +70,49 @@
         </div>
 
         <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Agenda Pembahasan *</label>
-            <textarea name="agenda" rows="3" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">{{ old('agenda', $meeting->agenda) }}</textarea>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center justify-between">
+                <span>Agenda Pembahasan *</span>
+                <span class="text-[11px] font-normal text-slate-400">Daftar agenda musyawarah yang dibahas</span>
+            </label>
+            <textarea name="agenda" id="agenda" rows="3" required class="rich-editor w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">{{ old('agenda', $meeting->agenda) }}</textarea>
         </div>
 
         <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Ringkasan Pembahasan & Dinamika Rapat</label>
-            <textarea name="pembahasan" rows="4" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">{{ old('pembahasan', $meeting->pembahasan) }}</textarea>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center justify-between">
+                <span class="text-emerald-900 font-extrabold">Ringkasan Pembahasan & Dinamika Rapat</span>
+                <span class="text-[11px] font-normal text-slate-400">Editor teks lengkap (paragraf, cetak tebal, miring, perataan)</span>
+            </label>
+            <textarea name="pembahasan" id="pembahasan" rows="8" class="rich-editor w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">{{ old('pembahasan', $meeting->pembahasan) }}</textarea>
         </div>
 
         <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Keputusan & Kesepakatan Bersama</label>
-            <textarea name="keputusan" rows="3" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">{{ old('keputusan', $meeting->keputusan) }}</textarea>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center justify-between">
+                <span class="text-emerald-900 font-extrabold">Keputusan & Kesepakatan Bersama</span>
+                <span class="text-[11px] font-normal text-slate-400">Poin kesepakatan final hasil musyawarah rapat</span>
+            </label>
+            <textarea name="keputusan" id="keputusan" rows="6" class="rich-editor w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">{{ old('keputusan', $meeting->keputusan) }}</textarea>
         </div>
 
-        <div class="grid sm:grid-cols-2 gap-4">
-            <div>
+        <div class="grid sm:grid-cols-4 gap-4 items-end">
+            <div class="sm:col-span-1">
                 <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Jumlah Peserta Hadir</label>
-                <input type="number" name="jumlah_hadir" value="{{ old('jumlah_hadir', $meeting->jumlah_hadir) }}" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">
+                <div class="relative">
+                    <input type="number" name="jumlah_hadir" value="{{ old('jumlah_hadir', $meeting->jumlah_hadir) }}" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm font-bold focus:border-emerald-600 focus:outline-none">
+                    <span class="absolute right-3.5 top-2.5 text-xs text-slate-400 font-semibold">Orang</span>
+                </div>
             </div>
+            <div class="sm:col-span-3 text-xs text-slate-500 pb-2">
+                <i class="fa-solid fa-circle-info text-emerald-700 mr-1"></i> Masukkan total peserta yang hadir dalam musyawarah lalu rincikan nama-nama pada kotak daftar hadir di bawah.
+            </div>
+        </div>
 
-            <div>
-                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Daftar Hadir / Peserta Rapat</label>
-                <textarea name="daftar_hadir" rows="2" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-xs focus:border-emerald-600 focus:outline-none">{{ old('daftar_hadir', $meeting->daftar_hadir) }}</textarea>
-            </div>
+        <!-- Daftar Hadir dibuat Lebar Penuh (Full-Width) -->
+        <div>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center justify-between">
+                <span class="text-slate-800 font-extrabold">Daftar Hadir / Peserta Rapat (Pengurus & Anggota Pedagang)</span>
+                <span class="text-[11px] font-normal text-slate-400">Rincian nama peserta, jabatan/usaha, dan kehadiran</span>
+            </label>
+            <textarea name="daftar_hadir" rows="6" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm leading-relaxed focus:border-emerald-600 focus:outline-none font-sans bg-slate-50/50">{{ old('daftar_hadir', $meeting->daftar_hadir) }}</textarea>
         </div>
 
         <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">

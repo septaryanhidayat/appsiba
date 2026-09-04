@@ -21,7 +21,8 @@ class ImageService
         UploadedFile $file,
         string $directory,
         string $disk = 'public',
-        int $quality = 82
+        int $quality = 82,
+        int $maxDimension = 1600
     ): string {
         $realPath = $file->getRealPath();
         $randomName = Str::random(40).'.webp';
@@ -31,7 +32,28 @@ class ImageService
         $image = self::createImageFromUploadedFile($realPath, $file->getClientMimeType() ?: $file->getMimeType());
 
         if ($image !== false) {
-            // Buffer the WebP stream
+            $origWidth = imagesx($image);
+            $origHeight = imagesy($image);
+
+            // Scale down if larger than maxDimension while preserving aspect ratio
+            if ($origWidth > $maxDimension || $origHeight > $maxDimension) {
+                if ($origWidth >= $origHeight) {
+                    $newWidth = $maxDimension;
+                    $newHeight = (int) max(1, round(($origHeight / $origWidth) * $maxDimension));
+                } else {
+                    $newHeight = $maxDimension;
+                    $newWidth = (int) max(1, round(($origWidth / $origHeight) * $maxDimension));
+                }
+
+                $resizedImage = imagecreatetruecolor($newWidth, $newHeight);
+                imagealphablending($resizedImage, false);
+                imagesavealpha($resizedImage, true);
+                imagecopyresampled($resizedImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
+                imagedestroy($image);
+                $image = $resizedImage;
+            }
+
+            // Buffer the WebP stream with high efficiency compression
             ob_start();
             imagewebp($image, null, $quality);
             $webpData = ob_get_clean();
@@ -163,15 +185,34 @@ class ImageService
     }
 
     /**
-     * Create a GD image resource from uploaded file.
+     * Delete an image from storage and mirror folder safely.
      */
-    protected static function createImageFromUploadedFile(string $realPath, ?string $mime)
+    public static function delete(?string $path, string $disk = 'public'): bool
     {
-        if (empty($mime)) {
-            $info = @getimagesize($realPath);
-            $mime = $info['mime'] ?? 'image/jpeg';
+        if (empty($path)) {
+            return false;
         }
 
-        return self::createImageFromPath($realPath, $mime);
+        // Avoid deleting static default assets
+        if (str_starts_with($path, 'assets/')) {
+            return false;
+        }
+
+        $cleanPath = str_replace('storage/', '', $path);
+        if (Storage::disk($disk)->exists($cleanPath)) {
+            Storage::disk($disk)->delete($cleanPath);
+        }
+
+        $publicFile = public_path('storage/'.$cleanPath);
+        if (is_file($publicFile)) {
+            @unlink($publicFile);
+        }
+
+        $directPublicFile = public_path($cleanPath);
+        if (is_file($directPublicFile)) {
+            @unlink($directPublicFile);
+        }
+
+        return true;
     }
 }

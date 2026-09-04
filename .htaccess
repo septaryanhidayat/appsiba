@@ -6,8 +6,23 @@
 </IfModule>
 # php -- END cPanel-generated handler
 
+# Prevent Direct Access to Sensitive Files
+<FilesMatch "(^\.|\.(env|log|yml|yaml|json|lock|sql|sh|dist|example|md|git|bak|ini)$)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<Files artisan>
+    Order allow,deny
+    Deny from all
+</Files>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # Block direct access to core Laravel directories
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$) - [F,L,NC]
+
     RewriteRule ^$ public/ [L]
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]

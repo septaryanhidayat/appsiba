@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Member;
 use App\Models\Setting;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class MemberController extends Controller
 {
@@ -77,19 +77,8 @@ class MemberController extends Controller
 
         $fotoPath = 'assets/images/default-avatar-gray.png';
         if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $filename = 'trader_'.time().'_'.Str::random(6).'.webp';
-            $destPath = public_path('storage/members');
-            if (! is_dir($destPath)) {
-                mkdir($destPath, 0755, true);
-            }
-            $gd = @imagecreatefromstring(file_get_contents($file->getRealPath()));
-            if ($gd) {
-                imagewebp($gd, $destPath.'/'.$filename, 90);
-                $fotoPath = 'storage/members/'.$filename;
-            } else {
-                $fotoPath = 'storage/'.$file->store('members', 'public');
-            }
+            $path = ImageService::uploadAndConvertToWebp($request->file('foto'), 'members', 'public', 82, 1000);
+            $fotoPath = 'storage/'.$path;
         }
 
         Member::create(array_merge($validated, [
@@ -125,19 +114,9 @@ class MemberController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $filename = 'trader_'.time().'_'.Str::random(6).'.webp';
-            $destPath = public_path('storage/members');
-            if (! is_dir($destPath)) {
-                mkdir($destPath, 0755, true);
-            }
-            $gd = @imagecreatefromstring(file_get_contents($file->getRealPath()));
-            if ($gd) {
-                imagewebp($gd, $destPath.'/'.$filename, 90);
-                $validated['foto'] = 'storage/members/'.$filename;
-            } else {
-                $validated['foto'] = 'storage/'.$file->store('members', 'public');
-            }
+            ImageService::delete($member->foto);
+            $path = ImageService::uploadAndConvertToWebp($request->file('foto'), 'members', 'public', 82, 1000);
+            $validated['foto'] = 'storage/'.$path;
         }
 
         $member->update($validated);
@@ -147,6 +126,7 @@ class MemberController extends Controller
 
     public function destroy(Member $member)
     {
+        ImageService::delete($member->foto);
         $member->delete();
 
         return redirect()->route('admin.members.index')->with('success', 'Data pedagang pasar berhasil dihapus.');

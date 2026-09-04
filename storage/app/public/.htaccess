@@ -1,0 +1,18 @@
+# Disable script execution in uploaded media directory
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+
+# Deny access to dangerous executable extensions
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|php8|phps|inc|cgi|pl|sh|bash|py|rb|exe|bat|cmd)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+Options -ExecCGI -Indexes

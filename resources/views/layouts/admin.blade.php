@@ -59,6 +59,8 @@
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <!-- Quill.js 2.0 WYSIWYG Editor ala CMS WordPress -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
     <style>
         [x-cloak] { display: none !important; }
         body {
@@ -74,6 +76,63 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+        }
+        /* Custom Quill Styling ala WordPress / APPSI Modern */
+        .ql-toolbar.ql-snow {
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            border-color: #cbd5e1 !important;
+            background-color: #f8fafc;
+            padding: 8px 12px;
+        }
+        .ql-container.ql-snow {
+            border-bottom-left-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+            border-color: #cbd5e1 !important;
+            background-color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .ql-editor {
+            min-height: 160px;
+        }
+        .ql-editor p {
+            margin-bottom: 0.75em;
+        }
+        .ql-snow .ql-stroke {
+            stroke: #334155 !important;
+        }
+        .ql-snow .ql-fill {
+            fill: #334155 !important;
+        }
+        .ql-snow .ql-picker {
+            color: #334155 !important;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .ql-snow .ql-picker.ql-expanded .ql-picker-options {
+            border-radius: 0.5rem;
+            border-color: #e2e8f0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .ql-snow.ql-toolbar button:hover, 
+        .ql-snow .ql-toolbar button:hover,
+        .ql-snow.ql-toolbar button.ql-active, 
+        .ql-snow .ql-toolbar button.ql-active {
+            color: #047857 !important;
+        }
+        .ql-snow.ql-toolbar button:hover .ql-stroke, 
+        .ql-snow .ql-toolbar button:hover .ql-stroke,
+        .ql-snow.ql-toolbar button.ql-active .ql-stroke, 
+        .ql-snow .ql-toolbar button.ql-active .ql-stroke {
+            stroke: #047857 !important;
+        }
+        .ql-snow.ql-toolbar button:hover .ql-fill, 
+        .ql-snow .ql-toolbar button:hover .ql-fill,
+        .ql-snow.ql-toolbar button.ql-active .ql-fill, 
+        .ql-snow .ql-toolbar button.ql-active .ql-fill {
+            fill: #047857 !important;
         }
     </style>
 
@@ -225,6 +284,11 @@
                     <span>Keluar Sistem</span>
                 </button>
             </form>
+            <div class="text-center pt-1">
+                <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-[10px] text-emerald-300/40 hover:text-emerald-300 transition" title="Mitra Teknologi & Sistem">
+                    by Beranda Teknologi Digital
+                </a>
+            </div>
         </div>
     </aside>
 
@@ -272,8 +336,12 @@
 
         <!-- Footer -->
         <footer class="py-4 px-7 border-t border-slate-200 bg-white text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <span>&copy; {{ date('Y') }} DPD APPSI Kabupaten Banyuasin. Seluruh hak cipta dilindungi.</span>
-            <span>Versi MIS 2.0 (appsiba.or.id)</span>
+            <span>&copy; {{ date('Y') }} {{ $webSetting['singkatan'] ?? 'DPD APPSI Kabupaten Banyuasin' }}. Seluruh hak cipta dilindungi.</span>
+            <div class="flex items-center gap-2.5">
+                <span class="text-slate-400 text-[11px]">by <a href="https://berandadigital.net" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-emerald-700 transition" title="Mitra Pengembangan Teknologi & Sistem Digital">Beranda Teknologi Digital</a></span>
+                <span class="text-slate-300">&bull;</span>
+                <span>Versi MIS 2.0 (appsiba.or.id)</span>
+            </div>
         </footer>
 
     </div>
@@ -326,6 +394,70 @@
             });
             return false;
         }
+    </script>
+
+    <!-- Quill.js Library & Auto-initialization for Rich Editors -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const richEditors = document.querySelectorAll('textarea.rich-editor');
+            richEditors.forEach((textarea, idx) => {
+                const editorId = 'quill-editor-' + (textarea.id || ('field-' + idx));
+                
+                // If container already created, skip
+                if (document.getElementById(editorId)) return;
+
+                const container = document.createElement('div');
+                container.id = editorId;
+                container.className = 'w-full bg-white';
+                
+                const rows = parseInt(textarea.getAttribute('rows')) || 6;
+                const minHeight = Math.max(150, rows * 26);
+                
+                textarea.parentNode.insertBefore(container, textarea.nextSibling);
+                textarea.style.display = 'none';
+
+                // WordPress-style comprehensive toolbar
+                const toolbarOptions = [
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],
+                    ['blockquote'],
+                    ['clean']
+                ];
+
+                const quill = new Quill('#' + editorId, {
+                    modules: {
+                        toolbar: toolbarOptions
+                    },
+                    placeholder: textarea.getAttribute('placeholder') || 'Tulis isi konten lengkap di sini...',
+                    theme: 'snow'
+                });
+
+                if (textarea.value) {
+                    quill.root.innerHTML = textarea.value;
+                }
+
+                quill.root.style.minHeight = minHeight + 'px';
+
+                // Sync on content modification
+                quill.on('text-change', function() {
+                    const html = quill.root.innerHTML;
+                    textarea.value = (html === '<p><br></p>' || html === '<p></p>') ? '' : html;
+                });
+
+                // Sync on parent form submission
+                const form = textarea.closest('form');
+                if (form) {
+                    form.addEventListener('submit', function() {
+                        const html = quill.root.innerHTML;
+                        textarea.value = (html === '<p><br></p>' || html === '<p></p>') ? '' : html;
+                    });
+                }
+            });
+        });
     </script>
 
     @stack('scripts')

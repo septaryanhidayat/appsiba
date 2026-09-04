@@ -50,8 +50,11 @@
         </div>
 
         <div>
-            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Isi Konten Berita Lengkap *</label>
-            <textarea name="konten" rows="10" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">{{ old('konten', $post->konten) }}</textarea>
+            <label class="block text-xs font-bold uppercase text-slate-700 mb-1 flex items-center justify-between">
+                <span>Isi Konten Berita Lengkap *</span>
+                <span class="text-[11px] font-normal text-slate-400">Dukungan format paragraf, tebal, miring, perataan & poin</span>
+            </label>
+            <textarea name="konten" id="konten" rows="12" class="rich-editor w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm focus:border-emerald-600 focus:outline-none">{{ old('konten', $post->konten) }}</textarea>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-4 items-center">

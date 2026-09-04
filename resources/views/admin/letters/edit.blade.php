@@ -69,8 +69,11 @@
                 </div>
 
                 <div class="md:col-span-2">
-                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Isi Lengkap Surat</label>
-                    <textarea name="isi_surat" rows="5" class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-xs leading-relaxed text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-600 outline-none shadow-sm">{{ old('isi_surat', $letter->isi_surat) }}</textarea>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 flex items-center justify-between">
+                        <span>Isi Lengkap Surat</span>
+                        <span class="text-[11px] font-normal text-slate-400">Dukungan cetak tebal, perataan rata penuh (justify), poin, dll</span>
+                    </label>
+                    <textarea name="isi_surat" id="isi_surat" rows="10" class="rich-editor w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-xs leading-relaxed text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-600 outline-none shadow-sm">{{ old('isi_surat', $letter->isi_surat) }}</textarea>
                 </div>
 
                 <div class="md:col-span-2">
