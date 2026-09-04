@@ -58,6 +58,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // 3. Organization Structures
+        OrganizationStructure::query()->delete();
         $orgData = [
             [
                 'nama' => 'H. Gusra Yetri, SH',
@@ -183,6 +184,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // 4. Members (Pedagang Pasar dengan Foto Default Avatar Gray)
+        Member::query()->delete();
         $traders = [
             [
                 'nama' => 'H. Gusra Yetri, SH',
@@ -370,55 +372,80 @@ class DatabaseSeeder extends Seeder
             Member::create($trader);
         }
 
-        // 5. Posts (Berita Asli Dari web appsi.id)
+        // 5. Posts (Berita & Kegiatan Resmi DPD APPSI Kabupaten Banyuasin)
+        Post::query()->delete();
         $posts = [
             [
-                'judul' => 'Sudaryono Minta APPSI DKI Jakarta Aktif Perjuangkan Pedagang Pasar',
-                'slug' => 'sudaryono-minta-appsi-dki-jakarta-aktif-perjuangkan-pedagang-pasar',
-                'kategori' => 'Kegiatan',
-                'penulis' => 'Sudaryono',
-                'ringkasan' => 'Ketua Umum DPP APPSI, yang juga Wakil Menteri Pertanian Sudaryono, meminta seluruh jajaran APPSI aktif terjun ke pasar tradisional memperjuangkan kesejahteraan pedagang.',
-                'konten' => '<p>Ketua Umum DPP Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI), <strong>Sudaryono</strong>, meminta seluruh jajaran kepengurusan APPSI untuk selalu proaktif mendengarkan, mendampingi, dan memperjuangkan hak-hak para pedagang pasar tradisional di berbagai daerah.</p><p>Sudaryono yang juga menjabat sebagai Wakil Menteri Pertanian menegaskan bahwa pasar tradisional adalah urat nadi perekonomian kerakyatan Indonesia yang harus terus dijaga keberlanjutannya dan ditingkatkan daya saingnya.</p><p>"Pasar tradisional bukan hanya tempat transaksi jual beli semata, tetapi pusat perputaran ekonomi rakyat kecil dan petani kita. APPSI harus hadir membela kepentingan pedagang kecil agar tetap berdaya dan sejahtera," tegasnya.</p>',
-                'gambar' => 'assets/images/news-sudaryono.jpg',
+                'judul' => 'DPD APPSI Banyuasin Akselerasi Digitalisasi Pasar dan Pembayaran QRIS di Pasar Pangkalan Balai',
+                'slug' => 'dpd-appsi-banyuasin-akselerasi-digitalisasi-pasar-dan-pembayaran-qris-di-pasar-pangkalan-balai',
+                'kategori' => 'Digitalisasi Pasar',
+                'penulis' => 'Humas DPD Banyuasin',
+                'ringkasan' => 'DPD APPSI Banyuasin bersama Bank Sumsel Babel dan Dinas Perindagkop memfasilitasi ratusan pedagang pasar tradisional mengadopsi sistem transaksi digital non-tunai QRIS.',
+                'konten' => '<p>Pangkalan Balai — Dewan Pimpinan Daerah Asosiasi Pedagang Pasar Seluruh Indonesia (DPD APPSI) Kabupaten Banyuasin secara resmi meluncurkan inisiatif percepatan transformasi digital bagi para pedagang di Pasar Pangkalan Balai.</p><p>Ketua DPD APPSI Kabupaten Banyuasin, <strong>H. Gusra Yetri, SH</strong>, didampingi perwakilan perbankan daerah dan Dinas Perdagangan, Koperasi, dan UKM Kabupaten Banyuasin, turun langsung ke blok sembako dan pakaian untuk mendampingi aktivasi kode QRIS pedagang.</p><p>"Pasar tradisional tidak boleh tertinggal oleh pesatnya era ekonomi digital. Dengan QRIS, pedagang pasar kita tidak perlu repot mencari uang kembalian, transaksi tercatat otomatis, serta terhindar dari risiko uang palsu," ujar H. Gusra Yetri di sela-sela peninjauan kios.</p><p>Program ini ditargetkan menjangkau lebih dari 450 pedagang di 3 pasar percontohan dalam kurun waktu semester pertama kepengurusan.</p>',
+                'gambar' => 'assets/images/WhatsApp Image 2026-09-03 at 10.20.50.jpeg',
                 'status' => 'published',
-                'views_count' => 312,
+                'views_count' => 428,
                 'published_at' => now()->subDays(1),
             ],
             [
-                'judul' => 'Munip Ariadi Terpilih Secara Aklamasi Jadi Ketua DPW APPSI DKI Jakarta 2026–2030',
-                'slug' => 'munip-ariadi-terpilih-secara-aklamasi-jadi-ketua-dpw-appsi-dki-jakarta-2026-2030',
-                'kategori' => 'Bakti Sosial',
-                'penulis' => 'Humas APPSI',
-                'ringkasan' => 'Kegiatan musyawarah wilayah dan aksi sosial berkah bagi pedagang pasar memperkuat soliditas organisasi dalam mengawal modernisasi pasar.',
-                'konten' => '<p>Musyawarah Wilayah (Muswil) APPSI berlangsung khidmat dan penuh rasa persaudaraan. Dalam agenda tersebut, <strong>Munip Ariadi</strong> terpilih secara aklamasi untuk menakhodai kepengurusan periode 2026–2030.</p><p>Terpilihnya kepengurusan baru ini dibarengi dengan program bakti sosial dan penguatan program jaring pengaman sosial bagi pedagang pasar terdampak fluktuasi harga komoditas.</p>',
-                'gambar' => 'assets/images/news-munip.jpeg',
+                'judul' => 'Gelar Operasi Pasar Pangan Murah di Betung, APPSI Banyuasin Kawal Stabilitas Harga Beras dan Minyak Goreng',
+                'slug' => 'gelar-operasi-pasar-pangan-murah-di-betung-appsi-banyuasin-kawal-stabilitas-harga-beras-dan-minyak-goreng',
+                'kategori' => 'Stabilisasi Pangan',
+                'penulis' => 'M. Rian Pratama, S.E.',
+                'ringkasan' => 'Upaya konkret menekan lonjakan inflasi bahan pokok di jalur lintas timur, APPSI Banyuasin bersinergi mendistribusikan ribuan liter minyak goreng dan beras medium berkualitas.',
+                'konten' => '<p>Betung — Menanggapi fluktuasi harga kebutuhan pokok di wilayah perbatasan dan jalur lintas Sumatra, DPD APPSI Banyuasin menggelar aksi tanggap stabilitas pasokan pangan murah di kawasan Pasar Betung.</p><p>Aksi ini melibatkan kolaborasi langsung antara para pedagang grosir sembako lokal anggota APPSI dengan distributor resmi produsen pangan daerah. Penjualan paket beras SPHP dan minyak goreng bersubsidi berlangsung tertib dan disambut antusias oleh para pedagang eceran maupun pembeli rumah tangga.</p><p>Sekretaris DPD APPSI Banyuasin, <strong>M. Rian Pratama, S.E.</strong>, menegaskan komitmen APPSI dalam memotong rantai distribusi yang berbelit-belit agar harga jual di tingkat lapak pedagang tetap terjangkau dan menguntungkan kedua belah pihak.</p>',
+                'gambar' => 'assets/images/WhatsApp Image 2026-09-04 at 09.06.51.jpeg',
                 'status' => 'published',
-                'views_count' => 245,
+                'views_count' => 389,
                 'published_at' => now()->subDays(2),
             ],
             [
-                'judul' => 'Wakil Gubernur Jambi Minta APPSI Perkuat Kebersamaan dan Bantu Pedagang Pasar',
-                'slug' => 'wakil-gubernur-jambi-minta-appsi-perkuat-kebersamaan-dan-bantu-pedagang-pasar',
-                'kategori' => 'Deklarasi',
-                'penulis' => 'Humas APPSI',
-                'ringkasan' => 'Sudaryono Ketua Umum APPSI disambut oleh Wakil Gubernur Jambi, Abdullah Sani di Auditorium Rumah Dinas Gubernur Jambi dalam rangka konsolidasi pedagang pasar.',
-                'konten' => '<p>Jambi — Ketua Umum DPP APPSI <strong>Sudaryono</strong> beserta rombongan pengurus pusat disambut hangat oleh Wakil Gubernur Jambi, Drs. H. Abdullah Sani, M.Pd.I di Auditorium Rumah Dinas Gubernur Jambi.</p><p>Pertemuan strategis ini membahas langkah-langkah kolaboratif pemerintah daerah bersama APPSI dalam menjaga stabilitas pasokan pangan, menjaga rantai pasok dari petani ke pasar rakyat, serta penataan pasar agar lebih bersih, higienis, dan nyaman bagi masyarakat pengunjung.</p>',
-                'gambar' => 'assets/images/news-wagub-jambi.jpg',
+                'judul' => 'Bebaskan Pedagang dari Rentenir, APPSI Banyuasin Buka Akses KUR Tanpa Agunan Tambahan di Sukajadi',
+                'slug' => 'bebaskan-pedagang-dari-rentenir-appsi-banyuasin-buka-akses-kur-tanpa-agunan-tambahan-di-sukajadi',
+                'kategori' => 'Permodalan KUR',
+                'penulis' => 'Bidang Kemitraan UMKM',
+                'ringkasan' => 'DPD APPSI memfasilitasi program pembiayaan Kredit Usaha Rakyat (KUR) berbunga rendah untuk modal kerja pedagang Pasar Sukajadi Talang Kelapa.',
+                'konten' => '<p>Talang Kelapa — Praktik pinjaman berbunga tinggi atau rentenir harian sering kali menjadi jeratan berat bagi kelangsungan usaha pedagang pasar tradisional. Menyikapi persoalan ini, DPD APPSI Kabupaten Banyuasin menggelar sosialisasi dan pendampingan pengajuan KUR Perbankan di Pasar Sukajadi.</p><p>Melalui rekomendasi keanggotaan KTA APPSI, para pedagang mendapatkan asistensi pemberkasan izin usaha nomor induk berusaha (NIB) serta kelayakan pembukuan sederhana, sehingga proses pencairan modal kerja dapat berjalan cepat dan transparan.</p><p>"Misi utama APPSI adalah melindungi ekonomi pedagang kecil. Kami ingin modal kerja pedagang bertumbuh sehat lewat jalur perbankan formal yang dilindungi pemerintah," terang perwakilan Bidang Kemitraan DPD APPSI Banyuasin.</p>',
+                'gambar' => 'assets/images/ChatGPT Image Sep 4, 2026, 02_15_45 PM (1).png',
                 'status' => 'published',
-                'views_count' => 198,
+                'views_count' => 312,
                 'published_at' => now()->subDays(4),
             ],
             [
-                'judul' => 'Munas IV APPSI: Konsolidasi Organisasi Menyiapkan Pedagang Pasar yang Tangguh & Digital',
-                'slug' => 'munas-iv-appsi-konsolidasi-organisasi-menyiapkan-pedagang-pasar-tangguh-digital',
-                'kategori' => 'Kegiatan',
-                'penulis' => 'M. Mujiburrohman',
-                'ringkasan' => 'Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) terus memperkuat kapasitas pedagang pasar melalui digitalisasi dan pendampingan permodalan.',
-                'konten' => '<p>Munas IV APPSI melahirkan sejumlah resolusi penting dalam mendorong kemandirian pedagang pasar di seluruh penjuru Indonesia. Menghadapi era perdagangan digital, APPSI bertekad memfasilitasi pedagang pasar tradisional dengan sistem pembayaran non-tunai, pembukuan digital, dan akses ke pembiayaan perbankan yang adil.</p>',
-                'gambar' => 'assets/images/hero-appsi.png',
+                'judul' => 'Advokasi Sanitasi & Revitalisasi Drainase Pasar Sungsang Demi Kenyamanan Pedagang dan Pembeli',
+                'slug' => 'advokasi-sanitasi-revitalisasi-drainase-pasar-sungsang-demi-kenyamanan-pedagang-dan-pembeli',
+                'kategori' => 'Advokasi Pasar',
+                'penulis' => 'Bidang Sarana & Prasarana',
+                'ringkasan' => 'APPSI mengawal aspirasi pedagang los basah ikan dan hasil laut Sungsang terkait perbaikan sistem saluran pembuangan air dan dermaga bongkar muat.',
+                'konten' => '<p>Banyuasin II — Pasar Sungsang yang terkenal sebagai sentra perdagangan hasil laut dan ikan segar di pesisir muara Banyuasin memerlukan perhatian khusus pada sarana sanitasi dan drainase pembuangan air asin.</p><p>Tim advokasi DPD APPSI Banyuasin bersama pengurus Komisariat Pasar (PKP) Sungsang melakukan survei lapangan dan menyusun draf rekomendasi teknis perbaikan fasilitas saluran kepada instansi terkait.</p><p>Langkah ini penting agar kebersihan pasar tetap terjaga, aroma tidak mengganggu pemukiman sekitar, serta dermaga sandar kapal pembawa pasokan ikan nelayan dapat beroperasi dengan aman saat pasang surut air laut.</p>',
+                'gambar' => 'assets/images/ChatGPT Image Sep 4, 2026, 02_15_46 PM (2).png',
                 'status' => 'published',
-                'views_count' => 275,
+                'views_count' => 276,
+                'published_at' => now()->subDays(5),
+            ],
+            [
+                'judul' => 'Konsolidasi Komisariat Pasar (PKP) se-Banyuasin: Perkuat Soliditas & Payung Perlindungan Hukum',
+                'slug' => 'konsolidasi-komisariat-pasar-pkp-se-banyuasin-perkuat-soliditas-payung-perlindungan-hukum',
+                'kategori' => 'Organisasi',
+                'penulis' => 'Humas DPD Banyuasin',
+                'ringkasan' => 'Rapat konsolidasi pengurus komisariat pasar dari 21 kecamatan menegaskan komitmen pendampingan hukum dan penataan pedagang kaki lima tanpa penggusuran sepihak.',
+                'konten' => '<p>Pangkalan Balai — DPD APPSI Kabupaten Banyuasin menyelenggarakan Rapat Koordinasi dan Konsolidasi Pengurus Komisariat Pasar (PKP) se-Kabupaten Banyuasin yang bertempat di Sekretariat DPD, Jl. Merdeka.</p><p>Agenda penting ini dihadiri oleh perwakilan pengurus pasar Pangkalan Balai, Betung, Mariana, Sukajadi, Sungai Dua, Makarti Jaya, dan Sungsang. Fokus bahasan meliputi perlindungan hak penempatan kios, harmonisasi tarif retribusi pasar, serta bantuan hukum cuma-cuma bagi pedagang yang mengalami sengketa zonasi lapak.</p><p>H. Gusra Yetri, SH menegaskan bahwa APPSI memegang prinsip dialog kemitraan konstruktif dengan aparat penegak perda dan pengelola pasar daerah.</p>',
+                'gambar' => 'assets/images/ChatGPT Image Sep 4, 2026, 02_16_01 PM.png',
+                'status' => 'published',
+                'views_count' => 354,
                 'published_at' => now()->subDays(7),
+            ],
+            [
+                'judul' => 'Peluncuran Sistem KTA Digital dan Layanan Pengaduan Cepat Pedagang Pasar Banyuasin',
+                'slug' => 'peluncuran-sistem-kta-digital-dan-layanan-pengaduan-cepat-pedagang-pasar-banyuasin',
+                'kategori' => 'Layanan Anggota',
+                'penulis' => 'Tim MIS DPD APPSI',
+                'ringkasan' => 'Inovasi kartu tanda anggota berbasis QR Code dan portal pengaduan aspirasi resmi DPD APPSI Banyuasin kini dapat diakses secara online oleh seluruh pedagang binaan.',
+                'konten' => '<p>Pangkalan Balai — Sebagai wujud tata kelola organisasi modern dan transparan, DPD APPSI Kabupaten Banyuasin secara resmi merilis portal digital <strong>appsiba.or.id</strong>.</p><p>Melalui platform ini, pedagang pasar di seluruh pelosok Banyuasin dapat mendaftar KTA secara online, mencetak kartu digital ber-QR Code resmi, mengecek status keabsahan surat rekomendasi, serta menyampaikan aduan seputar fasilitas pasar secara langsung kepada pengurus DPD.</p><p>"Kini setiap pedagang anggota APPSI memiliki identitas resmi yang terverifikasi, memudahkan koordinasi bantuan pemerintah dan akses kemitraan strategis lainnya," pungkas pengurus sekretariat.</p>',
+                'gambar' => 'assets/images/keanggotaan-banner.webp',
+                'status' => 'published',
+                'views_count' => 512,
+                'published_at' => now()->subDays(9),
             ],
         ];
 
@@ -426,35 +453,50 @@ class DatabaseSeeder extends Seeder
             Post::create($p);
         }
 
-        // 6. Galleries (Dokumentasi Asli appsi.id)
+        // 6. Galleries (Dokumentasi Aksi & Kegiatan DPD APPSI Banyuasin)
+        Gallery::query()->delete();
         $galleries = [
             [
-                'judul' => 'Deklarasi APPSI Jawa Timur',
-                'deskripsi' => 'Acara deklarasi dan pelantikan pengurus APPSI Jawa Timur.',
-                'foto' => 'assets/images/news-sudaryono.jpg',
-                'kategori' => 'Deklarasi',
-                'tanggal_kegiatan' => '2026-05-12',
+                'judul' => 'Sosialisasi Digitalisasi QRIS di Pasar Pangkalan Balai',
+                'deskripsi' => 'Edukasi penggunaan sistem pembayaran non-tunai bersama pengurus APPSI dan perbankan daerah.',
+                'foto' => 'assets/images/WhatsApp Image 2026-09-03 at 10.20.50.jpeg',
+                'kategori' => 'Digitalisasi Pasar',
+                'tanggal_kegiatan' => '2026-09-03',
             ],
             [
-                'judul' => 'Kunjungan Pasar Tradisional Surabaya',
-                'deskripsi' => 'Peninjauan kondisi pasar tradisional di Surabaya bersama pengurus APPSI.',
-                'foto' => 'assets/images/news-wagub-jambi.jpg',
-                'kategori' => 'Kunjungan Pasar',
-                'tanggal_kegiatan' => '2026-05-12',
+                'judul' => 'Operasi Pangan Murah Sembako di Pasar Betung',
+                'deskripsi' => 'Pengawalan distribusi beras dan minyak goreng bersubsidi untuk menjaga stabilitas harga pangan rakyat.',
+                'foto' => 'assets/images/WhatsApp Image 2026-09-04 at 09.06.51.jpeg',
+                'kategori' => 'Stabilisasi Pangan',
+                'tanggal_kegiatan' => '2026-09-04',
             ],
             [
-                'judul' => 'Bakti Sosial Pedagang Pasar di Cianjur',
-                'deskripsi' => 'Program Jumat berkah dan bantuan sembako bagi pedagang pasar tradisional.',
-                'foto' => 'assets/images/news-munip.jpeg',
-                'kategori' => 'Bakti Sosial',
-                'tanggal_kegiatan' => '2026-05-10',
+                'judul' => 'Pendampingan Permodalan Usaha Pedagang Pasar Sukajadi',
+                'deskripsi' => 'Dialog penguatan modal kerja tanpa agunan memberatkan bersama mitra perbankan BUMN.',
+                'foto' => 'assets/images/ChatGPT Image Sep 4, 2026, 02_15_45 PM (1).png',
+                'kategori' => 'Permodalan KUR',
+                'tanggal_kegiatan' => '2026-08-28',
             ],
             [
-                'judul' => 'Munas IV APPSI Konsolidasi Nasional Pedagang Pasar',
-                'deskripsi' => 'Konsolidasi organisasi menyiapkan pedagang pasar yang tangguh dan melek teknologi digital.',
-                'foto' => 'assets/images/keanggotaan-banner.png',
-                'kategori' => 'Deklarasi',
-                'tanggal_kegiatan' => '2026-04-25',
+                'judul' => 'Survei Drainase & Kebersihan Los Basah Pasar Sungsang',
+                'deskripsi' => 'Peninjauan sarana sanitasi dan saluran air pembuangan di sentra penjualan ikan segar muara.',
+                'foto' => 'assets/images/ChatGPT Image Sep 4, 2026, 02_15_46 PM (2).png',
+                'kategori' => 'Advokasi Pasar',
+                'tanggal_kegiatan' => '2026-08-20',
+            ],
+            [
+                'judul' => 'Rembug Akbar Pengurus Komisariat Pasar se-Kabupaten Banyuasin',
+                'deskripsi' => 'Konsolidasi organisasi pengurus pasar tradisional dalam memperjuangkan hak dan kenyamanan pedagang.',
+                'foto' => 'assets/images/ChatGPT Image Sep 4, 2026, 02_16_01 PM.png',
+                'kategori' => 'Konsolidasi',
+                'tanggal_kegiatan' => '2026-08-15',
+            ],
+            [
+                'judul' => 'Sosialisasi Program KTA Digital dan Hotline Bantuan Hukum APPSI',
+                'deskripsi' => 'Pengenalan kartu keanggotaan digital terintegrasi barcode untuk pedagang pasar rakyat Banyuasin.',
+                'foto' => 'assets/images/keanggotaan-banner.webp',
+                'kategori' => 'Layanan Anggota',
+                'tanggal_kegiatan' => '2026-08-10',
             ],
         ];
 
@@ -463,6 +505,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // 7. Meetings (Agenda Rapat & Notulen APPSI Banyuasin)
+        Meeting::query()->delete();
         Meeting::create([
             'judul_rapat' => 'Rapat Koordinasi Pengurus DPD Terkait Penataan Zonasi Kios & Stabilitas Harga Pasar',
             'tanggal' => '2026-08-25',
@@ -480,6 +523,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 8. Outgoing Letters (Surat Keluar Generator Ber-KOP APPSI Banyuasin)
+        Letter::query()->delete();
         $hash1 = strtoupper(substr(hash('sha256', '001/DPD-APPSI/BA/IX/2026'.time()), 0, 16));
         Letter::create([
             'uuid' => (string) Str::uuid(),
@@ -506,6 +550,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 9. Inboxes (Buku Tamu Masuk)
+        Inbox::query()->delete();
         Inbox::create([
             'tanggal' => now()->subDay(),
             'nama' => 'Bambang Irawan',
