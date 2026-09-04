@@ -11,7 +11,11 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
 }
 
 // Register the Composer autoloader...
-require __DIR__.'/../vendor/autoload.php';
+if (file_exists(__DIR__.'/../vendor/autoload.php')) {
+    require __DIR__.'/../vendor/autoload.php';
+} else {
+    exit('Folder "vendor" belum tersedia di root project (/home/berandad/appsiba.berandadigital.net/). Silakan jalankan `composer install --no-dev` di Terminal cPanel atau upload zip folder vendor proyek.');
+}
 
 // Bootstrap Laravel and handle the request...
 /** @var Application $app */

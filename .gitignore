@@ -3,7 +3,6 @@
 .env
 .env.backup
 cookies.txt
-.env.production
 .phpactor.json
 .phpunit.result.cache
 /.codex
