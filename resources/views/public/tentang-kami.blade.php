@@ -27,8 +27,8 @@
         <div class="bg-gradient-to-br from-emerald-50 via-white to-white rounded-3xl border border-emerald-200 p-8 sm:p-12 mb-16 shadow-sm" data-aos="fade-up">
             <div class="grid lg:grid-cols-[280px_1fr] gap-8 items-center">
                 <div class="flex flex-col items-center text-center">
-                    <div class="w-48 h-60 rounded-2xl overflow-hidden shadow-md border-2 border-emerald-400 bg-slate-200">
-                        <img src="{{ asset('assets/images/ketua-appsi-banyuasin.webp') }}" alt="H. Gusra Yetri, SH" class="w-full h-full object-cover">
+                    <div class="w-48 h-60 rounded-2xl overflow-hidden shadow-md border-2 border-emerald-500 bg-gradient-to-b from-slate-50 to-emerald-50 flex items-end justify-center">
+                        <img src="{{ asset('assets/images/ketua-appsi-banyuasin.webp') }}" alt="H. Gusra Yetri, SH" class="w-full h-full object-contain object-top pt-2">
                     </div>
                     <h3 class="mt-4 text-lg font-bold text-slate-900">H. Gusra Yetri, SH</h3>
                     <p class="text-xs font-semibold text-emerald-700">Ketua DPD APPSI Kab. Banyuasin</p>

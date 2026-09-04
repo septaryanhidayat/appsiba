@@ -28,8 +28,8 @@
             
             <!-- Ketua DPD APPSI Banyuasin -->
             <div class="col-span-1 md:col-span-2 bg-gradient-to-br from-emerald-50 to-white rounded-2xl border-2 border-emerald-300 p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
-                <div class="w-28 h-36 rounded-xl overflow-hidden border-2 border-emerald-400 bg-slate-200 shrink-0 shadow">
-                    <img src="{{ asset('assets/images/ketua-appsi-banyuasin.webp') }}" alt="H. Gusra Yetri, SH" class="w-full h-full object-cover">
+                <div class="w-28 h-36 rounded-xl overflow-hidden border-2 border-emerald-500 bg-gradient-to-b from-slate-50 to-emerald-50 shrink-0 shadow flex items-end justify-center">
+                    <img src="{{ asset('assets/images/ketua-appsi-banyuasin.webp') }}" alt="H. Gusra Yetri, SH" class="w-full h-full object-contain object-top pt-1">
                 </div>
                 <div class="text-center sm:text-left flex-1">
                     <span class="inline-block rounded-md bg-emerald-700 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">

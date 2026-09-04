@@ -312,8 +312,9 @@ class PublicController extends Controller
     public function kontak()
     {
         $settings = Setting::pluck('value', 'key');
+        $ketua = OrganizationStructure::where('jabatan', 'like', '%Ketua%')->first();
 
-        return view('public.kontak', compact('settings'));
+        return view('public.kontak', compact('settings', 'ketua'));
     }
 
     /**

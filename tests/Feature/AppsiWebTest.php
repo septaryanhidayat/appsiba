@@ -176,4 +176,32 @@ class AppsiWebTest extends TestCase
                 ->assertRedirect();
         }
     }
+
+    public function test_contact_page_structure_and_login_button_text(): void
+    {
+        $response = $this->get('/kontak');
+        $response->assertStatus(200);
+        $response->assertSee('Hotline WhatsApp', false);
+        $response->assertSee('Kantor Sekretariat DPD', false);
+        $response->assertSee('Sampaikan Aspirasi & Pesan', false);
+        $response->assertSee('Login', false);
+        $response->assertDontSee('MIS Admin', false);
+
+        // Test submission of inbox form
+        $postResponse = $this->post('/buku-tamu', [
+            'nama' => 'Hendra Saputra',
+            'telepon' => '081234567890',
+            'email' => 'hendra@example.com',
+            'instansi' => 'Pedagang Pasar Pangkalan Balai',
+            'tujuan' => 'Ketua DPD APPSI Kabupaten Banyuasin',
+            'keperluan' => 'Aspirasi & Masukan Pasar',
+            'pesan' => 'Mohon penataan lapak pedagang sayur di blok timur agar lebih tertib dan nyaman.',
+        ]);
+
+        $postResponse->assertSessionHas('success');
+        $this->assertDatabaseHas('inboxes', [
+            'nama' => 'Hendra Saputra',
+            'telepon' => '081234567890',
+        ]);
+    }
 }

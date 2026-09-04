@@ -175,17 +175,10 @@
                     <i class="fa-solid fa-user-plus text-xs text-emerald-600"></i>
                     Daftar KTA
                 </a>
-                @auth
-                    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)] hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
-                        <i class="fa-solid fa-gauge-high text-xs"></i>
-                        MIS Admin
-                    </a>
-                @else
-                    <a href="{{ route('login') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)] hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
-                        <i class="fa-solid fa-lock text-xs"></i>
-                        Login
-                    </a>
-                @endauth
+                <a href="{{ auth()->check() ? route('admin.dashboard') : route('login') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition duration-200 bg-emerald-700 text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)] hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
+                    <i class="fa-solid fa-right-to-bracket text-xs"></i>
+                    Login
+                </a>
             </div>
 
             <!-- Mobile Hamburger Button -->
@@ -236,17 +229,10 @@
                         <i class="fa-solid fa-user-plus text-xs"></i>
                         Daftar Keanggotaan KTA
                     </a>
-                    @auth
-                        <a href="{{ route('admin.dashboard') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold bg-emerald-700 text-white shadow">
-                            <i class="fa-solid fa-gauge-high text-xs"></i>
-                            Dashboard MIS Admin
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold bg-emerald-700 text-white shadow">
-                            <i class="fa-solid fa-lock text-xs"></i>
-                            Login Petugas MIS
-                        </a>
-                    @endauth
+                    <a href="{{ auth()->check() ? route('admin.dashboard') : route('login') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold bg-emerald-700 text-white shadow">
+                        <i class="fa-solid fa-right-to-bracket text-xs"></i>
+                        Login
+                    </a>
                 </div>
             </div>
         </div>
@@ -260,7 +246,8 @@
     <!-- Footer Modern & Rapi APPSI Banyuasin -->
     <footer class="bg-gradient-to-b from-[#063327] via-[#04281f] to-[#021812] text-slate-300 relative border-t-2 border-emerald-600/50" id="kontak">
         
-        <!-- Top Contact Highlight Strip (2 Kotak Berdampingan Tanpa Nomor HP) -->
+        <!-- Top Contact Highlight Strip (Hanya tampil di selain halaman kontak untuk cegah duplikasi) -->
+        @if(!request()->routeIs('contact.*'))
         <div class="border-b border-emerald-900/60 bg-black/20">
             <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8 py-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
@@ -288,6 +275,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <!-- Main Footer Links Grid (Ringkas, Rapi, Tanpa Pasar Binaan) -->
         <div class="mx-auto w-full max-w-[1180px] px-5 sm:px-6 lg:px-8 py-8 sm:py-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-12 text-center sm:text-left">
