@@ -1,3 +1,7 @@
+<IfModule dir_module>
+    DirectoryIndex index.php public/index.php
+</IfModule>
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php84” package as the default “PHP” programming language.
 <IfModule mime_module>
@@ -23,7 +27,16 @@
     # Block direct access to core Laravel directories
     RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$) - [F,L,NC]
 
-    RewriteRule ^$ public/ [L]
+    # Serve existing public files directly
     RewriteCond %{REQUEST_URI} !^/public/
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
     RewriteRule ^(.*)$ public/$1 [L]
+
+    # Rewrite empty root to public/index.php
+    RewriteRule ^$ public/index.php [L]
+
+    # Send all other requests to public/index.php
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/index.php [L]
 </IfModule>
