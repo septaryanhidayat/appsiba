@@ -45,7 +45,10 @@
                         <img src="{{ asset('assets/images/ketua-hero.webp') }}" 
                              alt="{{ $ketua->nama ?? 'H. Gusra Yetri, SH' }} - Ketua DPD APPSI Banyuasin" 
                              class="relative z-10 h-auto max-h-[300px] sm:max-h-[340px] w-auto object-contain object-bottom drop-shadow-[0_14px_28px_rgba(4,120,87,0.20)]"
-                             loading="eager">
+                             width="320" height="340"
+                             fetchpriority="high"
+                             loading="eager"
+                             decoding="async">
 
                         <!-- Identity Card Mobile -->
                         <div class="relative z-20 -mt-5 inline-flex items-center gap-2.5 rounded-xl bg-white/95 px-3.5 py-2 shadow-md ring-1 ring-emerald-500/20 backdrop-blur-sm">
@@ -145,7 +148,10 @@
                     <img src="{{ asset('assets/images/ketua-hero.webp') }}" 
                          alt="{{ $ketua->nama ?? 'H. Gusra Yetri, SH' }} - Ketua DPD APPSI Banyuasin" 
                          class="relative z-20 h-auto max-h-[580px] xl:max-h-[640px] w-auto max-w-[540px] xl:max-w-[600px] object-contain object-bottom drop-shadow-[0_22px_40px_rgba(4,120,87,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                         loading="eager">
+                         width="540" height="580"
+                         fetchpriority="high"
+                         loading="eager"
+                         decoding="async">
                 </div>
 
                 <!-- Floating Identity Card Overlapping Base -->
@@ -248,7 +254,7 @@
             @forelse($posts as $post)
                 <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md hover:border-emerald-300" data-aos="fade-up">
                     <div class="relative h-48 w-full overflow-hidden bg-slate-100">
-                        <img src="{{ $post->gambar_url }}" alt="{{ $post->judul }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        <img src="{{ $post->gambar_url }}" alt="{{ $post->judul }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" decoding="async" width="400" height="192">
                         <span class="absolute left-3.5 top-3.5 rounded-lg bg-emerald-700/90 backdrop-blur-sm px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow">
                             {{ $post->kategori }}
                         </span>
@@ -385,9 +391,11 @@
                 <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-emerald-300/20 blur-2xl pointer-events-none"></div>
                 
                 <!-- Foto Ketua APPSI Banyuasin -->
-                <img src="{{ asset('assets/images/ketua-semangat.png') }}" 
+                <img src="{{ asset('assets/images/ketua-semangat.webp') }}" 
                      alt="H. Gusra Yetri, SH - Ketua DPD APPSI Kabupaten Banyuasin" 
-                     class="relative z-10 h-full w-auto max-h-[340px] sm:max-h-[420px] object-contain object-bottom transition duration-500 hover:scale-105">
+                     class="relative z-10 h-full w-auto max-h-[340px] sm:max-h-[420px] object-contain object-bottom transition duration-500 hover:scale-105"
+                     width="340" height="420"
+                     loading="lazy" decoding="async">
 
                 <!-- Floating leadership caption bar -->
                 <div class="absolute bottom-4 inset-x-4 z-20 rounded-2xl bg-white/95 p-3 shadow-lg border border-emerald-100 backdrop-blur-md flex items-center gap-3">
@@ -465,49 +473,49 @@
                 {
                     title: 'Sosialisasi Digitalisasi QRIS di Pasar Pangkalan Balai',
                     category: 'Digitalisasi Pasar',
-                    image: '{{ asset('assets/images/berita/berita-qris-digital.jpg') }}',
+                    image: '{{ asset('assets/images/berita/berita-qris-digital.webp') }}',
                     desc: 'Edukasi dan pendampingan transaksi non-tunai bersama perbankan daerah bagi pedagang sayur dan sembako.'
                 },
                 {
                     title: 'Operasi Pasar Pangan Murah Sembako di Betung',
                     category: 'Stabilisasi Harga',
-                    image: '{{ asset('assets/images/berita/berita-operasi-pasar.jpg') }}',
+                    image: '{{ asset('assets/images/berita/berita-operasi-pasar.webp') }}',
                     desc: 'Distribusi beras medium dan minyak goreng terjangkau untuk menekan laju inflasi bahan pokok masyarakat.'
                 },
                 {
                     title: 'Pengawasan Tera Ulang Timbangan Pasar Pangkalan Balai',
                     category: 'Tera Timbangan',
-                    image: '{{ asset('assets/images/berita/kegiatan-timbangan-tera.jpg') }}',
+                    image: '{{ asset('assets/images/berita/kegiatan-timbangan-tera.webp') }}',
                     desc: 'Kerjasama DPD APPSI dan Dinas Perindagkop memastikan keakuratan timbangan pedagang demi jual beli yang jujur.'
                 },
                 {
                     title: 'Pelatihan Pembukuan & Literasi Keuangan Pedagang Wanita',
                     category: 'Pemberdayaan UMKM',
-                    image: '{{ asset('assets/images/berita/kegiatan-pelatihan-wanita.jpg') }}',
+                    image: '{{ asset('assets/images/berita/kegiatan-pelatihan-wanita.webp') }}',
                     desc: 'Peningkatan kapasitas pengelolaan arus kas dan literasi perbankan formal bagi pedagang pasar perempuan.'
                 },
                 {
                     title: 'Fasilitasi Akses KUR & Permodalan Usaha di Sukajadi',
                     category: 'Permodalan KUR',
-                    image: '{{ asset('assets/images/berita/berita-permodalan-kur.jpg') }}',
+                    image: '{{ asset('assets/images/berita/berita-permodalan-kur.webp') }}',
                     desc: 'Dialog kemitraan bank demi membebaskan pedagang pasar dari jeratan rentenir dengan suku bunga rendah.'
                 },
                 {
                     title: 'Advokasi Sanitasi & Drainase Los Basah Pasar Sungsang',
                     category: 'Advokasi Sarana',
-                    image: '{{ asset('assets/images/berita/berita-pasar-sungsang.jpg') }}',
+                    image: '{{ asset('assets/images/berita/berita-pasar-sungsang.webp') }}',
                     desc: 'Peninjauan langsung sarana pembuangan air dan dermaga sandar pasokan ikan nelayan muara pesisir.'
                 },
                 {
                     title: 'Rembug Akbar Pengurus Komisariat Pasar se-Kabupaten Banyuasin',
                     category: 'Konsolidasi',
-                    image: '{{ asset('assets/images/berita/berita-musyawarah-appsi.jpg') }}',
+                    image: '{{ asset('assets/images/berita/berita-musyawarah-appsi.webp') }}',
                     desc: 'Konsolidasi pimpinan komisariat dari 21 kecamatan merumuskan kebijakan penataan lapak yang harmonis.'
                 },
                 {
                     title: 'Konsolidasi Nasional & Musyawarah Akbar APPSI',
                     category: 'Kongres Nasional',
-                    image: '{{ asset('assets/images/berita/munas-appsi.jpg') }}',
+                    image: '{{ asset('assets/images/berita/munas-appsi.webp') }}',
                     desc: 'Penguatan jaringan pedagang pasar tradisional di tingkat provinsi dan nasional demi ekonomi kerakyatan.'
                 }
             ],
@@ -571,7 +579,7 @@
                          class="absolute inset-0">
                         
                         <!-- Slide Image -->
-                        <img :src="slide.image" :alt="slide.title" class="h-full w-full object-cover">
+                        <img :src="slide.image" :alt="slide.title" class="h-full w-full object-cover" width="1180" height="500" loading="lazy" decoding="async">
                         
                         <!-- Dark Gradient Overlay for text readability -->
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
@@ -668,23 +676,23 @@
                         @csrf
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Lengkap *</label>
-                                <input type="text" name="nama" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Nama Anda">
+                                <label for="form_nama" class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Lengkap *</label>
+                                <input type="text" id="form_nama" name="nama" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Nama Anda">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">No. WhatsApp / HP</label>
-                                <input type="text" name="telepon" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Contoh: 08123456789">
+                                <label for="form_telepon" class="block text-xs font-bold uppercase text-slate-700 mb-1">No. WhatsApp / HP</label>
+                                <input type="text" id="form_telepon" name="telepon" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Contoh: 08123456789">
                             </div>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Usaha / Pasar</label>
-                                <input type="text" name="instansi" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Contoh: Pedagang Pasar Pangkalan Balai">
+                                <label for="form_instansi" class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Usaha / Pasar</label>
+                                <input type="text" id="form_instansi" name="instansi" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Contoh: Pedagang Pasar Pangkalan Balai">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Tujuan Pesan</label>
-                                <select name="tujuan" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600">
+                                <label for="form_tujuan" class="block text-xs font-bold uppercase text-slate-700 mb-1">Tujuan Pesan</label>
+                                <select id="form_tujuan" name="tujuan" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600">
                                     <option value="Ketua DPD APPSI Kabupaten Banyuasin">Ketua DPD APPSI Banyuasin</option>
                                     <option value="Bidang Advokasi & Perlindungan Pedagang">Bidang Advokasi & Hukum</option>
                                     <option value="Bidang Sarana & Penataan Pasar">Bidang Sarana Pasar</option>
@@ -694,13 +702,13 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Keperluan / Topik *</label>
-                            <input type="text" name="keperluan" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Contoh: Pengaduan Fasilitas Air / Permohonan Kemitraan">
+                            <label for="form_keperluan" class="block text-xs font-bold uppercase text-slate-700 mb-1">Keperluan / Topik *</label>
+                            <input type="text" id="form_keperluan" name="keperluan" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Contoh: Pengaduan Fasilitas Air / Permohonan Kemitraan">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Isi Aspirasi / Pesan *</label>
-                            <textarea name="pesan" rows="4" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Tuliskan aspirasi, masukan, atau kendala yang dihadapi di pasar..."></textarea>
+                            <label for="form_pesan" class="block text-xs font-bold uppercase text-slate-700 mb-1">Isi Aspirasi / Pesan *</label>
+                            <textarea id="form_pesan" name="pesan" rows="4" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" placeholder="Tuliskan aspirasi, masukan, atau kendala yang dihadapi di pasar..."></textarea>
                         </div>
 
                         <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 py-3 text-sm font-bold text-white shadow hover:bg-emerald-800 transition">

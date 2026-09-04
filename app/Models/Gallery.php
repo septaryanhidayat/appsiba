@@ -23,11 +23,23 @@ class Gallery extends Model
 
     public function getFotoUrlAttribute(): string
     {
-        if ($this->foto && file_exists(public_path($this->foto))) {
-            return asset($this->foto);
-        }
-        if ($this->foto && file_exists(storage_path('app/public/'.$this->foto))) {
-            return asset('storage/'.$this->foto);
+        if ($this->foto) {
+            $webp = preg_replace('/\.(jpg|jpeg|png)$/i', '.webp', $this->foto);
+            if ($webp !== $this->foto) {
+                if (file_exists(public_path($webp))) {
+                    return asset($webp);
+                }
+                if (file_exists(storage_path('app/public/'.$webp))) {
+                    return asset('storage/'.$webp);
+                }
+            }
+
+            if (file_exists(public_path($this->foto))) {
+                return asset($this->foto);
+            }
+            if (file_exists(storage_path('app/public/'.$this->foto))) {
+                return asset('storage/'.$this->foto);
+            }
         }
 
         return asset('assets/images/appsi-logo.png');

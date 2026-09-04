@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@yield('meta_description', 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) Kabupaten Banyuasin. Informasi berita pasar, direktori pedagang binaan, pendaftaran keanggotaan online, dan verifikasi surat digital.')">
+    <link rel="canonical" href="{{ url()->current() }}">
     <title>@yield('title', 'DPD APPSI Kabupaten Banyuasin') - Asosiasi Pedagang Pasar Seluruh Indonesia</title>
     
     <!-- Favicon Resmi APPSI -->
     <link rel="icon" type="image/png" href="{{ asset('assets/images/appsi-logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('assets/images/appsi-logo.png') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
+    <!-- Preload LCP Hero Image -->
+    <link rel="preload" as="image" href="{{ asset('assets/images/ketua-hero.webp') }}" type="image/webp" fetchpriority="high">
 
     <!-- Open Graph / Social Meta -->
     <meta property="og:type" content="website">
@@ -28,11 +33,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- FontAwesome 6 (Non-render-blocking) -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     
-    <!-- AOS Animation CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <!-- AOS Animation CSS (Non-render-blocking) -->
+    <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
     
     <!-- Tailwind CSS (Play CDN with APPSI emerald theme) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -440,7 +447,8 @@
                 x-transition:leave-end="opacity-0 translate-y-3"
                 @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
                 class="h-10 w-10 rounded-full bg-white text-emerald-800 hover:bg-emerald-700 hover:text-white shadow-lg border border-slate-200/80 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 group"
-                title="Kembali ke Atas">
+                title="Kembali ke Atas"
+                aria-label="Kembali ke Atas">
             <i class="fa-solid fa-arrow-up text-xs group-hover:-translate-y-0.5 transition-transform duration-200"></i>
         </button>
 
@@ -448,7 +456,8 @@
         <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $webSetting['whatsapp'] ?? '62811618808') }}?text=Halo%20Pengurus%20DPD%20APPSI%20Banyuasin,%20saya%20ingin%20berkonsultasi..." 
            target="_blank" 
            class="relative flex h-12 w-12 sm:h-13 sm:w-13 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_20px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] transition-all duration-200 hover:scale-110 active:scale-95 group" 
-           title="Hubungi WhatsApp DPD APPSI Banyuasin">
+           title="Hubungi WhatsApp DPD APPSI Banyuasin"
+           aria-label="Hubungi WhatsApp DPD APPSI Banyuasin">
             <span class="absolute -top-0.5 -right-0.5 flex h-3 w-3">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
