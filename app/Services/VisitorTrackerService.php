@@ -48,16 +48,6 @@ class VisitorTrackerService
         $sessionId = $request->hasSession() ? $request->session()->getId() : null;
         $url = '/'.ltrim($path, '/');
 
-        // Debounce 1 second only to prevent duplicate requests from prefetch/browser double-hit
-        $alreadyLogged = VisitorLog::where('url', $url)
-            ->where('ip_address', $ip)
-            ->where('created_at', '>=', now()->subSecond())
-            ->exists();
-
-        if ($alreadyLogged) {
-            return;
-        }
-
         // 3. Parse Device, Browser, and OS Platform
         $deviceType = self::detectDevice($userAgent);
         $browser = self::detectBrowser($userAgent);

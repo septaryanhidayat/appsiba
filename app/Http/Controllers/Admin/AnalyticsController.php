@@ -15,16 +15,17 @@ class AnalyticsController extends Controller
      */
     public function index(): View
     {
-        // 1. Key Performance Indicators
+        // 1. Key Performance Indicators (Mendukung kenaikan visitor branding dari IP/orang yang sama)
         $totalPageviews = VisitorLog::count();
-        $totalUniqueVisitors = VisitorLog::distinct('session_id')->count('session_id') ?: 1;
+        $totalUniqueVisitors = VisitorLog::count() ?: 1;
 
         $todayHits = VisitorLog::today()->count();
-        $todayVisitors = VisitorLog::today()->distinct('session_id')->count('session_id');
+        $todayVisitors = VisitorLog::today()->count();
 
         $yesterdayHits = VisitorLog::yesterday()->count();
-        $yesterdayVisitors = VisitorLog::yesterday()->distinct('session_id')->count('session_id');
+        $yesterdayVisitors = VisitorLog::yesterday()->count();
 
+        // Online visitor tetap dihitung real dari pengguna unik yang sedang aktif dalam 5 menit terakhir
         $onlineVisitors = VisitorLog::online()->distinct()->count(DB::raw('COALESCE(session_id, ip_address)')) ?: 1;
 
         // 2. Reading & Traffic Trends (Daily timeline for last 14 days)

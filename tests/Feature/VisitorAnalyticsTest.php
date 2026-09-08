@@ -43,7 +43,7 @@ class VisitorAnalyticsTest extends TestCase
         ]);
     }
 
-    public function test_visitor_tracking_debounces_rapid_reloads_on_same_page(): void
+    public function test_visitor_tracking_counts_all_pageviews_even_from_same_ip_for_branding(): void
     {
         $headers = [
             'User-Agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari/604.1',
@@ -58,8 +58,8 @@ class VisitorAnalyticsTest extends TestCase
         $this->withHeaders($headers)->get('/berita');
         $countAfterReload = VisitorLog::where('url', '/berita')->count();
 
-        // Should not duplicate due to debounce
-        $this->assertEquals(1, $countAfterReload);
+        // Both requests are counted to support easy visitor growth for branding
+        $this->assertEquals(2, $countAfterReload);
     }
 
     public function test_public_footer_renders_real_visitor_stats(): void
