@@ -202,7 +202,7 @@
              style="background-image: radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px); background-size: 16px 16px;">
             
             <!-- Bagan Header Title dengan Logo APPSI Resmi -->
-            <div class="text-center pb-3 border-b border-slate-200">
+            <div class="text-center pb-3 mb-4 border-b border-slate-200">
                 <div class="flex items-center justify-center mb-2">
                     <img src="{{ asset('assets/images/appsi-logo.png') }}" 
                          alt="Logo APPSI" 
@@ -235,10 +235,10 @@
             <!-- LEVEL 0: DEWAN PENASEHAT & DEWAN PEMBINA            -->
             <!-- ==================================================== -->
             @if(count($tree['dewan_penasehat']) > 0 || count($tree['dewan_pembina']) > 0)
-                <div class="relative flex flex-col items-center">
+                <div class="w-[1112px] mx-auto block">
                     <div class="w-[960px] mx-auto grid grid-cols-2 gap-6">
                         
-                        <!-- Dewan Penasehat Box -->
+                        <!-- Dewan Penasehat Box (Lebar 468px, Pusat x=310) -->
                         <div class="rounded-xl bg-amber-50/70 border border-amber-300 p-3 shadow-2xs">
                             <div class="flex items-center justify-center gap-1.5 pb-2 border-b border-amber-200/80 mb-2">
                                 <i class="fa-solid fa-landmark text-amber-700 text-xs"></i>
@@ -260,7 +260,7 @@
                             </div>
                         </div>
 
-                        <!-- Dewan Pembina Box -->
+                        <!-- Dewan Pembina Box (Lebar 468px, Pusat x=802) -->
                         <div class="rounded-xl bg-sky-50/70 border border-sky-300 p-3 shadow-2xs">
                             <div class="flex items-center justify-center gap-1.5 pb-2 border-b border-sky-200/80 mb-2">
                                 <i class="fa-solid fa-graduation-cap text-sky-700 text-xs"></i>
@@ -283,21 +283,32 @@
                         </div>
 
                     </div>
-
-                    <!-- Direct Vertical Line Connector from Advisory to Ketua -->
-                    <div class="w-[2px] h-4 bg-emerald-600"></div>
                 </div>
+
+                <!-- CONNECTOR 1: Presisi Tanpa Putus dari Dewan Penasehat & Pembina ke Ketua & Wakil Ketua -->
+                <svg class="w-[1112px] h-9 text-emerald-600 block mx-auto shrink-0" viewBox="0 0 1112 36" fill="none" style="width: 1112px; max-width: 1112px;">
+                    <!-- Turun tepat dari dasar kotak Penasehat (x=310) dan Pembina (x=802) -->
+                    <path d="M 310 0 V 16 M 802 0 V 16" stroke="currentColor" stroke-width="2"/>
+                    <!-- Garis penghubung horizontal Dewan Penasehat & Pembina -->
+                    <path d="M 310 16 H 802" stroke="currentColor" stroke-width="2"/>
+                    <!-- Poros tengah turun menghubungkan ke cabang Pimpinan Harian -->
+                    <path d="M 556 16 V 24" stroke="currentColor" stroke-width="2"/>
+                    <!-- Garis cabang horizontal menuju puncak Ketua (x=380) dan Wakil Ketua (x=732) -->
+                    <path d="M 380 24 H 732" stroke="currentColor" stroke-width="2"/>
+                    <!-- Turun tepat menyentuh puncak kartu Ketua dan Wakil Ketua -->
+                    <path d="M 380 24 V 36 M 732 24 V 36" stroke="currentColor" stroke-width="2"/>
+                </svg>
             @endif
 
             <!-- ==================================================== -->
             <!-- LEVEL 1: PENGURUS HARIAN: KETUA & WAKIL KETUA       -->
             <!-- ==================================================== -->
-            <div class="relative flex flex-col items-center">
-                <div class="flex items-center justify-center gap-6">
+            <div class="w-[1112px] mx-auto block">
+                <div class="w-[672px] mx-auto flex items-center justify-between">
                     
-                    <!-- KETUA CARD -->
+                    <!-- KETUA CARD (Lebar 320px, Pusat x=380) -->
                     @if($tree['ketua'])
-                        <div class="w-72 rounded-xl bg-white border-2 border-emerald-600 shadow-md">
+                        <div class="w-[320px] rounded-xl bg-white border-2 border-emerald-600 shadow-md">
                             <div class="h-8 bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-700 text-white rounded-t-lg px-3 flex items-center justify-center gap-1.5 text-center">
                                 <i class="fa-solid fa-crown text-xs text-amber-300"></i>
                                 <span class="text-xs font-black uppercase tracking-wider text-center">
@@ -315,9 +326,9 @@
                         </div>
                     @endif
 
-                    <!-- WAKIL KETUA CARD -->
+                    <!-- WAKIL KETUA CARD (Lebar 320px, Pusat x=732) -->
                     @foreach($tree['wakil_ketua'] as $wk)
-                        <div class="w-72 rounded-xl bg-white border-2 border-teal-600 shadow-md">
+                        <div class="w-[320px] rounded-xl bg-white border-2 border-teal-600 shadow-md">
                             <div class="h-8 bg-gradient-to-r from-teal-700 to-emerald-700 text-white rounded-t-lg px-3 flex items-center justify-center gap-1.5 text-center">
                                 <i class="fa-solid fa-award text-xs text-teal-200"></i>
                                 <span class="text-xs font-black uppercase tracking-wider text-center">
@@ -336,29 +347,29 @@
                     @endforeach
 
                 </div>
-
-                <!-- Central Spine continuing down from Level 1 -->
-                <div class="w-[2px] h-4 bg-emerald-600"></div>
             </div>
+
+            <!-- CONNECTOR 2: Presisi Tanpa Putus dari Ketua & Wakil Ketua ke Sekretariat, Bendahara, & Poros Tengah -->
+            <svg class="w-[1112px] h-[34px] text-emerald-600 block mx-auto shrink-0" viewBox="0 0 1112 34" fill="none" style="width: 1112px; max-width: 1112px;">
+                <!-- Turun dari dasar kartu Ketua (x=380) dan Wakil Ketua (x=732) -->
+                <path d="M 380 0 V 12 M 732 0 V 12" stroke="currentColor" stroke-width="2"/>
+                <!-- Garis horizontal menggabungkan instruksi pimpinan -->
+                <path d="M 380 12 H 732" stroke="currentColor" stroke-width="2"/>
+                <!-- Poros tengah utama berlanjut ke bawah menembus ke level 3 (x=556) -->
+                <path d="M 556 12 V 34" stroke="currentColor" stroke-width="2"/>
+                <!-- Cabang horizontal ke Sekretariat (x=350) dan Kebendaharaan (x=762) -->
+                <path d="M 350 22 H 762" stroke="currentColor" stroke-width="2"/>
+                <!-- Garis turun tepat menyentuh puncak kartu Sekretaris dan Bendahara -->
+                <path d="M 350 22 V 34 M 762 22 V 34" stroke="currentColor" stroke-width="2"/>
+            </svg>
 
             <!-- ==================================================== -->
             <!-- LEVEL 2: SEKRETARIAT & KEBENDAHARAAN                 -->
             <!-- ==================================================== -->
-            <div class="relative flex flex-col items-center">
-                
-                <!-- SVG Connector ke Sekretariat (Kiri) dan Kebendaharaan (Kanan) -->
-                <svg class="w-[660px] h-7 text-emerald-600 mx-auto block" viewBox="0 0 660 28" fill="none">
-                    <!-- Turun dari poros tengah (x=330) -->
-                    <path d="M 330 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <!-- Cabang horizontal ke pusat Sekretariat (x=130) dan Kebendaharaan (x=530) -->
-                    <path d="M 130 14 H 530" stroke="currentColor" stroke-width="2"/>
-                    <!-- Turun tepat ke kartu dan poros tengah -->
-                    <path d="M 130 14 V 28 M 330 14 V 28 M 530 14 V 28" stroke="currentColor" stroke-width="2"/>
-                </svg>
-
-                <div class="w-[660px] mx-auto flex items-stretch">
+            <div class="w-[1112px] mx-auto block">
+                <div class="w-[672px] mx-auto flex items-stretch justify-between">
                     
-                    <!-- KIRI: SEKRETARIAT -->
+                    <!-- KIRI: SEKRETARIAT (Lebar 260px, Pusat x=350) -->
                     <div class="w-[260px] flex flex-col items-center">
                         <!-- 1. SEKRETARIS -->
                         @if($tree['sekretariat']['utama'])
@@ -381,11 +392,11 @@
                             </div>
                         @endif
 
-                        <!-- Arrow to Wakil Sekretaris -->
+                        <!-- Arrow downward to Wakil Sekretaris -->
                         @if($tree['sekretariat']['wakil'])
-                            <svg class="w-4 h-4 text-indigo-600 block -my-[1px]" viewBox="0 0 16 16" fill="none">
-                                <line x1="8" y1="0" x2="8" y2="10" stroke="currentColor" stroke-width="2"/>
-                                <polygon points="4,9 8,15 12,9" fill="currentColor"/>
+                            <svg class="w-4 h-5 text-emerald-600 block my-0.5 shrink-0" viewBox="0 0 16 20" fill="none">
+                                <line x1="8" y1="0" x2="8" y2="13" stroke="currentColor" stroke-width="2"/>
+                                <polygon points="4,12 8,19 12,12" fill="currentColor"/>
                             </svg>
 
                             <!-- 2. WAKIL SEKRETARIS -->
@@ -409,12 +420,12 @@
                         @endif
                     </div>
 
-                    <!-- TENGAH: CENTRAL SPINE -->
-                    <div class="w-[140px] flex justify-center items-stretch">
+                    <!-- TENGAH: CENTRAL SPINE (Lebar 152px, Pusat x=556) -->
+                    <div class="w-[152px] flex justify-center items-stretch shrink-0">
                         <div class="w-[2px] h-full bg-emerald-600"></div>
                     </div>
 
-                    <!-- KANAN: KEBENDAHARAAN -->
+                    <!-- KANAN: KEBENDAHARAAN (Lebar 260px, Pusat x=762) -->
                     <div class="w-[260px] flex flex-col items-center">
                         <!-- 1. BENDAHARA -->
                         @if($tree['kebendaharaan']['utama'])
@@ -437,11 +448,11 @@
                             </div>
                         @endif
 
-                        <!-- Arrow to Wakil Bendahara -->
+                        <!-- Arrow downward to Wakil Bendahara -->
                         @if($tree['kebendaharaan']['wakil'])
-                            <svg class="w-4 h-4 text-amber-600 block -my-[1px]" viewBox="0 0 16 16" fill="none">
-                                <line x1="8" y1="0" x2="8" y2="10" stroke="currentColor" stroke-width="2"/>
-                                <polygon points="4,9 8,15 12,9" fill="currentColor"/>
+                            <svg class="w-4 h-5 text-emerald-600 block my-0.5 shrink-0" viewBox="0 0 16 20" fill="none">
+                                <line x1="8" y1="0" x2="8" y2="13" stroke="currentColor" stroke-width="2"/>
+                                <polygon points="4,12 8,19 12,12" fill="currentColor"/>
                             </svg>
 
                             <!-- 2. WAKIL BENDAHARA -->
@@ -466,26 +477,23 @@
                     </div>
 
                 </div>
-
-                <!-- Central Spine continuing down to Level 3 -->
-                <div class="w-[2px] h-4 bg-emerald-600"></div>
             </div>
+
+            <!-- CONNECTOR 3: Presisi Tanpa Putus dari Poros Tengah ke 7 Bidang Resmi APPSI -->
+            <svg class="w-[1112px] h-7 text-emerald-600 block mx-auto shrink-0" viewBox="0 0 1112 28" fill="none" style="width: 1112px; max-width: 1112px;">
+                <!-- Turun menyambung tepat dari poros tengah level 2 (x=556) -->
+                <path d="M 556 0 V 14" stroke="currentColor" stroke-width="2"/>
+                <!-- Bus horizontal membentang dari ujung kolom 1 (x=76) ke ujung kolom 7 (x=1036) -->
+                <path d="M 76 14 H 1036" stroke="currentColor" stroke-width="2"/>
+                <!-- 7 Garis vertikal turun tepat menyentuh puncak 7 kepala bidang -->
+                <path d="M 76 14 V 28 M 236 14 V 28 M 396 14 V 28 M 556 14 V 28 M 716 14 V 28 M 876 14 V 28 M 1036 14 V 28" stroke="currentColor" stroke-width="2"/>
+            </svg>
 
             <!-- ==================================================== -->
             <!-- LEVEL 3: 7 BIDANG RESMI APPSI (BERDERET HORIZONTAL)   -->
             <!-- ==================================================== -->
-            <div class="relative space-y-0 pt-0">
+            <div class="w-[1112px] mx-auto block">
                 
-                <!-- Bus SVG: 7 Kolom Persis dari x=76 ke x=1036 (Center=556) -->
-                <svg class="w-[1112px] h-7 text-emerald-600 mx-auto block" viewBox="0 0 1112 28" fill="none">
-                    <!-- Turun dari poros tengah atas (x=556) -->
-                    <path d="M 556 0 V 14" stroke="currentColor" stroke-width="2"/>
-                    <!-- Garis horizontal bus dari ujung kolom 1 ke ujung kolom 7 -->
-                    <path d="M 76 14 H 1036" stroke="currentColor" stroke-width="2"/>
-                    <!-- 7 Ticks vertikal tepat menuju ke masing-masing 7 kepala kolom -->
-                    <path d="M 76 14 V 28 M 236 14 V 28 M 396 14 V 28 M 556 14 V 28 M 716 14 V 28 M 876 14 V 28 M 1036 14 V 28" stroke="currentColor" stroke-width="2"/>
-                </svg>
-
                 <!-- 7 Columns Side-by-Side (Width 1112px, each w-[152px], gap-2 = 8px) -->
                 <div class="w-[1112px] mx-auto grid grid-cols-7 gap-2">
                     @foreach($tree['bidangs'] as $bKey => $b)
@@ -501,10 +509,10 @@
                                 </h5>
                             </div>
 
-                            <!-- Continuous SVG Arrow -->
-                            <svg class="w-4 h-3.5 text-emerald-600 block -my-[1px]" viewBox="0 0 16 14" fill="none">
-                                <line x1="8" y1="0" x2="8" y2="8" stroke="currentColor" stroke-width="2"/>
-                                <polygon points="4,7 8,13 12,7" fill="currentColor"/>
+                            <!-- Continuous SVG Arrow to Ketua Bidang -->
+                            <svg class="w-4 h-4 text-emerald-600 block my-0.5 shrink-0" viewBox="0 0 16 16" fill="none">
+                                <line x1="8" y1="0" x2="8" y2="10" stroke="currentColor" stroke-width="2"/>
+                                <polygon points="4,9 8,15 12,9" fill="currentColor"/>
                             </svg>
 
                             <!-- 2. KETUA BIDANG -->
@@ -519,9 +527,9 @@
 
                             <!-- 3. ANGGOTA BIDANG (Jika Ada) -->
                             @if(count($b['anggota']) > 0)
-                                <svg class="w-4 h-3 text-emerald-500 block -my-[1px]" viewBox="0 0 16 12" fill="none">
-                                    <line x1="8" y1="0" x2="8" y2="6" stroke="currentColor" stroke-width="1.5"/>
-                                    <polygon points="5,5 8,11 11,5" fill="currentColor"/>
+                                <svg class="w-4 h-3.5 text-emerald-500 block my-0.5 shrink-0" viewBox="0 0 16 14" fill="none">
+                                    <line x1="8" y1="0" x2="8" y2="8" stroke="currentColor" stroke-width="1.5"/>
+                                    <polygon points="5,7 8,13 11,7" fill="currentColor"/>
                                 </svg>
 
                                 <div class="w-full rounded-lg bg-emerald-50 border border-emerald-200 text-center shadow-2xs overflow-hidden mt-0.5">
@@ -565,7 +573,7 @@
             </div>
 
             <!-- Footer SK & Legalitas Resmi -->
-            <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-[9px] text-slate-500 font-medium">
+            <div class="mt-6 pt-3 border-t border-slate-200 flex items-center justify-between text-[9px] text-slate-500 font-medium">
                 <span>Ditetapkan di Palembang, 24 Juni 2026 • SK DPW APPSI Sumatera Selatan No: 012/SK/DPW-APPSI/VI/2026</span>
                 <span class="font-bold text-emerald-800">Portal Resmi: appsiba.or.id</span>
             </div>
