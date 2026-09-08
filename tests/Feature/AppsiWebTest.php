@@ -295,6 +295,15 @@ class AppsiWebTest extends TestCase
         $html = $response->getContent();
         $qrCodeCount = substr_count($html, 'api.qrserver.com/v1/create-qr-code');
         $this->assertEquals(1, $qrCodeCount, 'Letter must contain exactly 1 verifiable QR code');
+
+        // Assert kop layout uses balanced 3-column table and non-overflowing address box
+        $response->assertSee('kop-table', false);
+        $response->assertSee('kop-logo-col', false);
+        $response->assertSee('kop-spacer-col', false);
+        $response->assertSee('kop-address-box', false);
+        $response->assertSee('kop-address-line1', false);
+        $response->assertSee('kop-address-line2', false);
+        $response->assertSee('kop-divider', false);
     }
 
     public function test_member_directory_visibility_toggle_and_public_display(): void

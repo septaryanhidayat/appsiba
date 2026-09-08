@@ -40,31 +40,43 @@
             position: relative;
             transition: width 0.2s ease, min-height 0.2s ease;
         }
-        .kop-container {
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-bottom: 6px;
-        }
-        .kop-logo {
-            position: absolute;
-            left: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 78px;
-            height: 78px;
-            object-fit: contain;
-        }
-        .kop-text {
-            text-align: center;
+        .kop-header {
             width: 100%;
-            padding-left: 80px;
-            padding-right: 5px;
+            margin-bottom: 20px;
+        }
+        .kop-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: none;
+            table-layout: fixed;
+            margin: 0;
+            padding: 0;
+        }
+        .kop-logo-col {
+            width: 72px;
+            vertical-align: middle;
+            text-align: left;
+            padding: 0;
+        }
+        .kop-logo-img {
+            width: 68px;
+            height: 68px;
+            object-fit: contain;
+            display: block;
+        }
+        .kop-text-col {
+            vertical-align: middle;
+            text-align: center;
+            padding: 0 4px;
+        }
+        .kop-spacer-col {
+            width: 72px;
+            padding: 0;
         }
         .kop-title-sub {
-            font-size: 13pt;
+            font-size: 12pt;
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             margin: 0;
             line-height: 1.15;
             text-transform: uppercase;
@@ -72,9 +84,9 @@
             white-space: nowrap;
         }
         .kop-title-main {
-            font-size: 15.5pt;
+            font-size: 13pt;
             font-weight: 900;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
             margin: 2px 0 0 0;
             line-height: 1.15;
             text-transform: uppercase;
@@ -82,7 +94,7 @@
             white-space: nowrap;
         }
         .kop-title-region {
-            font-size: 13pt;
+            font-size: 12pt;
             font-weight: 800;
             letter-spacing: 0.8px;
             margin: 2px 0 0 0;
@@ -92,7 +104,7 @@
             white-space: nowrap;
         }
         .kop-title-prov {
-            font-size: 10.5pt;
+            font-size: 10pt;
             font-weight: 700;
             letter-spacing: 0.8px;
             margin: 1px 0 0 0;
@@ -101,20 +113,33 @@
             color: #334155;
             white-space: nowrap;
         }
-        .kop-address {
-            font-size: 7.8pt;
+        .kop-address-box {
+            margin-top: 5px;
             text-align: center;
-            margin-top: 4px;
-            color: #1e293b;
+            font-size: 8pt;
             line-height: 1.35;
+            color: #1e293b;
+        }
+        .kop-address-line1 {
+            font-size: 8pt;
             letter-spacing: -0.1px;
-            white-space: nowrap;
+            white-space: normal;
+        }
+        .kop-address-line2 {
+            font-size: 7.8pt;
+            margin-top: 1px;
+            letter-spacing: -0.1px;
+            color: #334155;
+        }
+        .kop-sep {
+            margin: 0 5px;
+            color: #94a3b8;
         }
         .kop-divider {
             border-top: 2.5px solid #000;
             border-bottom: 1px solid #000;
             height: 4px;
-            margin-top: 5px;
+            margin-top: 6px;
             margin-bottom: 22px;
         }
         .letter-table td {
@@ -207,25 +232,42 @@
     <!-- Page Sheet -->
     <div class="page-sheet">
         
-        <!-- Official KOP APPSI BANYUASIN Anti-Wrapping -->
-        <div class="kop-container">
-            @if(!empty($settings['logo']))
-                <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo APPSI" class="kop-logo">
-            @else
-                <img src="{{ asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="kop-logo">
-            @endif
-            <div class="kop-text">
-                <div class="kop-title-sub">DEWAN PIMPINAN DAERAH</div>
-                <div class="kop-title-main">ASOSIASI PEDAGANG PASAR SELURUH INDONESIA</div>
-                <div class="kop-title-region">KABUPATEN BANYUASIN</div>
-                <div class="kop-title-prov">PROVINSI SUMATERA SELATAN</div>
-                <div class="kop-address">
-                    Sekretariat: {{ $settings['alamat'] ?? 'Jalan Merdeka, Kelurahan Pangkalan Balai, Banyuasin III (30914)' }} | HP/WA: {{ $settings['telepon'] ?? '0811 618 808' }} | Email: {{ $settings['email'] ?? 'appsi.banyuasin@gmail.com' }} | Web: {{ $settings['website'] ?? 'appsiba.or.id' }}
+        <!-- Official KOP APPSI BANYUASIN (Perfect Symmetric Balance & Anti-Overflow) -->
+        <div class="kop-header">
+            <table class="kop-table">
+                <tr>
+                    <td class="kop-logo-col">
+                        @if(!empty($settings['logo']))
+                            <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo APPSI" class="kop-logo-img">
+                        @else
+                            <img src="{{ asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="kop-logo-img">
+                        @endif
+                    </td>
+                    <td class="kop-text-col">
+                        <div class="kop-title-sub">DEWAN PIMPINAN DAERAH</div>
+                        <div class="kop-title-main">ASOSIASI PEDAGANG PASAR SELURUH INDONESIA</div>
+                        <div class="kop-title-region">KABUPATEN BANYUASIN</div>
+                        <div class="kop-title-prov">PROVINSI SUMATERA SELATAN</div>
+                    </td>
+                    <td class="kop-spacer-col"></td>
+                </tr>
+            </table>
+
+            <div class="kop-address-box">
+                <div class="kop-address-line1">
+                    Sekretariat: {{ $settings['alamat'] ?? 'Jalan Merdeka, Kelurahan Pangkalan Balai - Kecamatan Banyuasin III, Kabupaten Banyuasin, Sumatera Selatan (30914)' }}
+                </div>
+                <div class="kop-address-line2">
+                    <span>HP/WA: {{ $settings['telepon'] ?? '0811 618 808' }}</span>
+                    <span class="kop-sep">|</span>
+                    <span>Email: {{ $settings['email'] ?? 'appsi.banyuasin@gmail.com' }}</span>
+                    <span class="kop-sep">|</span>
+                    <span>Website: {{ $settings['website'] ?? 'appsiba.or.id' }}</span>
                 </div>
             </div>
-        </div>
 
-        <div class="kop-divider"></div>
+            <div class="kop-divider"></div>
+        </div>
 
         <!-- Date & Location -->
         <div class="text-end mb-4">
