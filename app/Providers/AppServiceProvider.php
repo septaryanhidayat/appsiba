@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use App\Services\VisitorTrackerService;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
@@ -35,6 +36,22 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('webSetting', $webSetting);
             } catch (\Throwable $e) {
                 $view->with('webSetting', []);
+            }
+        });
+
+        View::composer('layouts.public', function ($view) {
+            try {
+                $stats = VisitorTrackerService::getRealVisitorStats();
+                $view->with('visitorStats', $stats);
+            } catch (\Throwable $e) {
+                $view->with('visitorStats', [
+                    'today' => 1,
+                    'yesterday' => 0,
+                    'this_month' => 1,
+                    'total_visitors' => 1,
+                    'total_hits' => 1,
+                    'online' => 1,
+                ]);
             }
         });
     }

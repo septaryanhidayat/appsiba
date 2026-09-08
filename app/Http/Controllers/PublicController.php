@@ -50,20 +50,14 @@ class PublicController extends Controller
     }
 
     /**
-     * Struktur Organisasi DPD APPSI Banyuasin (Adopsi appsi.id)
+     * Struktur Organisasi DPD APPSI Banyuasin (SK DPW APPSI No: 012/SK/DPW-APPSI/VI/2026)
      */
     public function struktur()
     {
         $structures = OrganizationStructure::orderBy('urutan', 'asc')->get();
+        $tree = OrganizationStructure::getHierarchyTree();
 
-        $ketua = $structures->firstWhere('jabatan', 'Ketua DPD') ?? $structures->first();
-        $pimpinanHarian = $structures->where('divisi', 'Pimpinan Harian')->filter(fn ($item) => $item->id !== ($ketua->id ?? 0));
-        $sekretariat = $structures->where('divisi', 'Sekretariat');
-        $kebendaharaan = $structures->where('divisi', 'Kebendaharaan');
-        $bidang = $structures->filter(fn ($item) => ! in_array($item->divisi, ['Pimpinan Harian', 'Sekretariat', 'Kebendaharaan', 'Komisariat Pasar']));
-        $komisariat = $structures->where('divisi', 'Komisariat Pasar');
-
-        return view('public.struktur', compact('structures', 'ketua', 'pimpinanHarian', 'sekretariat', 'kebendaharaan', 'bidang', 'komisariat'));
+        return view('public.struktur', compact('structures', 'tree'));
     }
 
     /**

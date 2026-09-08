@@ -5,11 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\OrganizationStructure;
 use App\Services\ImageService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class OrganizationController extends Controller
 {
-    public function index(Request $request)
+    /**
+     * Display listing of organization members & visual hierarchy chart.
+     */
+    public function index(Request $request): View
     {
         $query = OrganizationStructure::query();
 
@@ -22,12 +27,18 @@ class OrganizationController extends Controller
             });
         }
 
-        $officials = $query->orderBy('urutan', 'asc')->paginate(15)->withQueryString();
+        $perPage = (int) $request->get('entries', 25);
+        $structures = $query->orderBy('urutan', 'asc')->paginate($perPage)->withQueryString();
+        $officials = $structures;
+        $tree = OrganizationStructure::getHierarchyTree();
 
-        return view('admin.organization.index', compact('officials'));
+        return view('admin.organization.index', compact('structures', 'officials', 'tree'));
     }
 
-    public function store(Request $request)
+    /**
+     * Store new official in organization structure.
+     */
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
@@ -41,7 +52,7 @@ class OrganizationController extends Controller
         ]);
 
         if (empty($validated['periode'])) {
-            $validated['periode'] = '2024 - 2029';
+            $validated['periode'] = '2026 - 2031';
         }
 
         if (empty($validated['urutan'])) {
@@ -61,7 +72,10 @@ class OrganizationController extends Controller
         return redirect()->back()->with('success', 'Data pengurus DPD APPSI Banyuasin berhasil ditambahkan.');
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update existing official in organization structure.
+     */
+    public function update(Request $request, int|string $id): RedirectResponse
     {
         $official = OrganizationStructure::findOrFail($id);
 
@@ -89,7 +103,10 @@ class OrganizationController extends Controller
         return redirect()->back()->with('success', 'Data pengurus DPD APPSI Banyuasin berhasil diperbarui.');
     }
 
-    public function destroy($id)
+    /**
+     * Remove official from organization structure.
+     */
+    public function destroy(int|string $id): RedirectResponse
     {
         $official = OrganizationStructure::findOrFail($id);
         if ($official->foto && ! str_starts_with($official->foto, 'assets/')) {

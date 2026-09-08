@@ -376,6 +376,76 @@
 
         </div>
 
+        <!-- Real-Time Visitor Statistics Bar (Sleek & Trust-Building) -->
+        <div class="mt-8 pt-6 border-t border-emerald-900/70">
+            <div class="p-5 rounded-2xl bg-black/40 border border-emerald-800/40 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-inner">
+                
+                <!-- Left: Branding & Status -->
+                <div class="flex items-center gap-4 text-center sm:text-left">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0 text-xl shadow-inner">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 justify-center sm:justify-start">
+                            <span class="text-sm font-black text-white tracking-wide uppercase">Statistik Pengunjung Website</span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span>Live Real-Time</span>
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Monitoring trafik & pengunjung portal resmi DPD APPSI Kabupaten Banyuasin</p>
+                    </div>
+                </div>
+
+                <!-- Right: 5 Balanced Metric Boxes -->
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 w-full lg:w-auto text-center">
+                    <!-- Hari Ini -->
+                    <div class="bg-white/5 hover:bg-white/10 transition-colors px-4 py-2.5 rounded-xl border border-white/5 min-w-[90px]">
+                        <span class="text-[9px] uppercase font-bold text-slate-400 block tracking-wider">Hari Ini</span>
+                        <span class="text-sm sm:text-base font-black text-amber-400 mt-0.5 block">
+                            {{ number_format($visitorStats['today'] ?? 0) }}
+                        </span>
+                    </div>
+
+                    <!-- Kemarin -->
+                    <div class="bg-white/5 hover:bg-white/10 transition-colors px-4 py-2.5 rounded-xl border border-white/5 min-w-[90px]">
+                        <span class="text-[9px] uppercase font-bold text-slate-400 block tracking-wider">Kemarin</span>
+                        <span class="text-sm sm:text-base font-black text-slate-200 mt-0.5 block">
+                            {{ number_format($visitorStats['yesterday'] ?? 0) }}
+                        </span>
+                    </div>
+
+                    <!-- Bulan Ini -->
+                    <div class="bg-white/5 hover:bg-white/10 transition-colors px-4 py-2.5 rounded-xl border border-white/5 min-w-[90px]">
+                        <span class="text-[9px] uppercase font-bold text-slate-400 block tracking-wider">Bulan Ini</span>
+                        <span class="text-sm sm:text-base font-black text-sky-400 mt-0.5 block">
+                            {{ number_format($visitorStats['this_month'] ?? 0) }}
+                        </span>
+                    </div>
+
+                    <!-- Total Tamu -->
+                    <div class="bg-white/5 hover:bg-white/10 transition-colors px-4 py-2.5 rounded-xl border border-white/5 min-w-[90px]">
+                        <span class="text-[9px] uppercase font-bold text-slate-400 block tracking-wider">Total Tamu</span>
+                        <span class="text-sm sm:text-base font-black text-emerald-400 mt-0.5 block">
+                            {{ number_format($visitorStats['total_visitors'] ?? 0) }}
+                        </span>
+                    </div>
+
+                    <!-- Online -->
+                    <div class="col-span-2 sm:col-span-1 bg-white/5 hover:bg-white/10 transition-colors px-4 py-2.5 rounded-xl border border-white/5 min-w-[90px]">
+                        <span class="text-[9px] uppercase font-bold text-slate-400 block tracking-wider flex items-center justify-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>Online</span>
+                        </span>
+                        <span class="text-sm sm:text-base font-black text-rose-400 mt-0.5 block">
+                            {{ number_format($visitorStats['online'] ?? 1) }}
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <!-- Copyright Bar & Watermark Beranda Teknologi Digital (Simple & Subtle) -->
         <div class="border-t border-emerald-900/80 bg-black/40 py-3 text-xs">
             <div class="mx-auto max-w-[1180px] px-5 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">

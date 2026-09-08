@@ -54,7 +54,7 @@ class AppsiWebTest extends TestCase
     {
         $orgResponse = $this->get('/struktur');
         $orgResponse->assertStatus(200);
-        $orgResponse->assertSee('H. Gusra Yetri, SH', false);
+        $orgResponse->assertSee('GUSRA YETRI', false);
 
         $membersResponse = $this->get('/keanggotaan');
         $membersResponse->assertStatus(200);

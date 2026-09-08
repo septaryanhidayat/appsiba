@@ -138,6 +138,47 @@
 
 </div>
 
+<!-- Real-time Visitor Stats Banner & Quick Analytics Link -->
+<div class="mb-7 bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 rounded-2xl p-4 sm:p-5 text-white shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-lg shrink-0">
+            <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <div>
+            <div class="flex items-center gap-2">
+                <h3 class="text-sm font-extrabold text-white">Monitoring Trafik & Pengunjung Portal</h3>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-emerald-500 text-slate-950 uppercase">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping"></span> Live
+                </span>
+            </div>
+            <p class="text-[11px] text-slate-300 mt-0.5">Statistik riil pengunjung website resmi DPD APPSI Kabupaten Banyuasin</p>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 w-full md:w-auto text-center">
+        <div class="bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 min-w-[80px]">
+            <span class="text-[9px] text-slate-400 uppercase font-bold block">Hari Ini</span>
+            <span class="text-sm font-black text-amber-400 block">{{ number_format($visitorStats['today'] ?? 0) }}</span>
+        </div>
+        <div class="bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 min-w-[80px]">
+            <span class="text-[9px] text-slate-400 uppercase font-bold block">Kemarin</span>
+            <span class="text-sm font-black text-slate-200 block">{{ number_format($visitorStats['yesterday'] ?? 0) }}</span>
+        </div>
+        <div class="bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 min-w-[80px]">
+            <span class="text-[9px] text-slate-400 uppercase font-bold block">Bulan Ini</span>
+            <span class="text-sm font-black text-emerald-400 block">{{ number_format($visitorStats['this_month'] ?? 0) }}</span>
+        </div>
+        <div class="bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 min-w-[80px]">
+            <span class="text-[9px] text-slate-400 uppercase font-bold block">Online</span>
+            <span class="text-sm font-black text-rose-400 block">{{ number_format($visitorStats['online'] ?? 1) }}</span>
+        </div>
+        <a href="{{ route('admin.analytics.index') }}" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow transition inline-flex items-center gap-1.5 shrink-0">
+            <span>Buka Analitik</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+    </div>
+</div>
+
 <!-- Recent Content Tables (Rapi & Responsif di Seluler) -->
 <div class="grid lg:grid-cols-2 gap-5 sm:gap-6 mb-6">
     

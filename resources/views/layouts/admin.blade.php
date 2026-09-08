@@ -168,10 +168,19 @@
                 <!-- Menu Group 1: Ringkasan -->
                 <div>
                     <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-emerald-300/60 block mb-2">UTAMA</span>
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-600 text-white font-bold shadow' : 'text-emerald-100/90 hover:bg-emerald-800/80 hover:text-white' }}">
-                        <i class="fa-solid fa-gauge-high w-4 text-sm"></i>
-                        <span>Dashboard Eksekutif</span>
-                    </a>
+                    <div class="space-y-1">
+                        <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-600 text-white font-bold shadow' : 'text-emerald-100/90 hover:bg-emerald-800/80 hover:text-white' }}">
+                            <i class="fa-solid fa-gauge-high w-4 text-sm"></i>
+                            <span>Dashboard Eksekutif</span>
+                        </a>
+                        <a href="{{ route('admin.analytics.index') }}" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition {{ request()->routeIs('admin.analytics.*') ? 'bg-emerald-600 text-white font-bold shadow' : 'text-emerald-100/90 hover:bg-emerald-800/80 hover:text-white' }}">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-chart-line w-4 text-sm"></i>
+                                <span>Analitik Pengunjung</span>
+                            </div>
+                            <span class="px-1.5 py-0.5 rounded-full bg-emerald-400 text-emerald-950 text-[9px] font-extrabold uppercase">Live</span>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Menu Group 2: Pasar & Anggota -->

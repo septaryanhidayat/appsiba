@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DownloadDocumentController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -89,6 +90,10 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     // Dashboard Utama
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [DashboardController::class, 'index']);
+
+    // Modul Statistik & Analitik Pengunjung
+    Route::get('/analitik', [AnalyticsController::class, 'index'])->name('analytics.index');
+    Route::get('/analitik-pengunjung', [AnalyticsController::class, 'index']);
 
     // Modul Keanggotaan Pedagang Pasar
     Route::get('/anggota', [MemberController::class, 'index'])->name('members.index');

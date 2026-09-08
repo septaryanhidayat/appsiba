@@ -11,6 +11,7 @@ use App\Models\Meeting;
 use App\Models\Member;
 use App\Models\MemberRegistration;
 use App\Models\Post;
+use App\Services\VisitorTrackerService;
 
 class DashboardController extends Controller
 {
@@ -34,7 +35,8 @@ class DashboardController extends Controller
         $recentRegistrations = MemberRegistration::latest()->take(5)->get();
         $recentLetters = Letter::latest('tanggal')->take(5)->get();
         $recentInboxes = Inbox::latest('tanggal')->take(5)->get();
+        $visitorStats = VisitorTrackerService::getRealVisitorStats();
 
-        return view('admin.dashboard', compact('stats', 'recentMembers', 'recentRegistrations', 'recentLetters', 'recentInboxes'));
+        return view('admin.dashboard', compact('stats', 'recentMembers', 'recentRegistrations', 'recentLetters', 'recentInboxes', 'visitorStats'));
     }
 }

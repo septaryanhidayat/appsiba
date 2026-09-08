@@ -77,7 +77,7 @@
 
                 <div>
                     <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Periode Kepengurusan</label>
-                    <input type="text" name="periode" value="{{ old('periode', $settings['periode'] ?? '2024 - 2029') }}" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-sm focus:border-emerald-600 focus:outline-none">
+                    <input type="text" name="periode" value="{{ old('periode', $settings['periode'] ?? '2026 - 2031') }}" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-sm focus:border-emerald-600 focus:outline-none">
                 </div>
             </div>
         </div>
@@ -97,15 +97,15 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Sekretaris Umum *</label>
-                    <input type="text" name="nama_sekretaris" required value="{{ old('nama_sekretaris', $settings['nama_sekretaris'] ?? 'M. Rian Pratama, S.E.') }}" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-sm font-semibold focus:border-emerald-600 focus:outline-none">
+                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Sekretaris DPD *</label>
+                    <input type="text" name="nama_sekretaris" required value="{{ old('nama_sekretaris', $settings['nama_sekretaris'] ?? 'H. Syamsir Sikumbang, S.Ag, M.Si.') }}" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-sm font-semibold focus:border-emerald-600 focus:outline-none">
                     <input type="hidden" name="jabatan_sekretaris" value="Sekretaris DPD APPSI Kabupaten Banyuasin">
                 </div>
             </div>
 
             <div class="mt-4">
-                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Bendahara Umum</label>
-                <input type="text" name="nama_bendahara" value="{{ old('nama_bendahara', $settings['nama_bendahara'] ?? 'Hj. Siti Aminah') }}" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-sm focus:border-emerald-600 focus:outline-none">
+                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Bendahara DPD</label>
+                <input type="text" name="nama_bendahara" value="{{ old('nama_bendahara', $settings['nama_bendahara'] ?? 'H. Rahman, S.Kom') }}" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 text-sm focus:border-emerald-600 focus:outline-none">
             </div>
         </div>
 
