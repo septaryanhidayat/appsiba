@@ -475,7 +475,16 @@ INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
 ('15', 'misi', '1. Komunitas Daerah: Terhubung dengan pedagang pasar di seluruh Kabupaten Banyuasin dan jejaring nasional.\n2. Advokasi & Perlindungan: Memperjuangkan hak dan kepentingan pedagang pasar tradisional.\n3. Penguatan Kapasitas: Program, pelatihan digitalisasi, dan informasi untuk kemajuan usaha bersama.\n4. Kemitraan: Sinergi dengan instansi pemerintah, BUMD, dan perbankan demi permodalan dan fasilitas pasar yang higienis.', '2026-09-03 14:48:56', '2026-09-03 14:48:56'),
 ('16', 'sambutan_ketua', 'Bergabung dan jadilah bagian dari Asosiasi Pedagang Pasar Seluruh Indonesia sekarang! Bersama membangun pasar tradisional yang kuat, mandiri, dan berdaya saing untuk kesejahteraan pedagang dan masyarakat Banyuasin.', '2026-09-03 14:48:56', '2026-09-03 14:48:56'),
 ('17', 'tentang_organisasi', 'Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) adalah wadah resmi yang menghimpun, mewakili, dan memperjuangkan kepentingan pedagang pasar tradisional di seluruh Indonesia. Kami berkomitmen untuk membangun pasar tradisional yang kuat, mandiri, dan berdaya saing melalui kolaborasi, advokasi, dan pengembangan kapasitas para pedagang.', '2026-09-03 14:48:56', '2026-09-03 14:48:56'),
-('18', 'tampilkan_daftar_anggota', '1', '2026-09-04 15:00:00', '2026-09-04 15:00:00');
+('18', 'tampilkan_daftar_anggota', '1', '2026-09-04 15:00:00', '2026-09-04 15:00:00'),
+('19', 'seo_title', 'DPD APPSI Kabupaten Banyuasin - Asosiasi Pedagang Pasar Seluruh Indonesia', '2026-09-08 18:00:00', '2026-09-08 18:00:00'),
+('20', 'seo_description', 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) Kabupaten Banyuasin. Informasi berita pasar, direktori pedagang binaan, pendaftaran keanggotaan online, dan verifikasi surat digital.', '2026-09-08 18:00:00', '2026-09-08 18:00:00'),
+('21', 'seo_keywords', 'appsi banyuasin, pasar banyuasin, pedagang banyuasin, asosiasi pedagang pasar seluruh indonesia, pasar pangkalan balai, pasar betung', '2026-09-08 18:00:00', '2026-09-08 18:00:00'),
+('22', 'hero_badge', 'DPD APPSI KABUPATEN BANYUASIN', '2026-09-08 18:00:00', '2026-09-08 18:00:00'),
+('23', 'hero_title', 'Bergabung dan jadilah bagian dari Asosiasi Pedagang Pasar Seluruh Indonesia sekarang!', '2026-09-08 18:00:00', '2026-09-08 18:00:00'),
+('24', 'hero_subtitle', 'Bersama memajukan pedagang pasar tradisional demi masa depan mandiri, kuat berdaya saing untuk kesejahteraan pedagang dan masyarakat Kabupaten Banyuasin.', '2026-09-08 18:00:00', '2026-09-08 18:00:00'),
+('25', 'hero_tagline', 'Kuatkan Suara Pedagang', '2026-09-08 18:00:00', '2026-09-08 18:00:00'),
+('26', 'home_bersatu_title', 'Bersatu, Berdaya, Berkarya untuk Pasar Banyuasin', '2026-09-08 18:00:00', '2026-09-08 18:00:00'),
+('27', 'home_bersatu_desc', 'DPD APPSI hadir mengayomi para pedagang pasar tradisional di seluruh kecamatan Kabupaten Banyuasin melalui penguatan Komisariat Pasar, advokasi harga, perlindungan legalitas usaha, dan fasilitasi modal kerja tanpa jeratan rentenir.', '2026-09-08 18:00:00', '2026-09-08 18:00:00');
 
 
 -- --------------------------------------------------------
@@ -511,6 +520,35 @@ INSERT INTO `download_documents` (`id`, `judul`, `kategori`, `deskripsi`, `file_
 
 
 -- --------------------------------------------------------
+-- Struktur Tabel `visitor_logs`
+-- --------------------------------------------------------
+
+DROP TABLE IF EXISTS `visitor_logs`;
+CREATE TABLE IF NOT EXISTS `visitor_logs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `session_id` varchar(100) DEFAULT NULL,
+  `url` varchar(255) NOT NULL DEFAULT '/',
+  `route_name` varchar(100) DEFAULT NULL,
+  `method` varchar(10) NOT NULL DEFAULT 'GET',
+  `referrer` varchar(500) DEFAULT NULL,
+  `referrer_domain` varchar(150) DEFAULT NULL,
+  `referrer_type` varchar(50) DEFAULT NULL,
+  `user_agent` varchar(500) DEFAULT NULL,
+  `device_type` varchar(30) NOT NULL DEFAULT 'Desktop',
+  `browser` varchar(60) NOT NULL DEFAULT 'Browser Lainnya',
+  `platform` varchar(60) NOT NULL DEFAULT 'OS Lainnya',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `visitor_logs_created_at_ip_address_index` (`created_at`,`ip_address`),
+  KEY `visitor_logs_session_id_created_at_index` (`session_id`,`created_at`),
+  KEY `visitor_logs_url_created_at_index` (`url`,`created_at`),
+  KEY `visitor_logs_referrer_domain_index` (`referrer_domain`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- --------------------------------------------------------
 -- Struktur Tabel `migrations`
 -- --------------------------------------------------------
 
@@ -528,7 +566,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 ('2', '0001_01_01_000001_create_cache_table', '1'),
 ('3', '0001_01_01_000002_create_jobs_table', '1'),
 ('4', '2026_09_03_100000_create_appsiba_tables', '1'),
-('5', '2026_09_04_145647_create_download_documents_table', '1');
+('5', '2026_09_04_145647_create_download_documents_table', '1'),
+('6', '2026_09_08_180000_create_visitor_logs_table', '1');
 
 COMMIT;
 SET FOREIGN_KEY_CHECKS=1;
