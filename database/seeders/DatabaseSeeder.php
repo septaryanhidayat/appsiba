@@ -52,6 +52,15 @@ class DatabaseSeeder extends Seeder
             'sambutan_ketua' => 'Bergabung dan jadilah bagian dari Asosiasi Pedagang Pasar Seluruh Indonesia sekarang! Bersama membangun pasar tradisional yang kuat, mandiri, dan berdaya saing untuk kesejahteraan pedagang dan masyarakat Banyuasin.',
             'tentang_organisasi' => 'Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) adalah wadah resmi yang menghimpun, mewakili, dan memperjuangkan kepentingan pedagang pasar tradisional di seluruh Indonesia. Kami berkomitmen untuk membangun pasar tradisional yang kuat, mandiri, dan berdaya saing melalui kolaborasi, advokasi, dan pengembangan kapasitas para pedagang.',
             'tampilkan_daftar_anggota' => '1',
+            'seo_title' => 'DPD APPSI Kabupaten Banyuasin - Asosiasi Pedagang Pasar Seluruh Indonesia',
+            'seo_description' => 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) Kabupaten Banyuasin. Informasi berita pasar, direktori pedagang binaan, pendaftaran keanggotaan online, dan verifikasi surat digital.',
+            'seo_keywords' => 'appsi banyuasin, pasar banyuasin, pedagang banyuasin, asosiasi pedagang pasar seluruh indonesia, pasar pangkalan balai, pasar betung',
+            'hero_badge' => 'DPD APPSI KABUPATEN BANYUASIN',
+            'hero_title' => 'Bergabung dan jadilah bagian dari Asosiasi Pedagang Pasar Seluruh Indonesia sekarang!',
+            'hero_subtitle' => 'Bersama memajukan pedagang pasar tradisional demi masa depan mandiri, kuat berdaya saing untuk kesejahteraan pedagang dan masyarakat Kabupaten Banyuasin.',
+            'hero_tagline' => 'Kuatkan Suara Pedagang',
+            'home_bersatu_title' => 'Bersatu, Berdaya, Berkarya untuk Pasar Banyuasin',
+            'home_bersatu_desc' => 'DPD APPSI hadir mengayomi para pedagang pasar tradisional di seluruh kecamatan Kabupaten Banyuasin melalui penguatan Komisariat Pasar, advokasi harga, perlindungan legalitas usaha, dan fasilitasi modal kerja tanpa jeratan rentenir.',
         ];
 
         foreach ($settings as $key => $value) {
