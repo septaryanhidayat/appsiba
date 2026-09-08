@@ -306,73 +306,107 @@
         </div>
 
         <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm" data-aos="fade-up">
-            
-            <!-- Event 1 -->
-            <article class="grid gap-4 border-b border-slate-100 p-5 sm:grid-cols-[92px_1fr] lg:grid-cols-[92px_1fr_260px] hover:bg-slate-50/50 transition">
-                <div class="flex h-full min-h-[96px] w-full sm:w-[92px] flex-col items-center justify-center rounded-xl bg-emerald-700 text-white mx-auto">
-                    <span class="text-3xl font-extrabold leading-none">28</span>
-                    <span class="mt-1 text-xs font-bold uppercase tracking-wider">JUN</span>
-                    <span class="text-xs font-medium opacity-80">2026</span>
-                </div>
-                <div class="self-center py-1 sm:pr-6 text-center sm:text-left flex flex-col items-center sm:items-start">
-                    <span class="inline-block rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 border border-emerald-100 mx-auto sm:mx-0">
-                        PELAKSANAAN KEGIATAN
-                    </span>
-                    <h3 class="mt-2 text-base font-bold text-slate-900 sm:text-lg">
-                        Rapat Koordinasi Penataan Kios & Distribusi Minyak Goreng Subsidi
-                    </h3>
-                    <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">
-                        Pertemuan pengurus DPD APPSI bersama perwakilan pedagang sembako dan Dinas Perdagangan Kab. Banyuasin.
-                    </p>
-                </div>
-                <div class="flex flex-col items-center sm:items-start justify-center gap-2.5 border-slate-100 pt-3 lg:border-l lg:pl-7 lg:pt-0 text-center sm:text-left">
-                    <div class="flex items-center gap-2 text-xs text-slate-600">
-                        <i class="fa-solid fa-location-dot text-emerald-700"></i>
-                        <span>Pasar Pangkalan Balai, Banyuasin III</span>
+            @if(isset($meetings) && $meetings->count() > 0)
+                @foreach($meetings as $meeting)
+                    <article class="grid gap-4 {{ !$loop->last ? 'border-b border-slate-100' : '' }} p-5 sm:grid-cols-[92px_1fr] lg:grid-cols-[92px_1fr_260px] hover:bg-slate-50/50 transition">
+                        <div class="flex h-full min-h-[96px] w-full sm:w-[92px] flex-col items-center justify-center rounded-xl bg-emerald-700 text-white mx-auto">
+                            <span class="text-3xl font-extrabold leading-none">{{ $meeting->tanggal ? $meeting->tanggal->format('d') : '28' }}</span>
+                            <span class="mt-1 text-xs font-bold uppercase tracking-wider">{{ $meeting->tanggal ? $meeting->tanggal->translatedFormat('M') : 'JUN' }}</span>
+                            <span class="text-xs font-medium opacity-80">{{ $meeting->tanggal ? $meeting->tanggal->format('Y') : '2026' }}</span>
+                        </div>
+                        <div class="self-center py-1 sm:pr-6 text-center sm:text-left flex flex-col items-center sm:items-start">
+                            <span class="inline-block rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 border border-emerald-100 mx-auto sm:mx-0">
+                                {{ $meeting->status === 'selesai' ? 'SELESAI DILAKSANAKAN' : 'AGENDA KERJA' }}
+                            </span>
+                            <h3 class="mt-2 text-base font-bold text-slate-900 sm:text-lg">
+                                {{ $meeting->judul_rapat }}
+                            </h3>
+                            <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">
+                                {{ Str::limit($meeting->agenda ?? $meeting->pembahasan ?? 'Pertemuan koordinasi jajaran DPD APPSI Banyuasin bersama pihak terkait.', 140) }}
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-center sm:items-start justify-center gap-2.5 border-slate-100 pt-3 lg:border-l lg:pl-7 lg:pt-0 text-center sm:text-left">
+                            <div class="flex items-center gap-2 text-xs text-slate-600">
+                                <i class="fa-solid fa-location-dot text-emerald-700"></i>
+                                <span class="line-clamp-1">{{ $meeting->tempat ?? 'Sekretariat DPD APPSI Banyuasin' }}</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-600">
+                                <i class="fa-regular fa-clock text-emerald-700"></i>
+                                <span>{{ $meeting->waktu_mulai ? substr($meeting->waktu_mulai, 0, 5).' WIB' : '09.00 WIB' }} - {{ $meeting->waktu_selesai ? substr($meeting->waktu_selesai, 0, 5).' WIB' : 'Selesai' }}</span>
+                            </div>
+                            <a href="#aspirasi" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-emerald-200 bg-white text-emerald-800 hover:bg-emerald-50 h-9 px-3 text-xs w-full max-w-xs sm:max-w-none mx-auto sm:mx-0 transition">
+                                Hubungi Panitia
+                            </a>
+                        </div>
+                    </article>
+                @endforeach
+            @else
+                <!-- Event 1 Default Fallback -->
+                <article class="grid gap-4 border-b border-slate-100 p-5 sm:grid-cols-[92px_1fr] lg:grid-cols-[92px_1fr_260px] hover:bg-slate-50/50 transition">
+                    <div class="flex h-full min-h-[96px] w-full sm:w-[92px] flex-col items-center justify-center rounded-xl bg-emerald-700 text-white mx-auto">
+                        <span class="text-3xl font-extrabold leading-none">28</span>
+                        <span class="mt-1 text-xs font-bold uppercase tracking-wider">JUN</span>
+                        <span class="text-xs font-medium opacity-80">2026</span>
                     </div>
-                    <div class="flex items-center gap-2 text-xs text-slate-600">
-                        <i class="fa-regular fa-clock text-emerald-700"></i>
-                        <span>09.00 WIB - Selesai</span>
+                    <div class="self-center py-1 sm:pr-6 text-center sm:text-left flex flex-col items-center sm:items-start">
+                        <span class="inline-block rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 border border-emerald-100 mx-auto sm:mx-0">
+                            PELAKSANAAN KEGIATAN
+                        </span>
+                        <h3 class="mt-2 text-base font-bold text-slate-900 sm:text-lg">
+                            Rapat Koordinasi Penataan Kios & Distribusi Minyak Goreng Subsidi
+                        </h3>
+                        <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">
+                            Pertemuan pengurus DPD APPSI bersama perwakilan pedagang sembako dan Dinas Perdagangan Kab. Banyuasin.
+                        </p>
                     </div>
-                    <a href="#aspirasi" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-emerald-200 bg-white text-emerald-800 hover:bg-emerald-50 h-9 px-3 text-xs w-full max-w-xs sm:max-w-none mx-auto sm:mx-0 transition">
-                        Hubungi Panitia
-                    </a>
-                </div>
-            </article>
+                    <div class="flex flex-col items-center sm:items-start justify-center gap-2.5 border-slate-100 pt-3 lg:border-l lg:pl-7 lg:pt-0 text-center sm:text-left">
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <i class="fa-solid fa-location-dot text-emerald-700"></i>
+                            <span>Pasar Pangkalan Balai, Banyuasin III</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <i class="fa-regular fa-clock text-emerald-700"></i>
+                            <span>09.00 WIB - Selesai</span>
+                        </div>
+                        <a href="#aspirasi" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-emerald-200 bg-white text-emerald-800 hover:bg-emerald-50 h-9 px-3 text-xs w-full max-w-xs sm:max-w-none mx-auto sm:mx-0 transition">
+                            Hubungi Panitia
+                        </a>
+                    </div>
+                </article>
 
-            <!-- Event 2 -->
-            <article class="grid gap-4 p-5 sm:grid-cols-[92px_1fr] lg:grid-cols-[92px_1fr_260px] hover:bg-slate-50/50 transition">
-                <div class="flex h-full min-h-[96px] w-full sm:w-[92px] flex-col items-center justify-center rounded-xl bg-emerald-700 text-white mx-auto">
-                    <span class="text-3xl font-extrabold leading-none">05</span>
-                    <span class="mt-1 text-xs font-bold uppercase tracking-wider">JUL</span>
-                    <span class="text-xs font-medium opacity-80">2026</span>
-                </div>
-                <div class="self-center py-1 sm:pr-6 text-center sm:text-left flex flex-col items-center sm:items-start">
-                    <span class="inline-block rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 border border-emerald-100 mx-auto sm:mx-0">
-                        PELATIHAN & UMKM
-                    </span>
-                    <h3 class="mt-2 text-base font-bold text-slate-900 sm:text-lg">
-                        Sosialisasi Pembayaran Non-Tunai QRIS & Fasilitasi KUR Mikro
-                    </h3>
-                    <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">
-                        Pendampingan literasi keuangan dan standarisasi barcode perbankan bagi pedagang pasar binaan APPSI.
-                    </p>
-                </div>
-                <div class="flex flex-col items-center sm:items-start justify-center gap-2.5 border-slate-100 pt-3 lg:border-l lg:pl-7 lg:pt-0 text-center sm:text-left">
-                    <div class="flex items-center gap-2 text-xs text-slate-600">
-                        <i class="fa-solid fa-location-dot text-emerald-700"></i>
-                        <span>Pasar Betung, Kec. Betung</span>
+                <!-- Event 2 Default Fallback -->
+                <article class="grid gap-4 p-5 sm:grid-cols-[92px_1fr] lg:grid-cols-[92px_1fr_260px] hover:bg-slate-50/50 transition">
+                    <div class="flex h-full min-h-[96px] w-full sm:w-[92px] flex-col items-center justify-center rounded-xl bg-emerald-700 text-white mx-auto">
+                        <span class="text-3xl font-extrabold leading-none">05</span>
+                        <span class="mt-1 text-xs font-bold uppercase tracking-wider">JUL</span>
+                        <span class="text-xs font-medium opacity-80">2026</span>
                     </div>
-                    <div class="flex items-center gap-2 text-xs text-slate-600">
-                        <i class="fa-regular fa-clock text-emerald-700"></i>
-                        <span>08.30 WIB - Selesai</span>
+                    <div class="self-center py-1 sm:pr-6 text-center sm:text-left flex flex-col items-center sm:items-start">
+                        <span class="inline-block rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 border border-emerald-100 mx-auto sm:mx-0">
+                            PELATIHAN & UMKM
+                        </span>
+                        <h3 class="mt-2 text-base font-bold text-slate-900 sm:text-lg">
+                            Sosialisasi Pembayaran Non-Tunai QRIS & Fasilitasi KUR Mikro
+                        </h3>
+                        <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">
+                            Pendampingan literasi keuangan dan standarisasi barcode perbankan bagi pedagang pasar binaan APPSI.
+                        </p>
                     </div>
-                    <a href="#aspirasi" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-emerald-200 bg-white text-emerald-800 hover:bg-emerald-50 h-9 px-3 text-xs w-full max-w-xs sm:max-w-none mx-auto sm:mx-0 transition">
-                        Hubungi Panitia
-                    </a>
-                </div>
-            </article>
-
+                    <div class="flex flex-col items-center sm:items-start justify-center gap-2.5 border-slate-100 pt-3 lg:border-l lg:pl-7 lg:pt-0 text-center sm:text-left">
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <i class="fa-solid fa-location-dot text-emerald-700"></i>
+                            <span>Pasar Betung, Kec. Betung</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <i class="fa-regular fa-clock text-emerald-700"></i>
+                            <span>08.30 WIB - Selesai</span>
+                        </div>
+                        <a href="#aspirasi" class="inline-flex items-center justify-center gap-2 rounded-xl font-semibold border border-emerald-200 bg-white text-emerald-800 hover:bg-emerald-50 h-9 px-3 text-xs w-full max-w-xs sm:max-w-none mx-auto sm:mx-0 transition">
+                            Hubungi Panitia
+                        </a>
+                    </div>
+                </article>
+            @endif
         </div>
 
     </div>
@@ -466,62 +500,46 @@
 </section>
 
 <!-- 5. SLIDER FOTO KEGIATAN APPSI BANYUASIN (Interactive Modern Carousel) -->
+@php
+    $slidesList = $gallerySlides ?? (
+        (isset($galleries) && $galleries->count() > 0)
+            ? $galleries->map(fn($g) => [
+                'title' => $g->judul,
+                'category' => $g->kategori ?? 'Dokumentasi Pasar',
+                'image' => $g->foto_url,
+                'desc' => $g->deskripsi ?? 'Dokumentasi kegiatan resmi pendampingan dan kemitraan pasar APPSI Banyuasin.'
+            ])->values()->all()
+            : [
+                [
+                    'title' => 'Sosialisasi Digitalisasi QRIS di Pasar Pangkalan Balai',
+                    'category' => 'Digitalisasi Pasar',
+                    'image' => asset('assets/images/berita/berita-qris-digital.webp'),
+                    'desc' => 'Edukasi dan pendampingan transaksi non-tunai bersama perbankan daerah bagi pedagang sayur dan sembako.'
+                ],
+                [
+                    'title' => 'Operasi Pasar Pangan Murah Sembako di Betung',
+                    'category' => 'Stabilisasi Harga',
+                    'image' => asset('assets/images/berita/berita-operasi-pasar.webp'),
+                    'desc' => 'Distribusi beras medium dan minyak goreng terjangkau untuk menekan laju inflasi bahan pokok masyarakat.'
+                ],
+                [
+                    'title' => 'Pengawasan Tera Ulang Timbangan Pasar Pangkalan Balai',
+                    'category' => 'Tera Timbangan',
+                    'image' => asset('assets/images/berita/kegiatan-timbangan-tera.webp'),
+                    'desc' => 'Kerjasama DPD APPSI dan Dinas Perindagkop memastikan keakuratan timbangan pedagang demi jual beli yang jujur.'
+                ],
+                [
+                    'title' => 'Pelatihan Pembukuan & Literasi Keuangan Pedagang Wanita',
+                    'category' => 'Pemberdayaan UMKM',
+                    'image' => asset('assets/images/berita/kegiatan-pelatihan-wanita.webp'),
+                    'desc' => 'Peningkatan kapasitas pengelolaan arus kas dan literasi perbankan formal bagi pedagang pasar perempuan.'
+                ],
+            ]
+    );
+@endphp
+
 <section class="bg-gradient-to-b from-slate-50 to-emerald-50/40 py-14 sm:py-20 border-t border-slate-200/70" id="galeri-slider"
-         x-data="{
-            active: 0,
-            slides: [
-                @if(isset($galleries) && $galleries->count() > 0)
-                    @foreach($galleries as $g)
-                        {
-                            title: @json($g->judul),
-                            category: @json($g->kategori ?? 'Dokumentasi Pasar'),
-                            image: @json($g->foto_url),
-                            desc: @json($g->deskripsi ?? 'Dokumentasi kegiatan resmi pendampingan dan kemitraan pasar APPSI Banyuasin.')
-                        },
-                    @endforeach
-                @else
-                    {
-                        title: 'Sosialisasi Digitalisasi QRIS di Pasar Pangkalan Balai',
-                        category: 'Digitalisasi Pasar',
-                        image: '{{ asset('assets/images/berita/berita-qris-digital.webp') }}',
-                        desc: 'Edukasi dan pendampingan transaksi non-tunai bersama perbankan daerah bagi pedagang sayur dan sembako.'
-                    },
-                    {
-                        title: 'Operasi Pasar Pangan Murah Sembako di Betung',
-                        category: 'Stabilisasi Harga',
-                        image: '{{ asset('assets/images/berita/berita-operasi-pasar.webp') }}',
-                        desc: 'Distribusi beras medium dan minyak goreng terjangkau untuk menekan laju inflasi bahan pokok masyarakat.'
-                    },
-                    {
-                        title: 'Pengawasan Tera Ulang Timbangan Pasar Pangkalan Balai',
-                        category: 'Tera Timbangan',
-                        image: '{{ asset('assets/images/berita/kegiatan-timbangan-tera.webp') }}',
-                        desc: 'Kerjasama DPD APPSI dan Dinas Perindagkop memastikan keakuratan timbangan pedagang demi jual beli yang jujur.'
-                    },
-                    {
-                        title: 'Pelatihan Pembukuan & Literasi Keuangan Pedagang Wanita',
-                        category: 'Pemberdayaan UMKM',
-                        image: '{{ asset('assets/images/berita/kegiatan-pelatihan-wanita.webp') }}',
-                        desc: 'Peningkatan kapasitas pengelolaan arus kas dan literasi perbankan formal bagi pedagang pasar perempuan.'
-                    }
-                @endif
-            ],
-            timer: null,
-            startAuto() {
-                this.timer = setInterval(() => {
-                    this.next();
-                }, 4500);
-            },
-            stopAuto() {
-                if (this.timer) clearInterval(this.timer);
-            },
-            next() {
-                this.active = (this.active + 1) % this.slides.length;
-            },
-            prev() {
-                this.active = (this.active - 1 + this.slides.length) % this.slides.length;
-            }
-         }"
+         x-data="gallerySlider()"
          x-init="startAuto()"
          @mouseenter="stopAuto()"
          @mouseleave="startAuto()">
@@ -710,5 +728,49 @@
 
     </div>
 </section>
+
+@push('scripts')
+<script>
+function initGallerySlider() {
+    return {
+        active: 0,
+        slides: @json($slidesList),
+        timer: null,
+        startAuto() {
+            this.stopAuto();
+            if (this.slides && this.slides.length > 1) {
+                this.timer = setInterval(() => {
+                    this.next();
+                }, 4500);
+            }
+        },
+        stopAuto() {
+            if (this.timer) {
+                clearInterval(this.timer);
+                this.timer = null;
+            }
+        },
+        next() {
+            if (this.slides && this.slides.length > 0) {
+                this.active = (this.active + 1) % this.slides.length;
+            }
+        },
+        prev() {
+            if (this.slides && this.slides.length > 0) {
+                this.active = (this.active - 1 + this.slides.length) % this.slides.length;
+            }
+        }
+    };
+}
+
+window.gallerySlider = initGallerySlider;
+
+document.addEventListener('alpine:init', () => {
+    if (window.Alpine) {
+        window.Alpine.data('gallerySlider', initGallerySlider);
+    }
+});
+</script>
+@endpush
 
 @endsection

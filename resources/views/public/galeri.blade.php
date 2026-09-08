@@ -44,7 +44,10 @@
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @forelse($galleries as $index => $gal)
                 <div class="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:border-emerald-300 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 reveal-fade-up delay-{{ ($index % 4) * 100 }}"
-                     @click="previewModal = true; activeImg = '{{ $gal->foto_url }}'; activeTitle = '{{ addslashes($gal->judul) }}'; activeDesc = '{{ addslashes($gal->deskripsi ?? '') }}'">
+                     data-img="{{ $gal->foto_url }}"
+                     data-title="{{ $gal->judul }}"
+                     data-desc="{{ $gal->deskripsi ?? '' }}"
+                     @click="activeImg = $el.dataset.img; activeTitle = $el.dataset.title; activeDesc = $el.dataset.desc; previewModal = true">
                     <div class="h-60 w-full overflow-hidden bg-slate-100 relative">
                         <img src="{{ $gal->foto_url }}" alt="{{ $gal->judul }}" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/0 transition-colors"></div>

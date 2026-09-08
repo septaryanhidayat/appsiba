@@ -37,6 +37,42 @@ class PublicController extends Controller
             ->take(8)
             ->get();
 
+        $gallerySlides = $galleries->isNotEmpty()
+            ? $galleries->map(function ($g) {
+                return [
+                    'title' => $g->judul,
+                    'category' => $g->kategori ?? 'Dokumentasi Pasar',
+                    'image' => $g->foto_url,
+                    'desc' => $g->deskripsi ?? 'Dokumentasi kegiatan resmi pendampingan dan kemitraan pasar APPSI Banyuasin.',
+                ];
+            })->values()->all()
+            : [
+                [
+                    'title' => 'Sosialisasi Digitalisasi QRIS di Pasar Pangkalan Balai',
+                    'category' => 'Digitalisasi Pasar',
+                    'image' => asset('assets/images/berita/berita-qris-digital.webp'),
+                    'desc' => 'Edukasi dan pendampingan transaksi non-tunai bersama perbankan daerah bagi pedagang sayur dan sembako.',
+                ],
+                [
+                    'title' => 'Operasi Pasar Pangan Murah Sembako di Betung',
+                    'category' => 'Stabilisasi Harga',
+                    'image' => asset('assets/images/berita/berita-operasi-pasar.webp'),
+                    'desc' => 'Distribusi beras medium dan minyak goreng terjangkau untuk menekan laju inflasi bahan pokok masyarakat.',
+                ],
+                [
+                    'title' => 'Pengawasan Tera Ulang Timbangan Pasar Pangkalan Balai',
+                    'category' => 'Tera Timbangan',
+                    'image' => asset('assets/images/berita/kegiatan-timbangan-tera.webp'),
+                    'desc' => 'Kerjasama DPD APPSI dan Dinas Perindagkop memastikan keakuratan timbangan pedagang demi jual beli yang jujur.',
+                ],
+                [
+                    'title' => 'Pelatihan Pembukuan & Literasi Keuangan Pedagang Wanita',
+                    'category' => 'Pemberdayaan UMKM',
+                    'image' => asset('assets/images/berita/kegiatan-pelatihan-wanita.webp'),
+                    'desc' => 'Peningkatan kapasitas pengelolaan arus kas dan literasi perbankan formal bagi pedagang pasar perempuan.',
+                ],
+            ];
+
         $stats = [
             'total_anggota' => Member::where('status', 'aktif')->count(),
             'total_pasar' => Member::distinct('lokasi_pasar')->count('lokasi_pasar') ?: 5,
@@ -46,7 +82,7 @@ class PublicController extends Controller
 
         $ketua = OrganizationStructure::where('jabatan', 'like', '%Ketua%')->first();
 
-        return view('public.home', compact('posts', 'meetings', 'galleries', 'stats', 'ketua'));
+        return view('public.home', compact('posts', 'meetings', 'galleries', 'gallerySlides', 'stats', 'ketua'));
     }
 
     /**

@@ -35,6 +35,10 @@ class AppsiWebTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Asosiasi Pedagang Pasar Seluruh Indonesia');
         $response->assertSee('Kabupaten Banyuasin');
+        $response->assertSee('x-data="gallerySlider()"', false);
+        $response->assertSee('function initGallerySlider()', false);
+        $response->assertDontSee("['type' => 'foto']", false);
+        $response->assertDontSee("['type' =>", false);
     }
 
     public function test_public_news_page_and_detail_render(): void
