@@ -24,9 +24,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [PublicController::class, 'index'])->name('home');
 
-// Struktur Organisasi (adopsi appsi.id)
+// Struktur Organisasi (adopsi appsi.id & pwiba)
 Route::get('/struktur', [PublicController::class, 'struktur'])->name('organization.public');
-Route::get('/struktur-organisasi', [PublicController::class, 'struktur']);
+Route::get('/struktur-organisasi', [PublicController::class, 'struktur'])->name('structure.public');
 
 // Berita & Kabar Pasar
 Route::get('/berita', [PublicController::class, 'berita'])->name('news.index');

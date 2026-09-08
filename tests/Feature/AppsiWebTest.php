@@ -55,6 +55,12 @@ class AppsiWebTest extends TestCase
         $orgResponse = $this->get('/struktur');
         $orgResponse->assertStatus(200);
         $orgResponse->assertSee('GUSRA YETRI', false);
+        $orgResponse->assertSee('Bagan Hirarki', false);
+        $orgResponse->assertSee('Daftar Kartu', false);
+
+        $aliasResponse = $this->get(route('structure.public'));
+        $aliasResponse->assertStatus(200);
+        $aliasResponse->assertSee('Jajaran Pengurus DPD APPSI', false);
 
         $membersResponse = $this->get('/keanggotaan');
         $membersResponse->assertStatus(200);
