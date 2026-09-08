@@ -15,17 +15,17 @@
                 <!-- Badge -->
                 <div class="inline-flex items-center gap-2 rounded-full bg-emerald-100/70 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wide text-emerald-900 ring-1 ring-emerald-300 mx-auto lg:mx-0">
                     <span class="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
-                    DPD APPSI KABUPATEN BANYUASIN
+                    {{ $webSetting['hero_badge'] ?? 'DPD APPSI KABUPATEN BANYUASIN' }}
                 </div>
 
                 <!-- Headline -->
                 <h1 class="mt-4 text-[2.2rem] font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-[2.6rem] lg:text-[2.9rem] xl:text-[3.2rem] text-center lg:text-left">
-                    Bergabung dan jadilah bagian dari <span class="text-emerald-700">Asosiasi Pedagang Pasar Seluruh Indonesia</span> sekarang!
+                    {{ $webSetting['hero_title'] ?? 'Bergabung dan jadilah bagian dari Asosiasi Pedagang Pasar Seluruh Indonesia sekarang!' }}
                 </h1>
 
                 <!-- Subtitle -->
                 <p class="mt-5 text-base leading-[1.7] text-slate-600 sm:text-lg text-center lg:text-left mx-auto lg:mx-0">
-                    Bersama memajukan pedagang pasar tradisional demi masa depan mandiri, kuat berdaya saing untuk kesejahteraan pedagang dan masyarakat Kabupaten Banyuasin.
+                    {{ $webSetting['hero_subtitle'] ?? 'Bersama memajukan pedagang pasar tradisional demi masa depan mandiri, kuat berdaya saing untuk kesejahteraan pedagang dan masyarakat Kabupaten Banyuasin.' }}
                 </p>
 
                 <!-- Mobile-Only Foto Ketua (Tampil tepat setelah kalimat header hero di mobile) -->
@@ -35,15 +35,15 @@
                         <!-- Floating Tagline Badge Mobile -->
                         <div class="inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold text-slate-800 ring-1 ring-emerald-500/20 shadow-sm mb-3">
                             <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Kuatkan Suara Pedagang</span>
+                            <span>{{ $webSetting['hero_tagline'] ?? 'Kuatkan Suara Pedagang' }}</span>
                         </div>
 
                         <!-- Halo background ring -->
                         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-[220px] h-[220px] rounded-full border-2 border-dashed border-emerald-500/25 bg-emerald-100/30 pointer-events-none"></div>
 
                         <!-- Foto Ketua Mobile -->
-                        <img src="{{ asset('assets/images/ketua-hero.webp') }}" 
-                             alt="{{ $ketua->nama ?? 'H. Gusra Yetri, SH' }} - Ketua DPD APPSI Banyuasin" 
+                        <img src="{{ $webSetting['hero_image_url'] ?? asset('assets/images/ketua-hero.webp') }}" 
+                             alt="{{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }} - Ketua DPD APPSI Banyuasin" 
                              class="relative z-10 h-auto max-h-[300px] sm:max-h-[340px] w-auto object-contain object-bottom drop-shadow-[0_14px_28px_rgba(4,120,87,0.20)]"
                              width="320" height="340"
                              fetchpriority="high"
@@ -58,12 +58,12 @@
                             <div class="text-left">
                                 <div class="flex items-center gap-1">
                                     <h4 class="text-xs font-extrabold text-slate-900 leading-tight">
-                                        {{ $ketua->nama ?? 'H. Gusra Yetri, SH' }}
+                                        {{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }}
                                     </h4>
                                     <span class="text-emerald-600 text-[10px]"><i class="fa-solid fa-circle-check"></i></span>
                                 </div>
                                 <p class="text-[10px] font-bold text-emerald-700">
-                                    Ketua DPD APPSI Kab. Banyuasin
+                                    {{ $webSetting['jabatan_ketua'] ?? 'Ketua DPD APPSI Kab. Banyuasin' }}
                                 </p>
                             </div>
                         </div>
@@ -133,20 +133,20 @@
             <!-- Floating Badge: Tagline -->
             <div class="absolute top-6 left-8 z-30 inline-flex items-center gap-2 rounded-2xl bg-white/95 px-3.5 py-2 shadow-[0_8px_20px_rgba(15,23,42,0.08)] ring-1 ring-emerald-500/20 backdrop-blur-md transition hover:-translate-y-0.5 whitespace-nowrap">
                 <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="text-xs font-bold text-slate-800 tracking-tight">Kuatkan Suara Pedagang</span>
+                <span class="text-xs font-bold text-slate-800 tracking-tight">{{ $webSetting['hero_tagline'] ?? 'Kuatkan Suara Pedagang' }}</span>
             </div>
 
             <!-- Floating Badge: Masa Bakti -->
             <div class="absolute top-6 right-8 z-30 inline-flex items-center gap-1.5 rounded-2xl bg-emerald-800 text-white px-3.5 py-2 shadow-[0_8px_20px_rgba(4,120,87,0.25)] text-xs font-bold tracking-wide transition hover:-translate-y-0.5">
                 <i class="fa-solid fa-award text-amber-300"></i>
-                <span>Masa Bakti 2024 - 2029</span>
+                <span>Masa Bakti {{ $webSetting['periode'] ?? '2026 - 2031' }}</span>
             </div>
 
             <!-- Ketua Cutout Photo Container (Enlarged & Proportional) -->
             <div class="relative z-20 flex flex-col items-center justify-end w-full px-4 pt-14">
                 <div class="relative group flex items-end justify-center w-full">
-                    <img src="{{ asset('assets/images/ketua-hero.webp') }}" 
-                         alt="{{ $ketua->nama ?? 'H. Gusra Yetri, SH' }} - Ketua DPD APPSI Banyuasin" 
+                    <img src="{{ $webSetting['hero_image_url'] ?? asset('assets/images/ketua-hero.webp') }}" 
+                         alt="{{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }} - Ketua DPD APPSI Banyuasin" 
                          class="relative z-20 h-auto max-h-[580px] xl:max-h-[640px] w-auto max-w-[540px] xl:max-w-[600px] object-contain object-bottom drop-shadow-[0_22px_40px_rgba(4,120,87,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                          width="540" height="580"
                          fetchpriority="high"
@@ -162,14 +162,14 @@
                     <div class="text-left">
                         <div class="flex items-center gap-1.5">
                             <h3 class="text-sm sm:text-base font-extrabold text-slate-900 leading-tight">
-                                {{ $ketua->nama ?? 'H. Gusra Yetri, SH' }}
+                                {{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }}
                             </h3>
                             <span class="inline-flex items-center justify-center h-4 w-4 rounded-full bg-emerald-100 text-emerald-700 text-[10px]" title="Ketua Resmi">
                                 <i class="fa-solid fa-check"></i>
                             </span>
                         </div>
                         <p class="text-xs font-bold text-emerald-700 mt-0.5">
-                            Ketua DPD APPSI Kab. Banyuasin
+                            {{ $webSetting['jabatan_ketua'] ?? 'Ketua DPD APPSI Kab. Banyuasin' }}
                         </p>
                     </div>
                 </div>
@@ -391,8 +391,8 @@
                 <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-emerald-300/20 blur-2xl pointer-events-none"></div>
                 
                 <!-- Foto Ketua APPSI Banyuasin -->
-                <img src="{{ asset('assets/images/ketua-semangat.webp') }}" 
-                     alt="H. Gusra Yetri, SH - Ketua DPD APPSI Kabupaten Banyuasin" 
+                <img src="{{ $webSetting['foto_ketua_semangat_url'] ?? asset('assets/images/ketua-semangat.webp') }}" 
+                     alt="{{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }} - Ketua DPD APPSI Kabupaten Banyuasin" 
                      class="relative z-10 h-full w-auto max-h-[340px] sm:max-h-[420px] object-contain object-bottom transition duration-500 hover:scale-105"
                      width="340" height="420"
                      loading="lazy" decoding="async">
@@ -403,8 +403,8 @@
                         <i class="fa-solid fa-hand-fist text-lg"></i>
                     </div>
                     <div>
-                        <p class="text-xs font-extrabold text-slate-900 leading-tight">H. Gusra Yetri, SH</p>
-                        <p class="text-[11px] font-semibold text-emerald-700">Ketua DPD APPSI Kabupaten Banyuasin</p>
+                        <p class="text-xs font-extrabold text-slate-900 leading-tight">{{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }}</p>
+                        <p class="text-[11px] font-semibold text-emerald-700">{{ $webSetting['jabatan_ketua'] ?? 'Ketua DPD APPSI Kabupaten Banyuasin' }}</p>
                     </div>
                 </div>
             </div>
@@ -416,13 +416,13 @@
         <!-- Right Content -->
         <div class="relative flex flex-col items-center lg:items-start text-center lg:text-left" data-aos="fade-up">
             <span class="inline-block rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-emerald-800 border border-emerald-200 mx-auto lg:mx-0">
-                DPD APPSI KABUPATEN BANYUASIN
+                {{ $webSetting['singkatan'] ?? 'DPD APPSI KABUPATEN BANYUASIN' }}
             </span>
             <h2 class="mt-3 max-w-xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl text-center lg:text-left">
-                Bersatu, Berdaya, Berkarya untuk Pasar Banyuasin
+                {{ $webSetting['home_bersatu_title'] ?? 'Bersatu, Berdaya, Berkarya untuk Pasar Banyuasin' }}
             </h2>
             <p class="mt-4 max-w-xl text-sm leading-7 text-slate-600 text-center lg:text-left mx-auto lg:mx-0">
-                DPD APPSI hadir mengayomi para pedagang pasar tradisional di seluruh kecamatan Kabupaten Banyuasin melalui penguatan Komisariat Pasar, advokasi harga, perlindungan legalitas usaha, dan fasilitasi modal kerja tanpa jeratan rentenir.
+                {{ $webSetting['home_bersatu_desc'] ?? 'DPD APPSI hadir mengayomi para pedagang pasar tradisional di seluruh kecamatan Kabupaten Banyuasin melalui penguatan Komisariat Pasar, advokasi harga, perlindungan legalitas usaha, dan fasilitasi modal kerja tanpa jeratan rentenir.' }}
             </p>
 
             <!-- Metrics -->
@@ -470,54 +470,41 @@
          x-data="{
             active: 0,
             slides: [
-                {
-                    title: 'Sosialisasi Digitalisasi QRIS di Pasar Pangkalan Balai',
-                    category: 'Digitalisasi Pasar',
-                    image: '{{ asset('assets/images/berita/berita-qris-digital.webp') }}',
-                    desc: 'Edukasi dan pendampingan transaksi non-tunai bersama perbankan daerah bagi pedagang sayur dan sembako.'
-                },
-                {
-                    title: 'Operasi Pasar Pangan Murah Sembako di Betung',
-                    category: 'Stabilisasi Harga',
-                    image: '{{ asset('assets/images/berita/berita-operasi-pasar.webp') }}',
-                    desc: 'Distribusi beras medium dan minyak goreng terjangkau untuk menekan laju inflasi bahan pokok masyarakat.'
-                },
-                {
-                    title: 'Pengawasan Tera Ulang Timbangan Pasar Pangkalan Balai',
-                    category: 'Tera Timbangan',
-                    image: '{{ asset('assets/images/berita/kegiatan-timbangan-tera.webp') }}',
-                    desc: 'Kerjasama DPD APPSI dan Dinas Perindagkop memastikan keakuratan timbangan pedagang demi jual beli yang jujur.'
-                },
-                {
-                    title: 'Pelatihan Pembukuan & Literasi Keuangan Pedagang Wanita',
-                    category: 'Pemberdayaan UMKM',
-                    image: '{{ asset('assets/images/berita/kegiatan-pelatihan-wanita.webp') }}',
-                    desc: 'Peningkatan kapasitas pengelolaan arus kas dan literasi perbankan formal bagi pedagang pasar perempuan.'
-                },
-                {
-                    title: 'Fasilitasi Akses KUR & Permodalan Usaha di Sukajadi',
-                    category: 'Permodalan KUR',
-                    image: '{{ asset('assets/images/berita/berita-permodalan-kur.webp') }}',
-                    desc: 'Dialog kemitraan bank demi membebaskan pedagang pasar dari jeratan rentenir dengan suku bunga rendah.'
-                },
-                {
-                    title: 'Advokasi Sanitasi & Drainase Los Basah Pasar Sungsang',
-                    category: 'Advokasi Sarana',
-                    image: '{{ asset('assets/images/berita/berita-pasar-sungsang.webp') }}',
-                    desc: 'Peninjauan langsung sarana pembuangan air dan dermaga sandar pasokan ikan nelayan muara pesisir.'
-                },
-                {
-                    title: 'Rembug Akbar Pengurus Komisariat Pasar se-Kabupaten Banyuasin',
-                    category: 'Konsolidasi',
-                    image: '{{ asset('assets/images/berita/berita-musyawarah-appsi.webp') }}',
-                    desc: 'Konsolidasi pimpinan komisariat dari 21 kecamatan merumuskan kebijakan penataan lapak yang harmonis.'
-                },
-                {
-                    title: 'Konsolidasi Nasional & Musyawarah Akbar APPSI',
-                    category: 'Kongres Nasional',
-                    image: '{{ asset('assets/images/berita/munas-appsi.webp') }}',
-                    desc: 'Penguatan jaringan pedagang pasar tradisional di tingkat provinsi dan nasional demi ekonomi kerakyatan.'
-                }
+                @if(isset($galleries) && $galleries->count() > 0)
+                    @foreach($galleries as $g)
+                        {
+                            title: @json($g->judul),
+                            category: @json($g->kategori ?? 'Dokumentasi Pasar'),
+                            image: @json($g->foto_url),
+                            desc: @json($g->deskripsi ?? 'Dokumentasi kegiatan resmi pendampingan dan kemitraan pasar APPSI Banyuasin.')
+                        },
+                    @endforeach
+                @else
+                    {
+                        title: 'Sosialisasi Digitalisasi QRIS di Pasar Pangkalan Balai',
+                        category: 'Digitalisasi Pasar',
+                        image: '{{ asset('assets/images/berita/berita-qris-digital.webp') }}',
+                        desc: 'Edukasi dan pendampingan transaksi non-tunai bersama perbankan daerah bagi pedagang sayur dan sembako.'
+                    },
+                    {
+                        title: 'Operasi Pasar Pangan Murah Sembako di Betung',
+                        category: 'Stabilisasi Harga',
+                        image: '{{ asset('assets/images/berita/berita-operasi-pasar.webp') }}',
+                        desc: 'Distribusi beras medium dan minyak goreng terjangkau untuk menekan laju inflasi bahan pokok masyarakat.'
+                    },
+                    {
+                        title: 'Pengawasan Tera Ulang Timbangan Pasar Pangkalan Balai',
+                        category: 'Tera Timbangan',
+                        image: '{{ asset('assets/images/berita/kegiatan-timbangan-tera.webp') }}',
+                        desc: 'Kerjasama DPD APPSI dan Dinas Perindagkop memastikan keakuratan timbangan pedagang demi jual beli yang jujur.'
+                    },
+                    {
+                        title: 'Pelatihan Pembukuan & Literasi Keuangan Pedagang Wanita',
+                        category: 'Pemberdayaan UMKM',
+                        image: '{{ asset('assets/images/berita/kegiatan-pelatihan-wanita.webp') }}',
+                        desc: 'Peningkatan kapasitas pengelolaan arus kas dan literasi perbankan formal bagi pedagang pasar perempuan.'
+                    }
+                @endif
             ],
             timer: null,
             startAuto() {

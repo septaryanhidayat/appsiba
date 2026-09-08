@@ -29,7 +29,7 @@ class ImageService
         $relativePath = trim($directory, '/').'/'.$randomName;
 
         // Try converting to WebP using GD
-        $image = self::createImageFromUploadedFile($realPath, $file->getClientMimeType() ?: $file->getMimeType());
+        $image = self::createImageFromPath($realPath, $file->getClientMimeType() ?: $file->getMimeType());
 
         if ($image !== false) {
             $origWidth = imagesx($image);

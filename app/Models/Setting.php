@@ -25,4 +25,35 @@ class Setting extends Model
     {
         return static::updateOrCreate(['key' => $key], ['value' => $value]);
     }
+
+    /**
+     * Resolves a public asset or storage URL for setting key cleanly.
+     */
+    public static function imageUrl(string $key, string $default): string
+    {
+        $val = static::get($key);
+        if (empty($val)) {
+            return asset($default);
+        }
+
+        if (str_starts_with($val, 'http://') || str_starts_with($val, 'https://')) {
+            return $val;
+        }
+
+        if (str_starts_with($val, 'assets/')) {
+            return asset($val);
+        }
+
+        $cleanPath = ltrim(str_replace('storage/', '', $val), '/');
+
+        if (file_exists(public_path('storage/'.$cleanPath)) || file_exists(storage_path('app/public/'.$cleanPath))) {
+            return asset('storage/'.$cleanPath);
+        }
+
+        if (file_exists(public_path($cleanPath))) {
+            return asset($cleanPath);
+        }
+
+        return asset($default);
+    }
 }

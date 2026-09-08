@@ -217,8 +217,8 @@
                     <div class="flex items-start gap-4">
                         <!-- Frame Foto Ketua Baru (Foto 4 Resmi) -->
                         <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-2xl overflow-hidden border-2 border-emerald-500 bg-gradient-to-b from-white to-emerald-100 shrink-0 shadow-sm">
-                            <img src="{{ asset('assets/images/ketua-appsi-banyuasin.webp') }}" 
-                                 alt="{{ $ketua->nama ?? 'H. Gusra Yetri, SH' }} - Ketua DPD APPSI Banyuasin" 
+                            <img src="{{ $webSetting['foto_ketua_profil_url'] ?? asset('assets/images/ketua-appsi-banyuasin.webp') }}" 
+                                 alt="{{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }} - Ketua DPD APPSI Banyuasin" 
                                  class="w-full h-full object-cover object-top">
                         </div>
 
@@ -227,10 +227,10 @@
                                 <i class="fa-solid fa-user-tie text-[9px]"></i> Pimpinan DPD
                             </span>
                             <h3 class="text-sm sm:text-base font-extrabold text-slate-900 leading-tight">
-                                {{ $ketua->nama ?? 'H. Gusra Yetri, SH' }}
+                                {{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }}
                             </h3>
                             <p class="text-xs font-semibold text-emerald-700 mt-0.5">
-                                {{ $ketua->jabatan ?? 'Ketua DPD APPSI Kabupaten Banyuasin' }}
+                                {{ $webSetting['jabatan_ketua'] ?? ($ketua->jabatan ?? 'Ketua DPD APPSI Kabupaten Banyuasin') }}
                             </p>
                             <p class="text-[11px] text-slate-500 mt-2 leading-relaxed italic line-clamp-3">
                                 "Pintu sekretariat DPD selalu terbuka bagi setiap pedagang pasar. Bersama kita jaga kerukunan, stabilitas, dan kemandirian usaha rakyat."

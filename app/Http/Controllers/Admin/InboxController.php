@@ -39,6 +39,23 @@ class InboxController extends Controller
         return response()->json($inbox);
     }
 
+    public function update(Request $request, $id)
+    {
+        $inbox = Inbox::findOrFail($id);
+
+        $validated = $request->validate([
+            'status' => 'required|string|in:baru,dibaca,selesai',
+        ]);
+
+        $inbox->update($validated);
+
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'inbox' => $inbox]);
+        }
+
+        return redirect()->back()->with('success', 'Status pesan aspirasi berhasil diperbarui.');
+    }
+
     public function destroy($id)
     {
         $inbox = Inbox::findOrFail($id);

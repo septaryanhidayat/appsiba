@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('meta_description', 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) Kabupaten Banyuasin. Informasi berita pasar, direktori pedagang binaan, pendaftaran keanggotaan online, dan verifikasi surat digital.')">
+    <meta name="description" content="@yield('meta_description', $webSetting['seo_description'] ?? 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) Kabupaten Banyuasin. Informasi berita pasar, direktori pedagang binaan, pendaftaran keanggotaan online, dan verifikasi surat digital.')">
+    <meta name="keywords" content="{{ $webSetting['seo_keywords'] ?? 'appsi banyuasin, pedagang pasar banyuasin, asosiasi pedagang pasar seluruh indonesia' }}">
     <link rel="canonical" href="{{ url()->current() }}">
-    <title>@yield('title', 'DPD APPSI Kabupaten Banyuasin') - Asosiasi Pedagang Pasar Seluruh Indonesia</title>
+    <title>@yield('title', $webSetting['seo_title'] ?? 'DPD APPSI Kabupaten Banyuasin - Asosiasi Pedagang Pasar Seluruh Indonesia')</title>
     
-    <!-- Favicon Resmi APPSI -->
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/appsi-logo.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('assets/images/appsi-logo.png') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <!-- Favicon Resmi APPSI Dinamis -->
+    <link rel="icon" href="{{ $webSetting['favicon_url'] ?? asset('assets/images/appsi-logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ $webSetting['favicon_url'] ?? asset('assets/images/appsi-logo.png') }}">
+    <link rel="shortcut icon" href="{{ $webSetting['favicon_url'] ?? asset('favicon.ico') }}">
 
-    <!-- Preload LCP Hero Image -->
-    <link rel="preload" as="image" href="{{ asset('assets/images/ketua-hero.webp') }}" type="image/webp" fetchpriority="high">
+    <!-- Preload LCP Hero Image Dinamis -->
+    <link rel="preload" as="image" href="{{ $webSetting['hero_image_url'] ?? asset('assets/images/ketua-hero.webp') }}" type="image/webp" fetchpriority="high">
 
-    <!-- Open Graph / Social Meta -->
+    <!-- Open Graph / Social Meta Dinamis -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'DPD APPSI Kabupaten Banyuasin') - Asosiasi Pedagang Pasar Seluruh Indonesia">
-    <meta property="og:description" content="@yield('meta_description', 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) Kabupaten Banyuasin. Informasi berita pasar, direktori pedagang binaan, pendaftaran keanggotaan online, dan verifikasi surat digital.')">
-    <meta property="og:image" content="{{ asset('assets/images/appsi-logo.png') }}">
-    <meta property="og:site_name" content="APPSI Kabupaten Banyuasin">
+    <meta property="og:title" content="@yield('title', $webSetting['seo_title'] ?? 'DPD APPSI Kabupaten Banyuasin')">
+    <meta property="og:description" content="@yield('meta_description', $webSetting['seo_description'] ?? 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia (APPSI) Kabupaten Banyuasin. Informasi berita pasar, direktori pedagang binaan, pendaftaran keanggotaan online, dan verifikasi surat digital.')">
+    <meta property="og:image" content="{{ $webSetting['og_image_url'] ?? asset('assets/images/appsi-logo.png') }}">
+    <meta property="og:site_name" content="{{ $webSetting['singkatan'] ?? 'APPSI Kabupaten Banyuasin' }}">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('title', 'DPD APPSI Kabupaten Banyuasin')">
-    <meta name="twitter:description" content="@yield('meta_description', 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia Kabupaten Banyuasin.')">
-    <meta name="twitter:image" content="{{ asset('assets/images/appsi-logo.png') }}">
+    <meta name="twitter:title" content="@yield('title', $webSetting['seo_title'] ?? 'DPD APPSI Kabupaten Banyuasin')">
+    <meta name="twitter:description" content="@yield('meta_description', $webSetting['seo_description'] ?? 'Portal Resmi DPD Asosiasi Pedagang Pasar Seluruh Indonesia Kabupaten Banyuasin.')">
+    <meta name="twitter:image" content="{{ $webSetting['og_image_url'] ?? asset('assets/images/appsi-logo.png') }}">
 
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,7 +114,7 @@
             <!-- Logo & Brand Name -->
             <a href="{{ route('home') }}" class="flex shrink-0 items-center gap-3 group">
                 <div class="h-11 w-11 rounded-full overflow-hidden flex items-center justify-center p-0.5 bg-white border border-emerald-100 shadow-sm transition group-hover:scale-105">
-                    <img src="{{ !empty($webSetting['logo']) ? asset('storage/' . $webSetting['logo']) : asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-full w-full object-contain">
+                    <img src="{{ $webSetting['logo_url'] ?? asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-full w-full object-contain">
                 </div>
                 <div class="flex flex-col">
                     <div class="flex items-center gap-1.5">
@@ -490,7 +491,7 @@
                 <div class="flex flex-col items-center sm:items-start">
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3">
                         <div class="h-11 w-11 rounded-2xl overflow-hidden flex items-center justify-center p-1 bg-white shadow-sm shrink-0 mx-auto sm:mx-0">
-                            <img src="{{ !empty($webSetting['logo']) ? asset('storage/' . $webSetting['logo']) : asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-9 w-9 object-contain">
+                            <img src="{{ $webSetting['logo_url'] ?? asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-9 w-9 object-contain">
                         </div>
                         <div class="text-center sm:text-left">
                             <div class="flex items-center justify-center sm:justify-start gap-1.5">

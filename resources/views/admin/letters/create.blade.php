@@ -14,7 +14,7 @@
     </a>
 </div>
 
-<div class="max-w-4xl bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+<div class="w-full bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
     <form action="{{ route('admin.letters.store') }}" method="POST" class="space-y-6">
         @csrf
 

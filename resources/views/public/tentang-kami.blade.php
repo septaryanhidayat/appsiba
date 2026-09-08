@@ -28,22 +28,28 @@
             <div class="grid lg:grid-cols-[280px_1fr] gap-8 items-center">
                 <div class="flex flex-col items-center text-center">
                     <div class="w-48 h-60 rounded-2xl overflow-hidden shadow-md border-2 border-emerald-500 bg-gradient-to-b from-white to-emerald-50">
-                        <img src="{{ asset('assets/images/ketua-appsi-banyuasin.webp') }}" alt="H. Gusra Yetri, SH" class="w-full h-full object-cover object-top">
+                        <img src="{{ $webSetting['foto_ketua_profil_url'] ?? asset('assets/images/ketua-appsi-banyuasin.webp') }}" alt="{{ $webSetting['nama_ketua'] ?? 'H. Gusra Yetri, SH' }}" class="w-full h-full object-cover object-top">
                     </div>
-                    <h3 class="mt-4 text-lg font-bold text-slate-900">H. Gusra Yetri, SH</h3>
-                    <p class="text-xs font-semibold text-emerald-700">Ketua DPD APPSI Kab. Banyuasin</p>
+                    <h3 class="mt-4 text-lg font-bold text-slate-900">{{ $webSetting['nama_ketua'] ?? 'H. Gusra Yetri, SH' }}</h3>
+                    <p class="text-xs font-semibold text-emerald-700">{{ $webSetting['jabatan_ketua'] ?? 'Ketua DPD APPSI Kab. Banyuasin' }}</p>
                 </div>
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-emerald-800">SAMBUTAN KETUA</span>
                     <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
                         "Kuatkan Sinergi, Bela Pedagang Kecil, Majukan Pasar Banyuasin"
                     </h2>
-                    <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
-                        Pasar tradisional adalah denyut nadi kehidupan masyarakat Kabupaten Banyuasin. Dari pasar inilah hasil bumi para petani dan tangkapan nelayan mengalir memenuhi kebutuhan pangan keluarga. 
-                    </p>
-                    <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-                        Keberadaan APPSI di Kabupaten Banyuasin hadir untuk memastikan para pedagang memiliki wadah perlindungan yang sah, kemudahan akses ke pembiayaan KUR yang ramah, serta pendampingan menghadapi era digitalisasi perdagangan tanpa meninggalkan kearifan lokal pasar rakyat.
-                    </p>
+                    @if(!empty($webSetting['sambutan_ketua']))
+                        <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed whitespace-pre-line">
+                            {{ $webSetting['sambutan_ketua'] }}
+                        </p>
+                    @else
+                        <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+                            Pasar tradisional adalah denyut nadi kehidupan masyarakat Kabupaten Banyuasin. Dari pasar inilah hasil bumi para petani dan tangkapan nelayan mengalir memenuhi kebutuhan pangan keluarga. 
+                        </p>
+                        <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+                            Keberadaan APPSI di Kabupaten Banyuasin hadir untuk memastikan para pedagang memiliki wadah perlindungan yang sah, kemudahan akses ke pembiayaan KUR yang ramah, serta pendampingan menghadapi era digitalisasi perdagangan tanpa meninggalkan kearifan lokal pasar rakyat.
+                        </p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -57,7 +63,7 @@
                 </div>
                 <h3 class="text-xl font-extrabold text-slate-900">Visi Organisasi</h3>
                 <p class="mt-3 text-sm text-slate-600 leading-relaxed">
-                    {{ $settings['visi'] ?? 'Mewujudkan Pasar Tradisional yang Kuat, Mandiri, dan Berdaya Saing untuk Kesejahteraan Pedagang dan Masyarakat Indonesia.' }}
+                    {{ $webSetting['visi'] ?? 'Mewujudkan Pasar Tradisional yang Kuat, Mandiri, dan Berdaya Saing untuk Kesejahteraan Pedagang dan Masyarakat Indonesia.' }}
                 </p>
             </div>
 
@@ -68,7 +74,7 @@
                 </div>
                 <h3 class="text-xl font-extrabold text-slate-900">Misi Organisasi</h3>
                 <div class="mt-3 text-sm text-slate-600 leading-relaxed whitespace-pre-line">
-                    {{ $settings['misi'] ?? "1. Terhubung dengan pedagang pasar di seluruh Kabupaten Banyuasin.\n2. Advokasi & Perlindungan kepentingan pedagang pasar.\n3. Peningkatan kapasitas pedagang dan digitalisasi pasar.\n4. Kemitraan strategis dengan pemerintah daerah dan perbankan." }}
+                    {{ $webSetting['misi'] ?? "1. Terhubung dengan pedagang pasar di seluruh Kabupaten Banyuasin.\n2. Advokasi & Perlindungan kepentingan pedagang pasar.\n3. Peningkatan kapasitas pedagang dan digitalisasi pasar.\n4. Kemitraan strategis dengan pemerintah daerah dan perbankan." }}
                 </div>
             </div>
         </div>
@@ -85,7 +91,7 @@
                     <div>
                         <h4 class="text-xs font-bold uppercase text-slate-500">Alamat Kantor</h4>
                         <p class="mt-1 text-sm font-semibold text-slate-800 leading-relaxed">
-                            Jalan Merdeka, Depan Pasar Baru Kelurahan Pangkalan Balai - Kecamatan Banyuasin III, Kab. Banyuasin, Sumatera Selatan
+                            {{ $webSetting['alamat'] ?? 'Jalan Merdeka, Kelurahan Pangkalan Balai - Kecamatan Banyuasin III, Kabupaten Banyuasin, Sumatera Selatan (30914)' }}
                         </p>
                     </div>
                 </div>
@@ -95,8 +101,8 @@
                     <div>
                         <h4 class="text-xs font-bold uppercase text-slate-500">Hotline / Kontak</h4>
                         <p class="mt-1 text-sm font-semibold text-slate-800">
-                            WhatsApp: 0811 618 808<br>
-                            Telp: 0811 618 808
+                            WhatsApp: {{ $webSetting['whatsapp'] ?? '0811 618 808' }}<br>
+                            Telp: {{ $webSetting['telepon'] ?? '0811 618 808' }}
                         </p>
                     </div>
                 </div>
@@ -106,8 +112,8 @@
                     <div>
                         <h4 class="text-xs font-bold uppercase text-slate-500">Email & Web</h4>
                         <p class="mt-1 text-sm font-semibold text-slate-800">
-                            appsi.banyuasin@gmail.com<br>
-                            https://appsiba.or.id
+                            {{ $webSetting['email'] ?? 'appsi.banyuasin@gmail.com' }}<br>
+                            {{ $webSetting['website'] ?? 'https://appsiba.or.id' }}
                         </p>
                     </div>
                 </div>

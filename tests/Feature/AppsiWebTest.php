@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\DownloadDocument;
 use App\Models\Gallery;
+use App\Models\Inbox;
 use App\Models\IncomingLetter;
 use App\Models\Letter;
 use App\Models\Meeting;
@@ -457,5 +458,151 @@ class AppsiWebTest extends TestCase
         $orgDelete = $this->actingAs($admin)->delete(route('admin.organization.destroy', $createdOrg->id));
         $orgDelete->assertRedirect();
         $this->assertDatabaseMissing('organization_structures', ['id' => $createdOrg->id]);
+    }
+
+    public function test_letters_edit_view_has_no_dark_classes_and_updates_successfully(): void
+    {
+        $admin = User::first();
+        $letter = Letter::first();
+        $this->assertNotNull($letter);
+
+        $response = $this->actingAs($admin)->get(route('admin.letters.edit', $letter->id));
+        $response->assertStatus(200);
+        $response->assertDontSee('dark:bg-slate-900', false);
+        $response->assertDontSee('bg-blue-600', false);
+        $response->assertSee('nama_penandatangan', false);
+        $response->assertSee('nama_sekretaris', false);
+        $response->assertSee('tembusan', false);
+        $response->assertSee('tempat_tujuan', false);
+
+        $updateResponse = $this->actingAs($admin)->put(route('admin.letters.update', $letter->id), [
+            'nomor_surat' => $letter->nomor_surat,
+            'tanggal' => '2026-09-08',
+            'jenis_surat' => 'SURAT BIASA',
+            'tujuan' => 'Dinas Perdagangan dan Koperasi',
+            'tempat_tujuan' => 'Pangkalan Balai',
+            'perihal' => 'Pemberitahuan Pendataan Ulang Pedagang Binaan',
+            'keperluan' => 'Pembaruan data lapak dan legalitas NIB',
+            'isi_surat' => '<p>Bersama ini kami sampaikan data pembaruan...</p>',
+            'nama_penandatangan' => 'H. Gusra Yetri, SH',
+            'jabatan_penandatangan' => 'Ketua DPD APPSI Banyuasin',
+            'nama_sekretaris' => 'H. Syamsir Sikumbang, S.Ag, M.Si.',
+            'jabatan_sekretaris' => 'Sekretaris DPD APPSI Banyuasin',
+            'tembusan' => "1. Bupati Banyuasin\n2. Arsip",
+        ]);
+
+        $updateResponse->assertRedirect(route('admin.letters.index'));
+        $this->assertDatabaseHas('letters', [
+            'id' => $letter->id,
+            'perihal' => 'Pemberitahuan Pendataan Ulang Pedagang Binaan',
+            'tempat_tujuan' => 'Pangkalan Balai',
+        ]);
+    }
+
+    public function test_settings_comprehensive_update_and_dynamic_public_synchronization(): void
+    {
+        Storage::fake('public');
+        $admin = User::first();
+
+        $logoFile = UploadedFile::fake()->image('logo-baru.png', 200, 200);
+        $faviconFile = UploadedFile::fake()->create('favicon-baru.ico', 10, 'image/x-icon');
+        $ogFile = UploadedFile::fake()->image('og-baru.jpg', 600, 315);
+        $heroFile = UploadedFile::fake()->image('hero-baru.png', 400, 600);
+        $profilFile = UploadedFile::fake()->image('profil-baru.png', 300, 400);
+        $semangatFile = UploadedFile::fake()->image('semangat-baru.png', 300, 400);
+
+        $updateResponse = $this->actingAs($admin)->put(route('admin.settings.update'), [
+            'nama_organisasi' => 'DPD APPSI Kabupaten Banyuasin Baru',
+            'singkatan' => 'APPSI BANYUASIN 2026',
+            'periode' => '2026 - 2031',
+            'alamat' => 'Jalan Merdeka Kompleks Perkantoran Pemkab Banyuasin No 10',
+            'telepon' => '081234567890',
+            'whatsapp' => '6281234567890',
+            'email' => 'sekretariat.baru@appsiba.or.id',
+            'website' => 'https://appsiba.or.id',
+            'nama_ketua' => 'H. Gusra Yetri, SH (Ketua Terpilih)',
+            'jabatan_ketua' => 'Ketua DPD APPSI Kabupaten Banyuasin',
+            'nama_sekretaris' => 'H. Syamsir Sikumbang, S.Ag, M.Si.',
+            'jabatan_sekretaris' => 'Sekretaris DPD APPSI Kabupaten Banyuasin',
+            'nama_bendahara' => 'H. Rahman, S.Kom',
+            'sambutan_ketua' => 'Sambutan resmi ketua yang baru diperbarui secara dinamis.',
+            'visi' => 'Visi Baru: Pasar Modern dan Berdaya Saing Global.',
+            'misi' => 'Misi Baru: Perlindungan total bagi pedagang pasar.',
+            'tentang_organisasi' => 'Deskripsi profil organisasi yang telah dimodifikasi.',
+            'seo_title' => 'DPD APPSI Banyuasin - Portal Digital Pasar Banyuasin',
+            'seo_description' => 'Deskripsi portal resmi yang baru untuk SEO Google.',
+            'seo_keywords' => 'pasar banyuasin, sembako, beras',
+            'hero_badge' => 'DPD APPSI BANYUASIN RESMI',
+            'hero_title' => 'Judul Hero Baru yang Telah Diedit di Admin',
+            'hero_subtitle' => 'Deskripsi hero baru yang langsung sinkron di beranda.',
+            'hero_tagline' => 'Tagline Pedagang Maju',
+            'home_bersatu_title' => 'Judul Bersatu Baru',
+            'home_bersatu_desc' => 'Deskripsi bersatu baru.',
+            'tampilkan_daftar_anggota' => '1',
+            'logo' => $logoFile,
+            'favicon' => $faviconFile,
+            'og_image' => $ogFile,
+            'hero_image' => $heroFile,
+            'foto_ketua_profil' => $profilFile,
+            'foto_ketua_semangat' => $semangatFile,
+        ]);
+
+        $updateResponse->assertRedirect();
+        $updateResponse->assertSessionHas('success');
+
+        // Test Beranda publik langsung menampilkan teks baru
+        $homeResponse = $this->get('/');
+        $homeResponse->assertStatus(200);
+        $homeResponse->assertSee('DPD APPSI BANYUASIN RESMI', false);
+        $homeResponse->assertSee('Judul Hero Baru yang Telah Diedit di Admin', false);
+        $homeResponse->assertSee('Deskripsi hero baru yang langsung sinkron di beranda.', false);
+        $homeResponse->assertSee('Tagline Pedagang Maju', false);
+        $homeResponse->assertSee('Judul Bersatu Baru', false);
+
+        // Test Halaman Tentang Kami menampilkan visi & sambutan baru
+        $aboutResponse = $this->get('/tentang-kami');
+        $aboutResponse->assertStatus(200);
+        $aboutResponse->assertSee('Visi Baru: Pasar Modern dan Berdaya Saing Global.', false);
+        $aboutResponse->assertSee('Sambutan resmi ketua yang baru diperbarui secara dinamis.', false);
+        $aboutResponse->assertSee('H. Gusra Yetri, SH (Ketua Terpilih)', false);
+
+        // Test Halaman Kontak menampilkan alamat baru
+        $contactResponse = $this->get('/kontak');
+        $contactResponse->assertStatus(200);
+        $contactResponse->assertSee('Jalan Merdeka Kompleks Perkantoran Pemkab Banyuasin No 10', false);
+        $contactResponse->assertSee('sekretariat.baru@appsiba.or.id', false);
+    }
+
+    public function test_inbox_update_and_destroy(): void
+    {
+        $admin = User::first();
+
+        // Submit via public form
+        $submit = $this->post('/buku-tamu', [
+            'nama' => 'Ahmad Jailani',
+            'instansi' => 'Pedagang Los Sayur',
+            'telepon' => '081298765432',
+            'email' => 'ahmad@example.com',
+            'tujuan' => 'Bidang Sarana Pasar',
+            'keperluan' => 'Usulan Perbaikan Atap Los',
+            'pesan' => 'Mohon atap los sayur di pasar diperbaiki saat musim hujan.',
+        ]);
+        $submit->assertRedirect();
+
+        $inbox = Inbox::where('nama', 'Ahmad Jailani')->first();
+        $this->assertNotNull($inbox);
+        $this->assertEquals('baru', $inbox->status);
+
+        // Update status to 'dibaca'
+        $update = $this->actingAs($admin)->put(route('admin.inbox.update', $inbox->id), [
+            'status' => 'dibaca',
+        ]);
+        $update->assertRedirect();
+        $this->assertEquals('dibaca', $inbox->fresh()->status);
+
+        // Destroy
+        $destroy = $this->actingAs($admin)->delete(route('admin.inbox.destroy', $inbox->id));
+        $destroy->assertRedirect();
+        $this->assertDatabaseMissing('inboxes', ['id' => $inbox->id]);
     }
 }
