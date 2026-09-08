@@ -28,7 +28,7 @@
         <!-- Search Card -->
         <div class="rounded-3xl bg-white p-6 sm:p-8 border border-slate-200/80 shadow-sm mb-8" data-aos="fade-up">
             <form action="{{ route('members.check') }}" method="GET">
-                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 text-center sm:text-left">
                     Masukkan Nomor NPA atau NIK Pedagang
                 </label>
                 <div class="flex flex-col sm:flex-row gap-3">
@@ -43,7 +43,7 @@
                         <span>Cek Status</span>
                     </button>
                 </div>
-                <p class="mt-2 text-[11px] text-slate-400">
+                <p class="mt-2 text-[11px] text-slate-400 text-center sm:text-left">
                     * Format NPA: <span class="font-mono font-bold text-slate-600">DPD-BA-01.XXXX</span> atau ketikkan 16 digit NIK yang terdaftar.
                 </p>
             </form>

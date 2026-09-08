@@ -146,8 +146,8 @@
                 
                 <!-- Card 1: Kantor Sekretariat DPD -->
                 <div class="rounded-3xl bg-white p-6 sm:p-7 border border-slate-200/80 shadow-sm">
-                    <div class="flex items-center gap-3 pb-4 border-b border-slate-100">
-                        <div class="h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 text-base shadow-sm">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 pb-4 border-b border-slate-100">
+                        <div class="h-10 w-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 text-base shadow-sm mx-auto sm:mx-0">
                             <i class="fa-solid fa-building"></i>
                         </div>
                         <div>
@@ -158,8 +158,8 @@
 
                     <div class="mt-5 space-y-4 text-xs sm:text-sm text-slate-600">
                         <!-- Alamat -->
-                        <div class="flex items-start gap-3.5">
-                            <div class="h-8 w-8 rounded-lg bg-slate-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3.5">
+                            <div class="h-8 w-8 rounded-lg bg-slate-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 mx-auto sm:mx-0">
                                 <i class="fa-solid fa-location-dot text-xs"></i>
                             </div>
                             <div>
@@ -171,8 +171,8 @@
                         </div>
 
                         <!-- Jam Layanan -->
-                        <div class="flex items-start gap-3.5">
-                            <div class="h-8 w-8 rounded-lg bg-slate-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3.5">
+                            <div class="h-8 w-8 rounded-lg bg-slate-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 mx-auto sm:mx-0">
                                 <i class="fa-solid fa-clock text-xs"></i>
                             </div>
                             <div>
@@ -186,8 +186,8 @@
                         </div>
 
                         <!-- Telepon -->
-                        <div class="flex items-start gap-3.5">
-                            <div class="h-8 w-8 rounded-lg bg-slate-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3.5">
+                            <div class="h-8 w-8 rounded-lg bg-slate-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 mx-auto sm:mx-0">
                                 <i class="fa-solid fa-phone text-xs"></i>
                             </div>
                             <div>
@@ -214,9 +214,9 @@
 
                 <!-- Card 2: Profil & Sambutan Ketua DPD (Dengan Foto 4 Resmi!) -->
                 <div class="rounded-3xl bg-gradient-to-br from-white via-emerald-50/40 to-emerald-50/70 p-6 sm:p-7 border border-emerald-200/80 shadow-sm relative overflow-hidden">
-                    <div class="flex items-start gap-4">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
                         <!-- Frame Foto Ketua Baru (Foto 4 Resmi) -->
-                        <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-2xl overflow-hidden border-2 border-emerald-500 bg-gradient-to-b from-white to-emerald-100 shrink-0 shadow-sm">
+                        <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-2xl overflow-hidden border-2 border-emerald-500 bg-gradient-to-b from-white to-emerald-100 shrink-0 shadow-sm mx-auto sm:mx-0">
                             <img src="{{ $webSetting['foto_ketua_profil_url'] ?? asset('assets/images/ketua-appsi-banyuasin.webp') }}" 
                                  alt="{{ $webSetting['nama_ketua'] ?? ($ketua->nama ?? 'H. Gusra Yetri, SH') }} - Ketua DPD APPSI Banyuasin" 
                                  class="w-full h-full object-cover object-top">
@@ -241,9 +241,9 @@
 
                 <!-- Card 3: Komitmen & Standar Layanan Aspirasi -->
                 <div class="rounded-3xl bg-white p-5 sm:p-6 border border-slate-200/80 shadow-sm">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3 flex items-center gap-2">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3 flex items-center justify-center sm:justify-start gap-2 text-center sm:text-left">
                         <i class="fa-solid fa-certificate text-emerald-600"></i>
-                        Komitmen Pelayanan Sekretariat
+                        <span>Komitmen Pelayanan Sekretariat</span>
                     </h4>
                     <ul class="space-y-2.5 text-xs text-slate-600">
                         <li class="flex items-start gap-2.5">
@@ -268,8 +268,8 @@
                 <div class="rounded-3xl bg-white p-6 sm:p-8 lg:p-9 border border-slate-200/80 shadow-sm">
                     
                     <!-- Header Form -->
-                    <div class="border-b border-slate-100 pb-5 mb-6">
-                        <div class="flex items-center gap-2 mb-1.5">
+                    <div class="border-b border-slate-100 pb-5 mb-6 text-center sm:text-left">
+                        <div class="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
                             <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">
                                 FORMULIR ASPIRASI ONLINE
                             </span>

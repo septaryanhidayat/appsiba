@@ -46,16 +46,19 @@
 <section class="py-14 sm:py-20 bg-slate-50/50 min-h-[600px]">
     <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        <!-- Category Filter Badges -->
-        <div class="flex flex-wrap items-center gap-2 mb-10 reveal-fade-up">
-            <a href="{{ route('news.index') }}" class="px-4 py-2 rounded-xl text-xs font-bold transition {{ !request('kategori') ? 'bg-emerald-700 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50' }}">
-                Semua Topik
-            </a>
-            @foreach($categories as $cat)
-                <a href="{{ route('news.index', ['kategori' => $cat]) }}" class="px-4 py-2 rounded-xl text-xs font-bold transition {{ request('kategori') == $cat ? 'bg-emerald-700 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50' }}">
-                    {{ $cat }}
+        <!-- Category Filter Badges (Rapi, Seimbang & Rata Tengah) -->
+        <div class="mb-10 reveal-fade-up">
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-4xl mx-auto">
+                <a href="{{ route('news.index') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 {{ !request('kategori') ? 'bg-gradient-to-r from-emerald-700 to-teal-800 text-white shadow-md shadow-emerald-700/25 ring-2 ring-emerald-600/30' : 'bg-white border border-slate-200 text-slate-700 hover:border-emerald-300 hover:bg-emerald-50/50 hover:text-emerald-800 shadow-xs' }}">
+                    <i class="fa-solid fa-layer-group text-[11px] {{ !request('kategori') ? 'text-emerald-200' : 'text-slate-400' }}"></i>
+                    <span>Semua Topik</span>
                 </a>
-            @endforeach
+                @foreach($categories as $cat)
+                    <a href="{{ route('news.index', ['kategori' => $cat]) }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 {{ request('kategori') == $cat ? 'bg-gradient-to-r from-emerald-700 to-teal-800 text-white shadow-md shadow-emerald-700/25 ring-2 ring-emerald-600/30' : 'bg-white border border-slate-200 text-slate-700 hover:border-emerald-300 hover:bg-emerald-50/50 hover:text-emerald-800 shadow-xs' }}">
+                        <span>{{ $cat }}</span>
+                    </a>
+                @endforeach
+            </div>
         </div>
 
         <!-- News Grid -->

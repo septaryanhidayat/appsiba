@@ -38,9 +38,9 @@
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             
             <!-- Pilar 1 -->
-            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between" data-aos="fade-up">
+            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between items-center sm:items-start text-center sm:text-left" data-aos="fade-up">
                 <div>
-                    <div class="h-14 w-14 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl shadow-sm mb-6">
+                    <div class="h-14 w-14 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl shadow-sm mb-6 mx-auto sm:mx-0">
                         <i class="fa-solid fa-scale-balanced"></i>
                     </div>
                     <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-700">PILAR 1</span>
@@ -49,16 +49,16 @@
                         Memberikan pendampingan hukum dan mediasi gratis bagi pedagang anggota yang menghadapi sengketa sewa lapak, penggusuran sepihak, pungutan liar, atau regulasi yang merugikan pedagang kecil.
                     </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-emerald-700 flex items-center gap-1.5">
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-emerald-700 flex items-center justify-center sm:justify-start gap-1.5 w-full">
                     <i class="fa-solid fa-shield-halved"></i>
                     Posko Bantuan Hukum DPD
                 </div>
             </div>
 
             <!-- Pilar 2 -->
-            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between items-center sm:items-start text-center sm:text-left" data-aos="fade-up" data-aos-delay="100">
                 <div>
-                    <div class="h-14 w-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl shadow-sm mb-6">
+                    <div class="h-14 w-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl shadow-sm mb-6 mx-auto sm:mx-0">
                         <i class="fa-solid fa-coins"></i>
                     </div>
                     <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-700">PILAR 2</span>
@@ -67,16 +67,16 @@
                         Menjembatani akses permodalan Kredit Usaha Rakyat (KUR) berbunga rendah melalui kemitraan dengan Bank Sumsel Babel, Bank BRI, dan BSI guna membebaskan pedagang dari jeratan pinjaman rentenir pasar.
                     </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-amber-700 flex items-center gap-1.5">
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-amber-700 flex items-center justify-center sm:justify-start gap-1.5 w-full">
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                     Rekomendasi KUR Resmi
                 </div>
             </div>
 
             <!-- Pilar 3 -->
-            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between items-center sm:items-start text-center sm:text-left" data-aos="fade-up" data-aos-delay="200">
                 <div>
-                    <div class="h-14 w-14 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-2xl shadow-sm mb-6">
+                    <div class="h-14 w-14 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-2xl shadow-sm mb-6 mx-auto sm:mx-0">
                         <i class="fa-solid fa-qrcode"></i>
                     </div>
                     <span class="text-[11px] font-extrabold uppercase tracking-wider text-blue-700">PILAR 3</span>
@@ -85,16 +85,16 @@
                         Pelatihan pencatatan keuangan sederhana, fasilitasi pembuatan QRIS gratis bagi pedagang pasar rakyat, serta perintisan katalog digital pedagang agar produk pasar tradisional dapat dipesan online.
                     </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-blue-700 flex items-center gap-1.5">
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-blue-700 flex items-center justify-center sm:justify-start gap-1.5 w-full">
                     <i class="fa-solid fa-mobile-screen-button"></i>
                     Pasar Siap QRIS
                 </div>
             </div>
 
             <!-- Pilar 4 -->
-            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between" data-aos="fade-up">
+            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between items-center sm:items-start text-center sm:text-left" data-aos="fade-up">
                 <div>
-                    <div class="h-14 w-14 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-2xl shadow-sm mb-6">
+                    <div class="h-14 w-14 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-2xl shadow-sm mb-6 mx-auto sm:mx-0">
                         <i class="fa-solid fa-broom"></i>
                     </div>
                     <span class="text-[11px] font-extrabold uppercase tracking-wider text-teal-700">PILAR 4</span>
@@ -103,16 +103,16 @@
                         Mendorong pemerintah daerah melakukan perbaikan drainase, pengelolaan sampah pasar, ketersediaan air bersih, serta penataan zonasi basah/kering demi menciptakan pasar yang bersih, nyaman, dan ramah pembeli.
                     </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-teal-700 flex items-center gap-1.5">
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-teal-700 flex items-center justify-center sm:justify-start gap-1.5 w-full">
                     <i class="fa-solid fa-sparkles"></i>
                     Gerakan Pasar Bersih
                 </div>
             </div>
 
             <!-- Pilar 5 -->
-            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+            <div class="rounded-3xl border border-slate-200/90 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md flex flex-col justify-between items-center sm:items-start text-center sm:text-left" data-aos="fade-up" data-aos-delay="100">
                 <div>
-                    <div class="h-14 w-14 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xl shadow-sm mb-6">
+                    <div class="h-14 w-14 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xl shadow-sm mb-6 mx-auto sm:mx-0">
                         <i class="fa-solid fa-weight-scale"></i>
                     </div>
                     <span class="text-[11px] font-extrabold uppercase tracking-wider text-indigo-700">PILAR 5</span>
@@ -121,14 +121,14 @@
                         Bersinergi dengan Unit Metrologi Legal Disperindag Kabupaten Banyuasin untuk menyelenggarakan tera ulang timbangan berkala, menjaga akurasi takaran dan membangun kepercayaan konsumen pasar.
                     </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-indigo-700 flex items-center gap-1.5">
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-indigo-700 flex items-center justify-center sm:justify-start gap-1.5 w-full">
                     <i class="fa-solid fa-certificate"></i>
                     Pasar Tertib Ukur
                 </div>
             </div>
 
             <!-- Kartu Gabung Komunitas -->
-            <div class="rounded-3xl bg-gradient-to-br from-emerald-800 to-emerald-950 p-7 text-white shadow-xl flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+            <div class="rounded-3xl bg-gradient-to-br from-emerald-800 to-emerald-950 p-7 text-white shadow-xl flex flex-col justify-between items-center sm:items-start text-center sm:text-left" data-aos="fade-up" data-aos-delay="200">
                 <div>
                     <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-extrabold tracking-wider uppercase ring-1 ring-emerald-400/30">
                         MARI BERGABUNG
@@ -138,7 +138,7 @@
                         Daftarkan diri Anda sebagai anggota resmi DPD APPSI Kabupaten Banyuasin dan miliki KTA resmi ber-barcode untuk kemudahan akses fasilitas organisasi.
                     </p>
                 </div>
-                <div class="mt-8">
+                <div class="mt-8 w-full">
                     <a href="{{ route('members.register') }}" class="inline-flex items-center justify-center gap-2 w-full rounded-2xl bg-white py-3 px-5 text-xs sm:text-sm font-extrabold text-emerald-900 shadow hover:bg-emerald-50 transition">
                         <i class="fa-solid fa-user-plus"></i>
                         Daftar Anggota Online Sekarang

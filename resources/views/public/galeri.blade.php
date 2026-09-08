@@ -25,19 +25,22 @@
 <section class="py-14 sm:py-20 bg-slate-50/50 min-h-[600px]" x-data="{ previewModal: false, activeImg: '', activeTitle: '', activeDesc: '' }">
     <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        <!-- Filter Bar -->
-        <div class="flex flex-wrap items-center justify-between gap-4 mb-10 reveal-fade-up">
-            <div class="flex flex-wrap gap-2">
-                <a href="{{ route('gallery.public') }}" class="rounded-xl px-4 py-2 text-xs font-bold transition {{ !request('kategori') ? 'bg-emerald-700 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50' }}">
-                    Semua Foto
+        <!-- Filter Bar (Rapi, Seimbang & Rata Tengah) -->
+        <div class="mb-10 reveal-fade-up text-center">
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-4xl mx-auto">
+                <a href="{{ route('gallery.public') }}" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold transition-all duration-200 {{ !request('kategori') ? 'bg-gradient-to-r from-emerald-700 to-teal-800 text-white shadow-md shadow-emerald-700/25 ring-2 ring-emerald-600/30' : 'bg-white border border-slate-200 text-slate-700 hover:border-emerald-300 hover:bg-emerald-50/50 hover:text-emerald-800 shadow-xs' }}">
+                    <i class="fa-solid fa-images text-[11px] {{ !request('kategori') ? 'text-emerald-200' : 'text-slate-400' }}"></i>
+                    <span>Semua Foto</span>
                 </a>
                 @foreach($categories as $cat)
-                    <a href="{{ route('gallery.public', ['kategori' => $cat]) }}" class="rounded-xl px-4 py-2 text-xs font-bold transition {{ request('kategori') == $cat ? 'bg-emerald-700 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50' }}">
-                        {{ $cat }}
+                    <a href="{{ route('gallery.public', ['kategori' => $cat]) }}" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold transition-all duration-200 {{ request('kategori') == $cat ? 'bg-gradient-to-r from-emerald-700 to-teal-800 text-white shadow-md shadow-emerald-700/25 ring-2 ring-emerald-600/30' : 'bg-white border border-slate-200 text-slate-700 hover:border-emerald-300 hover:bg-emerald-50/50 hover:text-emerald-800 shadow-xs' }}">
+                        <span>{{ $cat }}</span>
                     </a>
                 @endforeach
             </div>
-            <span class="text-xs text-slate-400 font-semibold hidden sm:inline"><i class="fa-solid fa-expand text-emerald-600 mr-1.5"></i> Klik foto untuk melihat tampilan penuh</span>
+            <p class="mt-3 text-xs text-slate-400 font-semibold text-center">
+                <i class="fa-solid fa-expand text-emerald-600 mr-1.5"></i> Klik foto untuk melihat tampilan penuh
+            </p>
         </div>
 
         <!-- Grid Cards -->

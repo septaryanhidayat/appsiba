@@ -88,8 +88,8 @@
         [x-cloak] { display: none !important; }
         html, body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden !important;
-            max-width: 100vw;
+            overflow-x: clip;
+            max-width: 100%;
             background-color: #ffffff;
             color: #0f172a;
         }
@@ -107,27 +107,27 @@
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-emerald-100 selection:text-emerald-800" x-data="{ mobileMenu: false, scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 250)">
 
-    <!-- Sticky Header Navbar (Adopsi appsi.id) -->
-    <header class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur shadow-[0_4px_18px_rgba(15,23,42,0.04)]">
+    <!-- Sticky Header Navbar (Hijau Resmi APPSI Berkontras Tinggi & Sticky) -->
+    <header class="sticky top-0 z-50 border-b border-emerald-700/60 bg-gradient-to-r from-emerald-950 via-emerald-900 to-teal-950 text-white shadow-[0_4px_20px_rgba(4,40,31,0.30)] backdrop-blur-md">
         <div class="mx-auto flex h-[72px] w-full max-w-[1180px] items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
             
             <!-- Logo & Brand Name -->
             <a href="{{ route('home') }}" class="flex shrink-0 items-center gap-3 group">
-                <div class="h-11 w-11 rounded-full overflow-hidden flex items-center justify-center p-0.5 bg-white border border-emerald-100 shadow-sm transition group-hover:scale-105">
+                <div class="h-11 w-11 rounded-full overflow-hidden flex items-center justify-center p-1 bg-white border border-emerald-300/40 shadow-sm transition group-hover:scale-105">
                     <img src="{{ $webSetting['logo_url'] ?? asset('assets/images/appsi-logo.png') }}" alt="Logo APPSI" class="h-full w-full object-contain">
                 </div>
                 <div class="flex flex-col">
                     <div class="flex items-center gap-1.5">
-                        <span class="text-2xl font-extrabold tracking-tight text-emerald-800">APPSI</span>
-                        <span class="text-xs font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">DPD</span>
+                        <span class="text-2xl font-extrabold tracking-tight text-white">APPSI</span>
+                        <span class="text-xs font-black px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 border border-amber-300 shadow-xs">DPD</span>
                     </div>
-                    <span class="text-[10px] font-bold text-slate-500 tracking-wider uppercase -mt-0.5">Kab. Banyuasin</span>
+                    <span class="text-[10px] font-bold text-emerald-200 tracking-wider uppercase -mt-0.5">Kab. Banyuasin</span>
                 </div>
             </a>
 
             <!-- Desktop Navigation (Clean, Dropdown-Grouped & Non-crowded) -->
             <nav class="hidden items-center gap-1 xl:gap-2 lg:flex">
-                <a href="{{ route('home') }}" class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all whitespace-nowrap {{ request()->routeIs('home') ? 'text-emerald-800 font-bold bg-emerald-50' : 'text-slate-700 hover:text-emerald-700 hover:bg-slate-50' }}">
+                <a href="{{ route('home') }}" class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all whitespace-nowrap {{ request()->routeIs('home') ? 'text-white font-bold bg-white/20 ring-1 ring-white/30 shadow-xs' : 'text-emerald-100 hover:text-white hover:bg-white/10' }}">
                     Beranda
                 </a>
 
@@ -135,9 +135,9 @@
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button @click="open = !open" 
                             type="button"
-                            class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer {{ request()->routeIs('about.*') || request()->routeIs('organization.*') || request()->routeIs('structure.*') || request()->routeIs('programs.*') || request()->routeIs('faq.*') ? 'text-emerald-800 font-bold bg-emerald-50' : 'text-slate-700 hover:text-emerald-700 hover:bg-slate-50' }}">
+                            class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer {{ request()->routeIs('about.*') || request()->routeIs('organization.*') || request()->routeIs('structure.*') || request()->routeIs('programs.*') || request()->routeIs('faq.*') ? 'text-white font-bold bg-white/20 ring-1 ring-white/30 shadow-xs' : 'text-emerald-100 hover:text-white hover:bg-white/10' }}">
                         <span>Tentang APPSI</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-emerald-700' : 'text-slate-400'"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-white' : 'text-emerald-300'"></i>
                     </button>
                     <div x-show="open" 
                          x-cloak 
@@ -198,7 +198,7 @@
                 </div>
 
                 <!-- Kabar Pasar (Berita) -->
-                <a href="{{ route('news.index') }}" class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all whitespace-nowrap {{ request()->routeIs('news.*') ? 'text-emerald-800 font-bold bg-emerald-50' : 'text-slate-700 hover:text-emerald-700 hover:bg-slate-50' }}">
+                <a href="{{ route('news.index') }}" class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all whitespace-nowrap {{ request()->routeIs('news.*') ? 'text-white font-bold bg-white/20 ring-1 ring-white/30 shadow-xs' : 'text-emerald-100 hover:text-white hover:bg-white/10' }}">
                     Kabar Pasar
                 </a>
 
@@ -206,9 +206,9 @@
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button @click="open = !open" 
                             type="button"
-                            class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer {{ request()->routeIs('members.*') ? 'text-emerald-800 font-bold bg-emerald-50' : 'text-slate-700 hover:text-emerald-700 hover:bg-slate-50' }}">
+                            class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer {{ request()->routeIs('members.*') ? 'text-white font-bold bg-white/20 ring-1 ring-white/30 shadow-xs' : 'text-emerald-100 hover:text-white hover:bg-white/10' }}">
                         <span>Keanggotaan</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-emerald-700' : 'text-slate-400'"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-white' : 'text-emerald-300'"></i>
                     </button>
                     <div x-show="open" 
                          x-cloak 
@@ -218,7 +218,7 @@
                          x-transition:leave="transition ease-in duration-100"
                          x-transition:leave-start="opacity-100 translate-y-0"
                          x-transition:leave-end="opacity-0 translate-y-1"
-                         class="absolute left-0 top-full mt-1 w-60 rounded-2xl bg-white border border-slate-100 shadow-xl p-2 z-50 space-y-1">
+                         class="absolute left-0 top-full mt-1 w-60 rounded-2xl bg-white text-slate-800 border border-slate-100 shadow-2xl p-2 z-50 space-y-1 ring-1 ring-black/5">
                         
                         <a href="{{ route('members.public') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('members.public') ? 'text-emerald-800 bg-emerald-50 font-bold' : 'text-slate-700 hover:bg-emerald-50/70 hover:text-emerald-800' }} transition-colors">
                             <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
@@ -257,9 +257,9 @@
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button @click="open = !open" 
                             type="button"
-                            class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer {{ request()->routeIs('gallery.*') || request()->routeIs('downloads.*') || request()->routeIs('letter.verify.*') || request()->routeIs('contact.*') ? 'text-emerald-800 font-bold bg-emerald-50' : 'text-slate-700 hover:text-emerald-700 hover:bg-slate-50' }}">
+                            class="px-3 py-2 text-xs xl:text-sm font-semibold rounded-xl transition-all inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer {{ request()->routeIs('gallery.*') || request()->routeIs('downloads.*') || request()->routeIs('letter.verify.*') || request()->routeIs('contact.*') ? 'text-white font-bold bg-white/20 ring-1 ring-white/30 shadow-xs' : 'text-emerald-100 hover:text-white hover:bg-white/10' }}">
                         <span>Layanan & Media</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-emerald-700' : 'text-slate-400'"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-white' : 'text-emerald-300'"></i>
                     </button>
                     <div x-show="open" 
                          x-cloak 
@@ -269,7 +269,7 @@
                          x-transition:leave="transition ease-in duration-100"
                          x-transition:leave-start="opacity-100 translate-y-0"
                          x-transition:leave-end="opacity-0 translate-y-1"
-                         class="absolute left-0 top-full mt-1 w-64 rounded-2xl bg-white border border-slate-100 shadow-xl p-2 z-50 space-y-1">
+                         class="absolute left-0 top-full mt-1 w-64 rounded-2xl bg-white text-slate-800 border border-slate-100 shadow-2xl p-2 z-50 space-y-1 ring-1 ring-black/5">
                         
                         <a href="{{ route('gallery.public') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('gallery.public') ? 'text-emerald-800 bg-emerald-50 font-bold' : 'text-slate-700 hover:bg-emerald-50/70 hover:text-emerald-800' }} transition-colors">
                             <div class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center shrink-0">
@@ -315,19 +315,19 @@
                 </div>
             </nav>
 
-            <!-- CTA Buttons Desktop -->
+            <!-- CTA Buttons Desktop (Kontras Tinggi) -->
             <div class="hidden items-center gap-2.5 lg:flex">
-                <a href="{{ route('members.register') }}" class="inline-flex items-center justify-center gap-1.5 rounded-xl font-bold transition duration-200 border border-emerald-200 bg-white text-emerald-800 hover:border-emerald-500 hover:bg-emerald-50 h-10 px-3.5 text-xs tracking-wide shadow-xs">
-                    <i class="fa-solid fa-user-plus text-xs text-emerald-600"></i>
+                <a href="{{ route('members.register') }}" class="inline-flex items-center justify-center gap-1.5 rounded-xl font-black transition duration-200 bg-white text-emerald-950 hover:bg-emerald-50 border border-white h-10 px-3.5 text-xs tracking-wide shadow-sm hover:scale-[1.02]">
+                    <i class="fa-solid fa-user-plus text-xs text-emerald-700"></i>
                     Daftar KTA
                 </a>
                 @auth
-                    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-bold transition duration-200 bg-emerald-700 text-white shadow-md shadow-emerald-700/20 hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
+                    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-bold transition duration-200 bg-emerald-700 hover:bg-emerald-600 text-white border border-emerald-500/50 shadow-md shadow-black/20 h-10 px-4 text-xs tracking-wide hover:scale-[1.02]">
                         <i class="fa-solid fa-gauge-high text-xs"></i>
                         Panel Admin
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-bold transition duration-200 bg-emerald-700 text-white shadow-md shadow-emerald-700/20 hover:bg-emerald-800 h-10 px-4 text-xs tracking-wide">
+                    <a href="{{ route('login') }}" class="inline-flex items-center justify-center gap-2 rounded-xl font-bold transition duration-200 bg-emerald-700 hover:bg-emerald-600 text-white border border-emerald-500/50 shadow-md shadow-black/20 h-10 px-4 text-xs tracking-wide hover:scale-[1.02]">
                         <i class="fa-solid fa-right-to-bracket text-xs"></i>
                         Login
                     </a>
@@ -335,12 +335,12 @@
             </div>
 
             <!-- Mobile Hamburger Button -->
-            <button type="button" @click="mobileMenu = !mobileMenu" class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 text-slate-700 lg:hidden hover:bg-slate-50 transition shadow-xs" aria-label="Menu">
+            <button type="button" @click="mobileMenu = !mobileMenu" class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 text-white lg:hidden hover:bg-white/10 transition shadow-xs" aria-label="Menu">
                 <i class="fa-solid text-lg" :class="mobileMenu ? 'fa-xmark' : 'fa-bars'"></i>
             </button>
         </div>
 
-        <!-- Mobile Navigation Menu Drawer (Categorized & Accessible) -->
+        <!-- Mobile Navigation Menu Drawer (Deep Green, Categorized & High Contrast) -->
         <div x-show="mobileMenu" 
              x-cloak 
              x-transition:enter="transition ease-out duration-200" 
@@ -348,93 +348,93 @@
              x-transition:enter-end="opacity-100 translate-y-0" 
              x-transition:leave="transition ease-in duration-150" 
              x-transition:leave-start="opacity-100 translate-y-0" 
-             x-transition:leave-end="opacity-0 -translate-y-2"
-             class="border-t border-slate-100 bg-white/98 backdrop-blur-md px-4 pt-3 pb-6 lg:hidden shadow-2xl space-y-3" 
+             x-transition:leave-end="opacity-0 -translate-y-2" 
+             class="border-t border-emerald-800/60 bg-emerald-950/98 backdrop-blur-md px-4 pt-3 pb-6 lg:hidden shadow-2xl space-y-3 text-white" 
              @click.away="mobileMenu = false">
             
             <div class="flex flex-col gap-1">
-                <a @click="mobileMenu = false" href="{{ route('home') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold {{ request()->routeIs('home') ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-house w-5 text-emerald-700"></i>
+                <a @click="mobileMenu = false" href="{{ route('home') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold {{ request()->routeIs('home') ? 'bg-white/20 text-white ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-house w-5 text-emerald-400"></i>
                     <span>Beranda</span>
                 </a>
 
                 <!-- Kategori: Tentang Organisasi -->
                 <div class="pt-2">
-                    <span class="px-3 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Tentang APPSI</span>
+                    <span class="px-3 text-[10px] font-extrabold uppercase tracking-wider text-emerald-300/80">Tentang APPSI</span>
                 </div>
-                <a @click="mobileMenu = false" href="{{ route('about.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('about.public') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-landmark w-5 text-emerald-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('about.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('about.public') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-landmark w-5 text-emerald-400"></i>
                     <span>Profil & Visi Misi</span>
                 </a>
-                <a @click="mobileMenu = false" href="{{ route('organization.public') }}" class="flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-xs font-bold {{ request()->routeIs('organization.public') || request()->routeIs('structure.public') ? 'bg-emerald-100 text-emerald-900 ring-1 ring-emerald-300' : 'text-slate-800 bg-emerald-50/60 hover:bg-emerald-50' }}">
+                <a @click="mobileMenu = false" href="{{ route('organization.public') }}" class="flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-xs font-bold {{ request()->routeIs('organization.public') || request()->routeIs('structure.public') ? 'bg-white/20 text-white ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
                     <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-sitemap w-5 text-emerald-700"></i>
+                        <i class="fa-solid fa-sitemap w-5 text-emerald-400"></i>
                         <span>Struktur Organisasi</span>
                     </div>
-                    <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-200/80 text-emerald-800">
+                    <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-400 text-slate-950">
                         SK 2026
                     </span>
                 </a>
-                <a @click="mobileMenu = false" href="{{ route('programs.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('programs.*') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-layer-group w-5 text-teal-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('programs.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('programs.*') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-layer-group w-5 text-teal-400"></i>
                     <span>5 Pilar Program Kerja</span>
                 </a>
-                <a @click="mobileMenu = false" href="{{ route('faq.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('faq.*') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-circle-question w-5 text-amber-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('faq.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('faq.*') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-circle-question w-5 text-amber-400"></i>
                     <span>Tanya Jawab (FAQ)</span>
                 </a>
 
                 <!-- Kategori: Pasar & Keanggotaan -->
                 <div class="pt-2">
-                    <span class="px-3 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Pasar & Keanggotaan</span>
+                    <span class="px-3 text-[10px] font-extrabold uppercase tracking-wider text-emerald-300/80">Pasar & Keanggotaan</span>
                 </div>
-                <a @click="mobileMenu = false" href="{{ route('news.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('news.*') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-newspaper w-5 text-emerald-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('news.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('news.*') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-newspaper w-5 text-emerald-400"></i>
                     <span>Kabar Pasar & Berita</span>
                 </a>
-                <a @click="mobileMenu = false" href="{{ route('members.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('members.public') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-store w-5 text-emerald-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('members.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('members.public') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-store w-5 text-emerald-400"></i>
                     <span>Direktori Pedagang Pasar</span>
                 </a>
-                <a @click="mobileMenu = false" href="{{ route('members.check') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('members.check') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-id-card-clip w-5 text-blue-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('members.check') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('members.check') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-id-card-clip w-5 text-sky-400"></i>
                     <span>Cek Status Keabsahan KTA</span>
                 </a>
 
                 <!-- Kategori: Layanan & Media -->
                 <div class="pt-2">
-                    <span class="px-3 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Layanan & Media</span>
+                    <span class="px-3 text-[10px] font-extrabold uppercase tracking-wider text-emerald-300/80">Layanan & Media</span>
                 </div>
-                <a @click="mobileMenu = false" href="{{ route('gallery.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('gallery.public') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-images w-5 text-sky-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('gallery.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('gallery.public') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-images w-5 text-sky-400"></i>
                     <span>Galeri Dokumentasi Pasar</span>
                 </a>
-                <a @click="mobileMenu = false" href="{{ route('downloads.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('downloads.*') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-file-arrow-down w-5 text-indigo-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('downloads.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('downloads.*') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-file-arrow-down w-5 text-indigo-400"></i>
                     <span>Pusat Unduhan Regulasi</span>
                 </a>
-                <a @click="mobileMenu = false" href="{{ route('letter.verify.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('letter.verify.*') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-qrcode w-5 text-emerald-700"></i>
+                <a @click="mobileMenu = false" href="{{ route('letter.verify.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('letter.verify.*') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-qrcode w-5 text-emerald-400"></i>
                     <span>Verifikasi Surat Resmi</span>
                 </a>
-                <a @click="mobileMenu = false" href="{{ route('contact.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('contact.*') ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-700 hover:bg-slate-50' }}">
-                    <i class="fa-solid fa-headset w-5 text-rose-600"></i>
+                <a @click="mobileMenu = false" href="{{ route('contact.public') }}" class="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('contact.*') ? 'bg-white/20 text-white font-bold ring-1 ring-white/30' : 'text-emerald-100 hover:bg-white/10 hover:text-white' }}">
+                    <i class="fa-solid fa-headset w-5 text-rose-400"></i>
                     <span>Kontak & Aspirasi Pedagang</span>
                 </a>
 
                 <!-- Action CTA Buttons -->
-                <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
-                    <a @click="mobileMenu = false" href="{{ route('members.register') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold border border-emerald-300 bg-emerald-50 text-emerald-800 shadow-xs">
-                        <i class="fa-solid fa-user-plus text-xs text-emerald-600"></i>
+                <div class="pt-3 border-t border-emerald-800/80 flex flex-col gap-2">
+                    <a @click="mobileMenu = false" href="{{ route('members.register') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-black bg-white text-emerald-950 shadow-md hover:bg-emerald-50">
+                        <i class="fa-solid fa-user-plus text-xs text-emerald-700"></i>
                         <span>Pendaftaran Anggota (KTA)</span>
                     </a>
                     @auth
-                        <a @click="mobileMenu = false" href="{{ route('admin.dashboard') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold bg-emerald-700 text-white shadow-md">
+                        <a @click="mobileMenu = false" href="{{ route('admin.dashboard') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold bg-emerald-700 hover:bg-emerald-600 text-white border border-emerald-500/40 shadow-md">
                             <i class="fa-solid fa-gauge-high text-xs"></i>
                             <span>Panel Eksekutif Admin</span>
                         </a>
                     @else
-                        <a @click="mobileMenu = false" href="{{ route('login') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold bg-emerald-700 text-white shadow-md">
+                        <a @click="mobileMenu = false" href="{{ route('login') }}" class="flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold bg-emerald-700 hover:bg-emerald-600 text-white border border-emerald-500/40 shadow-md">
                             <i class="fa-solid fa-right-to-bracket text-xs"></i>
                             <span>Login Pengurus</span>
                         </a>
@@ -566,7 +566,7 @@
             <div class="p-5 rounded-2xl bg-black/40 border border-emerald-800/40 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-inner">
                 
                 <!-- Left: Branding & Status -->
-                <div class="flex items-center gap-4 text-center sm:text-left">
+                <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
                     <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0 text-xl shadow-inner">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>

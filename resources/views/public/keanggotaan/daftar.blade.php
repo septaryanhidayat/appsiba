@@ -30,9 +30,9 @@
 
                 <!-- Bagian 1: Identitas Pribadi -->
                 <div>
-                    <h3 class="text-base font-extrabold text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2">
+                    <h3 class="text-base font-extrabold text-slate-900 border-b border-slate-100 pb-2 flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-2 text-center sm:text-left">
                         <i class="fa-solid fa-id-card text-emerald-700"></i>
-                        1. Data Pribadi Pedagang
+                        <span>1. Data Pribadi Pedagang</span>
                     </h3>
 
                     <div class="grid sm:grid-cols-2 gap-4 mt-4">
@@ -70,9 +70,9 @@
 
                 <!-- Bagian 2: Data Tempat Usaha di Pasar -->
                 <div class="pt-4">
-                    <h3 class="text-base font-extrabold text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2">
+                    <h3 class="text-base font-extrabold text-slate-900 border-b border-slate-100 pb-2 flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-2 text-center sm:text-left">
                         <i class="fa-solid fa-store text-emerald-700"></i>
-                        2. Data Usaha di Pasar Tradisional
+                        <span>2. Data Usaha di Pasar Tradisional</span>
                     </h3>
 
                     <div class="grid sm:grid-cols-2 gap-4 mt-4">
@@ -123,9 +123,9 @@
 
                 <!-- Bagian 3: Dokumen Pendukung -->
                 <div class="pt-4">
-                    <h3 class="text-base font-extrabold text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2">
+                    <h3 class="text-base font-extrabold text-slate-900 border-b border-slate-100 pb-2 flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-2 text-center sm:text-left">
                         <i class="fa-solid fa-camera text-emerald-700"></i>
-                        3. Foto Pendukung (Opsional)
+                        <span>3. Foto Pendukung (Opsional)</span>
                     </h3>
 
                     <div class="grid sm:grid-cols-2 gap-4 mt-4">

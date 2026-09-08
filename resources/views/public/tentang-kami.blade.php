@@ -33,7 +33,7 @@
                     <h3 class="mt-4 text-lg font-bold text-slate-900">{{ $webSetting['nama_ketua'] ?? 'H. Gusra Yetri, SH' }}</h3>
                     <p class="text-xs font-semibold text-emerald-700">{{ $webSetting['jabatan_ketua'] ?? 'Ketua DPD APPSI Kab. Banyuasin' }}</p>
                 </div>
-                <div>
+                <div class="text-center lg:text-left">
                     <span class="text-xs font-bold uppercase tracking-widest text-emerald-800">SAMBUTAN KETUA</span>
                     <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
                         "Kuatkan Sinergi, Bela Pedagang Kecil, Majukan Pasar Banyuasin"
@@ -54,11 +54,11 @@
             </div>
         </div>
 
-        <!-- Visi & Misi -->
+        <!-- Visi & Misi (Rata Tengah di Mobile) -->
         <div class="grid md:grid-cols-2 gap-8 mb-16" data-aos="fade-up">
             <!-- Visi -->
-            <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 text-2xl mb-5">
+            <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm flex flex-col items-center sm:items-start text-center sm:text-left">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 text-2xl mb-5 mx-auto sm:mx-0">
                     <i class="fa-solid fa-bullseye"></i>
                 </div>
                 <h3 class="text-xl font-extrabold text-slate-900">Visi Organisasi</h3>
@@ -68,8 +68,8 @@
             </div>
 
             <!-- Misi -->
-            <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 text-2xl mb-5">
+            <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm flex flex-col items-center sm:items-start text-center sm:text-left">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 text-2xl mb-5 mx-auto sm:mx-0">
                     <i class="fa-solid fa-list-check"></i>
                 </div>
                 <h3 class="text-xl font-extrabold text-slate-900">Misi Organisasi</h3>
@@ -79,14 +79,14 @@
             </div>
         </div>
 
-        <!-- Alamat Sekretariat & Kontak -->
+        <!-- Alamat Sekretariat & Kontak (Rata Tengah di Mobile) -->
         <div class="bg-slate-50 rounded-3xl border border-slate-200 p-8 sm:p-10" data-aos="fade-up">
-            <h3 class="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+            <h3 class="text-xl font-extrabold text-slate-900 mb-6 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 text-center sm:text-left">
                 <i class="fa-solid fa-building-flag text-emerald-700"></i>
-                Sekretariat Resmi DPD APPSI Kabupaten Banyuasin
+                <span>Sekretariat Resmi DPD APPSI Kabupaten Banyuasin</span>
             </h3>
             <div class="grid sm:grid-cols-3 gap-6">
-                <div class="flex gap-4">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
                     <i class="fa-solid fa-location-dot text-emerald-700 text-xl shrink-0 mt-1"></i>
                     <div>
                         <h4 class="text-xs font-bold uppercase text-slate-500">Alamat Kantor</h4>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <div class="flex gap-4">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
                     <i class="fa-solid fa-phone text-emerald-700 text-xl shrink-0 mt-1"></i>
                     <div>
                         <h4 class="text-xs font-bold uppercase text-slate-500">Hotline / Kontak</h4>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="flex gap-4">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4">
                     <i class="fa-solid fa-envelope text-emerald-700 text-xl shrink-0 mt-1"></i>
                     <div>
                         <h4 class="text-xs font-bold uppercase text-slate-500">Email & Web</h4>

@@ -30,7 +30,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         <!-- View Mode Switcher Header (Identik dengan PWI Banyuasin) -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-2 border-b border-slate-200">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-2 border-b border-slate-200 text-center sm:text-left">
             <div>
                 <h3 class="text-lg font-black text-slate-900">
                     Susunan {{ $structures->count() }} Pejabat Pengurus DPD APPSI Banyuasin
@@ -67,8 +67,8 @@
         <!-- TAMPILAN 2: DAFTAR KARTU GRID TRADISIONAL (IDENTIK DENGAN PWIBA) -->
         <div x-show="viewMode === 'grid'" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
             
-            <!-- Quick Category Filter Tabs -->
-            <div class="flex flex-wrap items-center gap-2">
+            <!-- Quick Category Filter Tabs (Rata Tengah di Mobile) -->
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <button type="button" 
                         @click="filterCategory = 'all'"
                         :class="filterCategory === 'all' ? 'bg-emerald-700 text-white shadow-xs' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'"
